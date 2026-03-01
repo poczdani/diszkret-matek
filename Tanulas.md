@@ -266,6 +266,26 @@ Egy $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$ - $((2, 2, 1, 0, 0), ())$*
 - Az első lista (2,2,1,0,0): Ez a műveletekről (és a konstansokról) szól.
 - A második lista (): Ez a relációkról (a viszonyító jelekről, mint pl. a $\leq, <$) szólna. De ha megnézzük a Boole-algebra "szereplőgárdáját" $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$, láthatjuk, hogy nincsenek benne ilyen viszonyító jelek! Tehát az az üres zárójel () egyszerűen csak azt jelenti: "Ebben a játékban egyáltalán nincsenek relációk."
 
+
+
+**1.7. Példák Boole-algebrákra és "kakukktojásokra"**
+
+A Boole-algebra egy "sablon". Bármilyen rendszer Boole-algebra, ha pontosan illenek rá az 1.4-es állítás (BA1-BA14) szabályai.
+
+**I. Valódi Boole-algebrák (ahol a játékszabályok működnek):**
+* **(a) Halmazalgebra:** A "klasszikus". Az alaphalmaz egy $I$ hatványhalmaza (összes részhalmaza). A műveletek a megszokott $\cup, \cap, \overline{\phantom{x}}, I, \emptyset$.
+* **(b) Részstruktúra:** Egy zárt halmazrendszer: kiválasztott halmazok csoportja, amelyekből a műveletek (unió, metszet) során nem tudunk "kilépni".
+* **(c) Logikai műveletek:** Az informatika alapja. $H = \{h, i\}$ (hamis, igaz). Műveletek: $\vee$ (vagy), $\wedge$ (és), $\neg$ (nem), $| = i$ (igaz), $\circ = h$ (hamis).
+* **(e) Számelmélet:** Egy $N$ négyzetmentes szám osztói. A műveletek: lnko (legnagyobb közös osztó) és lkkt (legkisebb közös többszörös).
+* **(f) Eseményalgebra (Valószínűség):** A lehetséges események tere ($\Omega$). Műveletek: események összege, szorzata, tagadása. Konstansok: biztos esemény ($I$) és lehetetlen esemény ($\emptyset$).
+* **(g) Kapcsoló- és csapalgebrák:** Villanykapcsolók vagy vízcsapok soros (ÉS) és párhuzamos (VAGY) kapcsolása.
+* **(h) Színek keverése:** Színek additív és szubtraktív keverése, komplementer színekkel. Egységelem: fehér, Nullelem: fekete.
+
+**II. Kakukktojások (NEM Boole-algebrák):**
+* **(d) Háromértékű logika ("Talán"):** $H = \{0, \frac{1}{2}, 1\}$. A "félig igaz" ($\frac{1}{2}$) behozatala miatt bizonyos axiómák (pl. a komplementer szabályok: BA9, BA10) nem teljesülnek, így ez csak egy *kvázi* (majdnem) Boole-algebra.
+* **(i) Hagyományos matematika:** A valós számok szokásos összeadása ($+$) és szorzása ($\cdot$) NEM Boole-algebra, mert elbukik a BA1-BA14 axiómákon (pl. az elnyelési szabályon).
+
+
 ```mermaid
 graph TD;
    A-->B-->C
