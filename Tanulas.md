@@ -256,6 +256,16 @@ Egy $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$ struktúra akkor **Boole-a
     * $()$: Nincsenek benne relációk.
 2.  Tökéletesen teljesülnek rá az **1.4. Állításban szereplő tulajdonságok (BA1-BA14 axiómák)**.
 
+
+Egy $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$ - $((2, 2, 1, 0, 0), ())$** Ez az jelenti, hogy pl: 
+  - 1. (VAGY ($\vee$) / Unió) szám azért 2 mert ha valaminek az unioját akaorm vizsgálni akkor 2 dologra les zszüksége,
+  - 2. (ÉS ($\wedge$) / Metszet )szám azért 2 mert 2 dolgora van szükség, hogy megkeressük a közös részét
+  - 3. ( NEM ($\neg$) / Ellentét ) szám azért 1 mert ha kijelölök 1 valamit aminek kell az ellentetje, az logiksuan csak 1 lehet.
+  - 4. A két 0 pedig a két "kitüntetett bábunk" (az Egységelem és a Nullelem), amikhez nem kell semmilyen bemenet (0-változósak), mert csak létező konstansok a táblán.
+  - 
+- Az első lista (2,2,1,0,0): Ez a műveletekről (és a konstansokról) szól.
+- A második lista (): Ez a relációkról (a viszonyító jelekről, mint pl. a $\leq, <$) szólna. De ha megnézzük a Boole-algebra "szereplőgárdáját" $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$, láthatjuk, hogy nincsenek benne ilyen viszonyító jelek! Tehát az az üres zárójel () egyszerűen csak azt jelenti: "Ebben a játékban egyáltalán nincsenek relációk."
+
 ```mermaid
 graph TD;
    A-->B-->C
