@@ -182,7 +182,79 @@ Ez pontosan ugyanúgy működik mint ha azt csinálom, hogy:
 
 Az üres halmaz ($\emptyset$) és az alaphalmaz ($I$) azonosságai megmutatják, hogy ha egy halmazt a 'semmivel' ($\emptyset$), a 'mindenséggel' ($I$), vagy a saját ellentétével ($\overline{A}$) vonunk össze unióval vagy metszettel, akkor a végeredmény mindig egy alapvető halmazzá (önmagává, az üres halmazzá vagy az alaphalmazzá) egyszerűsödik.
 
+**1.5. Definíció: Algebrai struktúra**
 
+Az algebrai struktúra egy matematikai "csomag", amely megadja az elemeket és a velük végezhető szabályokat. 
+Jelölése: $\mathcal{A} := (H, f_1, ..., f_m, R_1, ..., R_n)$.
+
+**A struktúra felépítése:**
+* **Alaphalmaz ($H$):** Egy nemüres halmaz, amelynek elemeivel dolgozunk (a "játék bábui").
+* **Műveletek ($f_1, ..., f_m$):** Úgynevezett $\tau(i)$-változós függvények. Megmondják, hány elemből hozunk létre egy újat (pl. az összeadáshoz 2 szám kell).
+* **Relációk ($R_1, ..., R_n$):** Úgynevezett $\pi(j)$-változós relációk. Elemek közötti viszonyokat vagy tulajdonságokat vizsgálnak (pl. kisebb-egyenlő vizsgálat 2 szám között).
+* **Konstansok ($c \in H$):** Kitüntetett elemek az alaphalmazból (pl. a $0$ vagy az $1$). Ezek $0$-változós függvényeknek is tekinthetők, mert csak "vannak", nem kell hozzájuk bemenet.
+* **Típus ($\text{type}(\mathcal{A})$):** Egy statisztika, ami megmutatja, hogy a csomagban lévő műveletek és relációk hány változósak, és hány konstans van benne.
+
+---
+**Példa egy algebrai struktúrára:**
+
+Az egész számok szokásos rendszere felírva algebrai struktúraként:
+$\mathcal{A} = (\mathbb{Z}, +, \cdot, \leq, 0, 1)$
+
+* **Alaphalmaz ($H$):** $\mathbb{Z}$ (Egész számok)
+* **Műveletek:** $+$ (összeadás, 2-változós) és $\cdot$ (szorzás, 2-változós)
+* **Relációk:** $\leq$ (kisebb-egyenlő, 2-változós)
+* **Konstansok:** $0$ és $1$
+
+**1.6. Definíció: Boole-algebra (BA)**
+
+**A Boole-algebra, mint "Társasjáték" (A struktúra)**
+
+- A definíció eleje azt mondja, hogy a Boole-algebra egy $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$ struktúra. Mit jelent ez az előző (1.5) leckénk alapján?
+  - Van egy alaphalmazunk ($H$), ezek a játékelemek.
+  - Vannak műveleteink ($\vee, \wedge, \neg$).
+  - Vannak kitüntetett, "konstans" bábujaink ($|$ és $\circ$).
+- Mit jelent a típusa? $((2, 2, 1, 0, 0), ())
+- $Emlékszel, ez volt a "doboz hátuljára írt statisztika". Bontsuk ki a számokat:
+  - $2$: A $\vee$ művelethez két dolog kell (pl. A $\vee$ B).
+  - $2$: A $\wedge$ művelethez is két dolog kell (pl. A $\wedge$ B).
+  - $1$: A $\neg$ (ellentét) művelethez csak egy dolog kell (pl. $\neg$A).
+  - $0, 0$: A két kitüntetett elemünknek ($|, \circ$) nem kell bemenet, ők csak vannak.
+  - $()$: A második zárójel üres! Miért? Mert ebben a játékban nincsenek relációk (mint pl. a $\leq$), csak műveletek.
+- A FőszabályEgy ilyen "játékdoboz" csak és kizárólag akkor hívható Boole-algebrának, ha az elemeivel tökéletesen el lehet játszani azt a 14 szabályt (BA1-BA14), amit az előző oldalon megtanultunk (kommutativitás, disztributivitás, stb.). Csak most az $A \cup B = B \cup A$ helyett azt írjuk, hogy $A \vee B = B \vee A$.
+
+
+A Boole-algebra lényegében a halmazműveleteknél megismert játékszabályok (BA1-BA14) alkalmazása egy új jelölésrendszerrel. 
+
+### Halmazelmélet vs. Boole-algebra jelölések
+
+**Listás nézet:**
+* **Unió / Összeöntés:** A régi $\cup$ új jele a $\vee$ (ez a "VAGY" művelet).
+* **Metszet / Közös rész:** A régi $\cap$ új jele a $\wedge$ (ez az "ÉS" művelet).
+* **Komplementer / Ellentét:** A régi $\overline{A}$ új jele a $\neg$ (ez a "NEM" művelet).
+* **Alaphalmaz / Mindenség:** A régi $I$ új jele a $|$ (vagy $1$-es, ez az "egységelem").
+* **Üres halmaz / Semmi:** A régi $\emptyset$ új jele a $\circ$ (vagy $0$-s, ez a "nullelem").
+
+---
+
+**Táblázatos nézet:**
+
+| Fogalom | Halmazelmélet (Régi) | Boole-algebra (Új) | Informatikai név |
+| :--- | :---: | :---: | :--- |
+| **Unió / Összeöntés** | $\cup$ | $\vee$ | VAGY (OR) / Diszjunkció |
+| **Metszet / Közös rész** | $\cap$ | $\wedge$ | ÉS (AND) / Konjunkció |
+| **Komplementer** | $\overline{A}$ | $\neg$ | NEM (NOT) / Negáció |
+| **Alaphalmaz** | $I$ | $|$ (vagy $1$) | Egységelem |
+| **Üres halmaz** | $\emptyset$ | $\circ$ (vagy $0$) | Nullelem |
+
+Egy $\mathcal{B} = (H, \vee, \wedge, \neg, |, \circ)$ struktúra akkor **Boole-algebra**, ha:
+1.  **Típusa $((2, 2, 1, 0, 0), ())$**, ami a következőket jelenti:
+    * $\vee$ (diszjunkció / "vagy"): 2-változós művelet (a $\cup$ megfelelője)
+    * $\wedge$ (konjunkció / "és"): 2-változós művelet (a $\cap$ megfelelője)
+    * $\neg$ (komplementer / "nem"): 1-változós művelet (a $\overline{A}$ megfelelője)
+    * $|$ (egységelem): 0-változós konstans (az $I$ alaphalmaz megfelelője)
+    * $\circ$ (nullelem): 0-változós konstans (az $\emptyset$ üres halmaz megfelelője)
+    * $()$: Nincsenek benne relációk.
+2.  Tökéletesen teljesülnek rá az **1.4. Állításban szereplő tulajdonságok (BA1-BA14 axiómák)**.
 
 ```mermaid
 graph TD;
