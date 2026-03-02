@@ -310,7 +310,18 @@ Tetszőleges $(H, \vee, \wedge, \neg, |, \circ)$ Boole-algebra tetszőleges $a, 
 * $\neg | = \circ$: Mi a "Mindenség" ellentéte? A "Semmi".
 * $\neg \circ = |$: Mi a "Semmi" ellentéte? A "Mindenség". 
 
-*Megjegyzés: Ezek a szabályok ekvivalensek a (BA1)-(BA14) axiómarendszerrel, azaz kölcsönösen levezethetők egymásból.*
+**1.9. Tétel: A Dualitás Elve ("Iker-szabály")**
+
+Ha egy Boole-algebrában felírt azonosság (egyenlet) igaz, akkor az egyenlet **duálisa** is garantáltan igaz. 
+
+**A duális egyenlet képzésének szabálya:**
+1. Minden $\vee$ jelet kicserélünk $\wedge$ jelre (és fordítva).
+2. Minden $|$ jelet kicserélünk $\circ$ jelre (és fordítva).
+3. A változók ($a, b, stb.$) és a tagadás ($\neg$) jelek változatlanul maradnak.
+
+**Miért fontos ez?**
+* Felezi a munkát: elég csak az egyik De Morgan azonosságot (vagy bármely más tételt) bebizonyítani, a duálisa automatikusan bizonyítottnak tekinthető.
+* Hatékonyság: Igazságtáblázattal (brute-force) bizonyítani egy azonosságot sok változó ($n$) esetén $O(2^n)$ lépést jelent, ami még szuperszámítógépekkel is évezredekig tarthatna. A strukturális szabályok (mint a dualitás) ezt az időt spórolják meg.
 
 
 ```mermaid
