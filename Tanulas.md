@@ -324,6 +324,25 @@ Ha egy Boole-algebrában felírt azonosság (egyenlet) igaz, akkor az egyenlet *
 * Hatékonyság: Igazságtáblázattal (brute-force) bizonyítani egy azonosságot sok változó ($n$) esetén $O(2^n)$ lépést jelent, ami még szuperszámítógépekkel is évezredekig tarthatna. A strukturális szabályok (mint a dualitás) ezt az időt spórolják meg.
 
 
+**1.10. Definíció: Izomorfia ("Azonos alak")**
+
+Két Boole-algebra (például $\mathcal{B}$ és $\mathcal{C}$) **izomorf** (jelben: $\mathcal{B} \cong \mathcal{C}$), ha a kettő szerkezetileg és logikailag teljesen megegyezik, csak a jelöléseikben térnek el. 
+
+Matematikailag ez akkor igaz, ha létezik közöttük egy $f$ "szótár" (kölcsönösen egyértelmű megfeleltetés), amely **művelettartó**. Tehát a $\mathcal{B}$-ben elvégzett műveletek (unió, metszet, tagadás) pontosan megfelelnek a $\mathcal{C}$-ben elvégzett műveleteknek:
+* $f(a \vee b) = f(a) \sqcup f(b)$
+* $f(a \wedge b) = f(a) \sqcap f(b)$
+* $f(\neg a) = \dagger f(a)$
+* $f(|) = \top$ és $f(\circ) = \diamond$
+
+**1.11. Tétel: Stone-féle reprezentációs tétel (1936)**
+
+*Tétel:* Minden tetszőleges Boole-algebra izomorf egy halmazalgebra valamely rész-Boole-algebrájával.
+
+*Mit jelent ez a gyakorlatban?*
+Nincsenek "különböző" Boole-algebrák. Bármilyen egzotikus rendszert is vizsgálunk (pl. logika, kapcsolóáramkörök), az szerkezetileg azonos egy hagyományos halmazalgebrával. 
+**Legnagyobb haszna:** Bármilyen bonyolult Boole-azonosságot elegendő egyszerű **Venn-diagramokkal** szemléltetni és ellenőrizni, mert ha a halmazokra igaz, akkor az összes többi Boole-algebrára is garantáltan igaz lesz.
+
+
 ```mermaid
 graph TD;
    A-->B-->C
