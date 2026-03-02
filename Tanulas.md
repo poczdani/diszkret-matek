@@ -285,6 +285,33 @@ A Boole-algebra egy "sablon". Bármilyen rendszer Boole-algebra, ha pontosan ill
 * **(d) Háromértékű logika ("Talán"):** $H = \{0, \frac{1}{2}, 1\}$. A "félig igaz" ($\frac{1}{2}$) behozatala miatt bizonyos axiómák (pl. a komplementer szabályok: BA9, BA10) nem teljesülnek, így ez csak egy *kvázi* (majdnem) Boole-algebra.
 * **(i) Hagyományos matematika:** A valós számok szokásos összeadása ($+$) és szorzása ($\cdot$) NEM Boole-algebra, mert elbukik a BA1-BA14 axiómákon (pl. az elnyelési szabályon).
 
+**1.8. Állítás: A Boole-algebra további azonosságai (Rövidítések)**
+
+Tetszőleges $(H, \vee, \wedge, \neg, |, \circ)$ Boole-algebra tetszőleges $a, b \in H$ elemeire teljesülnek a következők:
+
+* **(a) Idempotencia:**
+  * $a \vee a = a$
+  * $a \wedge a = a$
+* Ha piros festéket (a) keversz össze piros festékkel (a), az eredmény egyszerűen csak piros festék marad (a).
+* **(b) Involúció (kettős tagadás):**
+  * $\neg\neg a = a$
+* . "Nem igaz, hogy nem szeretem a pizzát." Ez pont azt jelenti, hogy szereted a pizzát! A két tagadás kioltja egymást.
+* **(c) Komplementer unicitása (egyértelműsége):**
+  * Ha $a \vee b = |$ és $a \wedge b = \circ$, akkor $b = \neg a$
+* Ha van egy "$b$" dolog, ami az "$a$"-val együtt kiadja a Mindenséget ($|$), ÉS az "$a$"-val semmi közös metszete nincs ($\circ$), akkor az a "$b$" dolog biztosan az "$a$" hivatalos ellentéte, azaz $\neg a$. Nincs belőle több, ez egy egyedi kapcsolat. 
+* **(d) De Morgan azonosság I.:**
+  * $\neg(a \vee b) = \neg a \wedge \neg b$
+* **(e) De Morgan azonosság II.:**
+  * $\neg(a \wedge b) = \neg a \vee \neg b$
+* Ha a tagadást (NEM) beviszed a zárójelbe, akkor a benti művelet megfordul (a VAGY-ból ÉS lesz, az ÉS-ből VAGY).
+* "Vettél tejet VAGY kenyeret?" ($a \vee b$). Te tagadod: "NEM igaz, hogy vettem tejet vagy kenyeret" $\neg(a \vee b)$. Ez logikailag hajszálpontosan azt jelenti, hogy: "NEM vettem tejet, ÉS NEM vettem kenyeret sem" ($\neg a \wedge \neg b$). 
+* **(f) Konstansok tagadása:**
+  * $\neg | = \circ$ és $\neg \circ = |$
+* $\neg | = \circ$: Mi a "Mindenség" ellentéte? A "Semmi".
+* $\neg \circ = |$: Mi a "Semmi" ellentéte? A "Mindenség". 
+
+*Megjegyzés: Ezek a szabályok ekvivalensek a (BA1)-(BA14) axiómarendszerrel, azaz kölcsönösen levezethetők egymásból.*
+
 
 ```mermaid
 graph TD;
