@@ -426,6 +426,10 @@ DNF (Diszjunktív normál forma): Sok kis szigorú profil (ÉS-csomagok), amik k
 
 CNF (Konjunktív normál forma): Sok kis megengedő szabály (VAGY-csomagok), amiknek kivétel nélkül ÉS egyszerre, ÉS mindegyiknek teljesülnie kell. (Összegek szorzata).
 
+# 2. fejezet Elemi leszámlálások
+
+
+
 
 ```mermaid
 graph TD;
