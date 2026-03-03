@@ -343,6 +343,16 @@ Nincsenek "különböző" Boole-algebrák. Bármilyen egzotikus rendszert is viz
 **Legnagyobb haszna:** Bármilyen bonyolult Boole-azonosságot elegendő egyszerű **Venn-diagramokkal** szemléltetni és ellenőrizni, mert ha a halmazokra igaz, akkor az összes többi Boole-algebrára is garantáltan igaz lesz.
 
 
+**1.12. Tétel: A Boole-algebrák teljessége ("Mindent vagy Semmit")**
+
+A tétel kimondja, hogy a Boole-algebrák szerkezete logikailag "tökéletes" és zárt rendszert alkot.
+
+* **Univerzális érvényesség:** Ha felírunk egy $\Phi$ formulát (egyenletet) a Boole-jelekkel, az vagy **minden** létező Boole-algebrában (halmazok, áramkörök, stb.) egyaránt igaz, vagy **mindenhol** egyaránt hamis.
+* **Bizonyíthatóság (Eldönthetőség):** Gödel teljességi tétele alapján a Boole-algebrákban nincsenek "megoldhatatlan rejtélyek". Bármely állításról vagy annak tagadásáról eldönthető, hogy igaz-e, és ez az igazság pusztán a 14 alapszabályból (BA1-BA14) minden esetben levezethető és bizonyítható.
+
+*Érdekesség: Ez éles ellentétben áll a "hagyományos" matematikával, ahol Gödel nemteljességi tétele kimondja, hogy mindig léteznek bebizonyíthatatlan (eldönthetetlen) állítások.*
+
+
 ```mermaid
 graph TD;
    A-->B-->C
