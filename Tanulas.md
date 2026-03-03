@@ -369,6 +369,64 @@ $A_1^{\varepsilon_1} \cap A_2^{\varepsilon_2} \cap ... \cap A_n^{\varepsilon_n} 
 
 *Konyhanyelven:* Akárhogy is variáljuk, hogy melyik halmazban akarunk benne lenni és melyikből akarunk kimaradni, ahhoz a kombinációhoz garantáltan tartozni fog valós elem (egy létező tartomány a Venn-diagramon).
 
+
+**1.14. Állítás: A minőségileg független halmazok elemszáma**
+
+Ez az állítás a Venn-diagramok "kombinációs szobáinak" létszámigényét mondja ki.
+
+* **(i)** Ha $A_1, ..., A_n \subset I$ tetszőleges, minőségileg független halmazok, akkor az $I$ alaphalmaz elemszáma (számossága) legalább $2^n$ kell, hogy legyen ($|I| \ge 2^n$). Ennek oka, hogy az $n$ halmaz pontosan $2^n$ darab egymástól diszjunkt metszetet (kombinációt) hoz létre, és mivel a függetlenség miatt egyik sem üres, legalább $2^n$ elemre van szükség.
+* **(ii)** Bármely $n \in \mathbb{N}$ esetén **létezik** is ilyen tökéletes, minimális méretű ($2^n$ elemű) $I$ alaphalmaz és rajta $n$ darab független részhalmaz. A bizonyítás alapja, hogy az alaphalmaz elemeinek megfeleltetjük a $2$-es számrendszerbeli (bináris) számokat, ahol az adott halmazhoz való tartozást a számjegyek kódolják.
+
+**1.15. Tétel (Grünbaum):**
+Tetszőleges $n \in \mathbb{N}$ számú halmazhoz felrajzolható olyan "általános" (minőségileg független) Venn-diagram a síkon, amely kizárólag konvex (egyenes szakaszokkal határolt, 180°-nál kisebb belső szögű) sokszögekből áll. Nem vagyunk szabálytalan, görbe alakzatokra utalva.
+
+
+**1.16. Definíció: Generátorrendszer és Generátum**
+
+* **Generátum ($[Y]$):** Legyen $\mathcal{B}$ egy Boole-algebra, és $Y \subset B$ egy részhalmaz. Az $Y$ generátuma (azaz $[Y]$) az a legszűkebb/legkisebb rész-Boole-algebra, amely tartalmazza az $Y$ elemeit ($Y \subseteq [Y]$). Ez azt jelenti, hogy az $Y$ elemeiből a Boole-műveletekkel ($\vee, \wedge, \neg$) "kikeverhető" összes lehetséges elem halmaza.
+* **Generátorrendszer:** Ha egy $Y$ részhalmazból az egész $\mathcal{B}$ algebra előállítható (vagyis $[Y] = B$), akkor $Y$-t a $\mathcal{B}$ generátorrendszerének hívjuk.
+* **Végesen generált:** Egy Boole-algebrát végesen generáltnak nevezünk, ha létezik *véges* számú elemből álló generátorrendszere ($Y$).
+
+**1.17. Állítás: A végesen generált elemek "szabványos" alakja (Normálformák)**
+
+Ha van egy véges generátorrendszerünk $Y = \{a_1, ..., a_m\}$, akkor az ebből kikevert $[Y]$ generátum minden egyes $x$ eleme garantáltan felírható kétféle, szigorúan kötött formátumban:
+
+1.  **(1.2) Egyenlet (Diszjunktív normálforma / "VAGY-olt ÉS-csomagok"):**
+    $x = \bigvee_{\vec{\varepsilon} \in S_x} \bigwedge_{i=1}^m a_i^{\varepsilon_i}$
+    Itt az $x$-et úgy kapjuk meg, hogy az alap elemekből ($a_i$) vagy azok tagadásaiból ($\varepsilon_i \in \{+1, -1\}$) teljes konjunkciókat (ÉS-csomagokat) képzünk, majd ezeket a csomagokat diszjunkcióval (VAGY) fűzzük össze. Az $S_x$ halmaz jelöli ki, hogy pontosan mely kombinációkra van szükség az $x$ előállításához.
+
+2.  **(1.3) Egyenlet (Konjunktív normálforma / "ÉS-elt VAGY-csomagok"):**
+    $x = \bigwedge_{\vec{\nu} \in R_x} \bigvee_{i=1}^m a_i^{\nu_i}$
+    Ez az előző logikai "fordítottja" (duálisa): itt VAGY-csomagokat készítünk az elemekből és tagadásaikból ($\nu_i \in \{+1, -1\}$), és azokat kötjük össze ÉS műveletekkel. Az $R_x$ halmaz adja meg a szükséges kombinációkat.
+
+*Lényeg:* A bizonyítás megmutatja, hogy az ilyen alakú kifejezések halmaza teljesen zárt a Boole-műveletekre, így pontosan kiadják az $[Y]$ generátumot.
+
+**1.18. Tétel és 1.19. Definíció: Normálformák, Mintermek és Maxtermek**
+
+Ha $\mathcal{B}$ egy $Y = \{a_1, ..., a_m\}$ generátorrendszerrel generált Boole-algebra, akkor minden $b \in B$ elem felírható két speciális alakban:
+
+* **DNF (Diszjunktív normálforma):** Az (1.2)-es egyenlet alakja. "ÉS-csomagok" (konjunkciók) vannak diszjunkcióval ($\vee$) összekötve.
+* **CNF (Konjunktív normálforma):** Az (1.3)-as egyenlet alakja. "VAGY-csomagok" (diszjunkciók) vannak konjunkcióval ($\wedge$) összekötve.
+
+Az áramkörtervezésben és logikában használt rövidítések az alap építőkövekre:
+* **Minterm ($m_{\vec{\varepsilon}}$):** Olyan teljes konjunkció (ÉS-kapcsolat), amelyben a generátorrendszer *minden egyes* $a_i$ eleme pontosan egyszer szerepel (vagy önmagaként, vagy tagadva). Képlete: $m_{\vec{\varepsilon}} := \bigwedge_{i=1}^m a_i^{\varepsilon_i}$
+* **Maxterm ($M_{\vec{\nu}}$):** Olyan teljes diszjunkció (VAGY-kapcsolat), amelyben szintén minden elem szerepel egyszer. Képlete: $M_{\vec{\nu}} := \bigvee_{i=1}^m a_i^{\nu_i}$
+
+**1.20. Következmény: A generált Boole-algebra maximális mérete**
+
+*Állítás:* Ha egy Boole-algebrát $m$ darab elem generál (azaz $\mathcal{B} = [a_1, ..., a_m]$), akkor az algebra elemeinek száma ($|B|$) felülről korlátos:
+$$|B| \le 2^{2^m}$$
+
+*Feltétel a maximumra:* Az egyenlőség ($|B| = 2^{2^m}$) *akkor és csak akkor* áll fenn, ha a generátorelemek ($a_1, ..., a_m$) **minőségileg függetlenek** egymástól.
+
+*Bizonyítás logikája:* $m$ darab elem pontosan $2^m$ darab különböző mintermet hoz létre. A DNF (és így a Boole-algebra minden eleme) ezen mintermek valamilyen részhalmazának uniója. Egy $2^m$ elemű halmaznak összesen $2^{2^m}$ darab részhalmaza van. Ha a generátorelemek függetlenek, egyik minterm sem üres (nem nullelem), így az összes lehetséges kombináció egyedi elemet eredményez az algebrában.
+
+Összefoglalva az ökölszabály:
+DNF (Diszjunktív normál forma): Sok kis szigorú profil (ÉS-csomagok), amik közül elég, ha csak VAGY az egyik, VAGY a másik igaz. (Szorzatok összege).
+
+CNF (Konjunktív normál forma): Sok kis megengedő szabály (VAGY-csomagok), amiknek kivétel nélkül ÉS egyszerre, ÉS mindegyiknek teljesülnie kell. (Összegek szorzata).
+
+
 ```mermaid
 graph TD;
    A-->B-->C
