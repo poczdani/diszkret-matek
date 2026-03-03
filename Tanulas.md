@@ -428,7 +428,21 @@ CNF (Konjunktív normál forma): Sok kis megengedő szabály (VAGY-csomagok), am
 
 # 2. fejezet Elemi leszámlálások
 
+**2. Fejezet: Elemi Leszámlálások (Kombinatorika)**
 
+A halmazok elemszámát (számosságát) $|A|$ vagy $\#(A)$ jelöli.
+
+**2.1. A kombinatorika alapelvei (A 3 aranyszabály leszámláláskor):**
+1. Mindent összeszámoltunk?
+2. Semmit sem számoltunk kétszer?
+3. Csak a halmaz elemeit számoltuk meg?
+
+**2.2. A leszámlálás két alapmódszere:**
+
+* **a) Összeadás szabálya (A "VAGY" szabály):** Ha a megszámlálandó eseteket diszjunkt (egymást kizáró, különálló) halmazokra bontottuk, akkor a részhalmazok elemszámait **összeadjuk**. 
+* **b) Szorzás szabálya (Az "ÉS" szabály):** Ha a megszámlálandó esetek több független összetevőből állnak össze (bármelyik 'A' elem párosítható bármelyik 'B' elemmel), akkor a lehetőségek számát **összeszorozzuk**. (Ez a halmazok Descartes-szorzatának felel meg.)
+
+*(Megjegyzés: A példákban szereplő $\binom{n}{k}$ jelölés a binomiális együttható (kombináció), jelentése: $n$ elemből $k$ elem kiválasztásának száma sorrend figyelembevétele nélkül. Pontos definíciója a későbbi fejezetekben várható.)*
 
 
 ```mermaid
