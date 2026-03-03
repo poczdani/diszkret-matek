@@ -353,6 +353,22 @@ A tétel kimondja, hogy a Boole-algebrák szerkezete logikailag "tökéletes" é
 *Érdekesség: Ez éles ellentétben áll a "hagyományos" matematikával, ahol Gödel nemteljességi tétele kimondja, hogy mindig léteznek bebizonyíthatatlan (eldönthetetlen) állítások.*
 
 
+**1.3. Halmazok minőségi függetlensége**
+
+A halmazok "általános helyzetű" ábrázolása azt jelenti, hogy a Venn-diagramon minden lehetséges metszetnek (kombinációnak) van egy nem üres tartománya. Három halmaznál ezt 3 körrel meg lehet oldani, négynél már csak bonyolultabb görbékkel.
+
+**1.13. Definíció: Minőségileg független halmazok**
+
+Vezessünk be egy egyszerűsítő jelölést egy $A$ halmazra és komplementerére:
+* $A^{+1} := A$  (az eredeti halmaz)
+* $A^{-1} := \overline{A}$ (a halmaz komplementere)
+
+Tetszőleges $A_1, A_2, ..., A_n$ halmazok akkor **minőségileg függetlenek**, ha a fenti indexeket (a $+1$ és $-1$ "kapcsolókat", jelölésben $\varepsilon_i \in \{+1, -1\}$) bárhogyan is választjuk meg hozzájuk, a metszetük sosem üres halmaz:
+
+$A_1^{\varepsilon_1} \cap A_2^{\varepsilon_2} \cap ... \cap A_n^{\varepsilon_n} \neq \emptyset$
+
+*Konyhanyelven:* Akárhogy is variáljuk, hogy melyik halmazban akarunk benne lenni és melyikből akarunk kimaradni, ahhoz a kombinációhoz garantáltan tartozni fog valós elem (egy létező tartomány a Venn-diagramon).
+
 ```mermaid
 graph TD;
    A-->B-->C
