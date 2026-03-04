@@ -549,6 +549,26 @@ $$\left| \sum_{i=1}^n z_i \right| \le \sum_{i=1}^n |z_i|$$
 * **4. lépés (Visszacsomagolás a végén):** $= \sum_{i=1}^{n+1} |z_i|$
     * *Konyhanyelven:* Ez már csak takarítás. A sok különálló lépés 1-től $n$-ig, plusz az $(n+1)$-edik elem egyszerűen összeolvasva: "Add össze az összes különálló lépést 1-től $(n+1)$-ig". Az "$=$" jel mutatja, hogy csak a felírást rövidítettük le egyetlen szumma alá.
 
+
+**2.3. Permutációk (Sorbarendezések)**
+
+*Alapfogalom (Faktoriális):* $n! := 1 \cdot 2 \cdot \dots \cdot n$, azaz az első $n$ darab pozitív egész szám szorzata. Alapszabályként kikötjük, hogy $0! := 1$. Hasznos azonosság: $(n+1)! = (n+1) \cdot n!$.
+
+**1. Ismétlés nélküli permutáció ($P_n$)**
+* *Mit jelent?* $n$ darab **különböző** elem összes lehetséges sorbarendezését.
+* *Képlet:* $P_n = n!$
+* *Logikája:* Az első helyre $n$-félét választhatunk, a másodikra már csak $(n-1)$-et, és így tovább. A független választásokat összeszorozzuk ($n \cdot (n-1) \cdot \dots \cdot 1$).
+
+**2. Ismétléses permutáció ($P_n^{k_1, \dots, k_s \text{ (ism)}}$)**
+* *Mit jelent?* Összesen $n$ darab elem sorbarendezését, de úgy, hogy vannak köztük teljesen **egyforma (megkülönböztethetetlen)** típusok. Legyen $s$-féle típus, amikből rendre $k_1, k_2, \dots, k_s$ darab van ($k_1 + \dots + k_s = n$).
+* *Képlet:* $P_n^{k_1, \dots, k_s \text{ (ism)}} = \frac{n!}{k_1! \cdot \dots \cdot k_s!}$
+* *Logikája:* Ha minden elem különböző lenne, $n!$-féleképpen rendezhetnénk őket sorba. Azonban az azonos típusú (pl. $k_1$ db) elemek egymás közötti cseréje ($k_1!$-féle csere) nem hoz létre új mintát. Így a teljes $n!$ lehetőséget le kell osztanunk minden egyes azonos csoport belső cseréinek számával ($k_i!$-okkal).
+
+**Polinomiális együttható (2.14. Definíció)**
+A fenti ismétléses permutáció képletét egy speciális zárójeles formában is fel szokták írni, ezt nevezzük polinomiális együtthatónak:
+$$\binom{n}{k_1, \dots, k_s} := \frac{n!}{k_1! \cdot \dots \cdot k_s!}$$
+
+
 ```mermaid
 graph TD;
    A-->B-->C
