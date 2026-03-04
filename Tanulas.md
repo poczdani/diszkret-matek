@@ -568,6 +568,25 @@ $$\left| \sum_{i=1}^n z_i \right| \le \sum_{i=1}^n |z_i|$$
 A fenti ismétléses permutáció képletét egy speciális zárójeles formában is fel szokták írni, ezt nevezzük polinomiális együtthatónak:
 $$\binom{n}{k_1, \dots, k_s} := \frac{n!}{k_1! \cdot \dots \cdot k_s!}$$
 
+**2.3.2. Variációk és kombinációk (Kiválasztások)**
+
+A feladatok megoldásánál az a legfontosabb, hogy tisztázzuk: *számít-e a kiválasztás sorrendje* (variáció vs. kombináció), illetve *visszatehetjük-e* a már kihúzott elemet (ismétléses vs. ismétlés nélküli).
+
+**1. Ismétlés nélküli variáció ($V_n^k$)**
+* *Jellemzők:* Nincs visszatevés, a sorrend **számít** (pl. dobogós helyezések).
+* *Logika:* Az első húzásnál $n$ lehetőségünk van, a másodiknál $n-1$, és így tovább, összesen $k$ alkalommal.
+* *Képlet:* $n \cdot (n-1) \cdot \dots \cdot (n - k + 1)$
+
+**2. Ismétléses variáció ($V_n^{k(ism)}$)**
+* *Jellemzők:* Van visszatevés, a sorrend **számít** (pl. PIN kód, totó).
+* *Logika:* Minden egyes húzásnál (összesen $k$-szor) ugyanúgy az összes $n$ elem rendelkezésünkre áll.
+* *Képlet:* $V_n^{k(ism)} = n^k$
+
+**3. Ismétlés nélküli kombináció ($C_n^k$)**
+* *Jellemzők:* Nincs visszatevés, a sorrend **NEM számít** (pl. Lottósorsolás, kártyaosztás).
+* *Logika:* Fogjuk az ismétlés nélküli variációk számát (ahol még számít a sorrend), és elosztjuk a kiválasztott $k$ elem egymás közötti, számunkra érdektelen sorbarendezéseinek számával ($k!$).
+* *Képlet:* $C_n^k = \frac{n \cdot (n-1) \cdot \dots \cdot (n-k+1)}{k!}$ -> Amit $$\binom{n}{k}$$ -nak hívnak
+
 
 ```mermaid
 graph TD;
