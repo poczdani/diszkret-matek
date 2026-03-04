@@ -444,6 +444,52 @@ A halmazok elemszámát (számosságát) $|A|$ vagy $\#(A)$ jelöli.
 
 *(Megjegyzés: A példákban szereplő $\binom{n}{k}$ jelölés a binomiális együttható (kombináció), jelentése: $n$ elemből $k$ elem kiválasztásának száma sorrend figyelembevétele nélkül. Pontos definíciója a későbbi fejezetekben várható.)*
 
+**2.4. II. Módszer: A bijekciók módszere ("Hasonmás" trükk)**
+
+Ha egy halmaz elemszámát nehéz közvetlenül meghatározni, keresünk egy másik, könnyebben megszámlálható halmazt, amellyel kölcsönösen egyértelmű megfeleltetésbe (bijekcióba) hozható. Mivel a párosítás hibátlan, az eredeti és az új halmaz elemszáma garantáltan megegyezik.
+
+**2.5. Példa: A hatványhalmaz elemszáma ($|\mathcal{P}(A)|$)**
+
+*Kérdés:* Egy $n$ elemű $A$ halmaznak hány részhalmaza van?
+*Bijekciós megoldás:* Minden egyes részhalmazt kódoljunk egy $n$ hosszúságú, 2-es számrendszerbeli sorozattal (ahol $1$ = eleme a részhalmaznak, $0$ = nem eleme). A részhalmazok és ezek a bináris sorozatok között tökéletes bijekció van. Mivel az $n$ hosszú bináris sorozatok száma $2^n$, ezért egy $n$ elemű halmaz részhalmazainak száma is pontosan **$2^n$**.
+
+**2.6. Feladat: A lehetséges függvények száma ($B^A$)**
+
+*Kérdés:* Hány különböző $f: A \rightarrow B$ függvény létezik? ($B^A$ elemszáma)
+*Megoldás:* Ha $|A| = n$ és $|B| = m$, akkor az $A$ halmaz minden egyes $n$ eleméhez az $m$ darab lehetséges $B$-beli érték egyikét kell hozzárendelnünk. Ez megfeleltethető az $m$-alapú számrendszerben felírható $n$-jegyű számoknak. A lehetséges függvények száma: **$|B|^{|A|} = m^n$**.
+
+
+**2.2. Teljes indukció (A dominó-elv)**
+
+A teljes indukció egy bizonyítási módszer, amivel "Minden $n \ge n_0$ természetes számra igaz, hogy $\Phi(n)$" típusú, végtelen sok esetre vonatkozó állításokat tudunk hatékonyan igazolni.
+
+**2.7. Módszer: A Teljes Indukció lépései**
+
+$\Phi(n) -> "Fi"  -  $\Phi(n) \Rightarrow \Phi(n+1)$  ->Ha fi igaz, abból következik, hogy fi n + 1 is igaz. 
+
+**A Teljes Indukció logikája (A Végtelen Lépcső és a Dominó-elv)**
+
+Képzeljük el, hogy van egy végtelenül hosszú lépcső. Be akarjuk bizonyítani, hogy fel tudunk menni a legtetejére. Ehhez mindössze két dolgot kell bizonyítanunk a hitetlenkedőknek:
+
+* **Kezdő lépés:** Rá tudunk lépni a legelső lépcsőfokra (ezt a kezdő számot hívják $n_0$-nak, ami legtöbbször 0 vagy 1). Ha már az elsőre se tudunk fellépni, bukó az egész.
+* **Indukciós lépés (A Dominó-elv):** Be kell bizonyítanunk egy általános szabályt: **HA** feltételezzük, hogy valahogy eljutottunk egy tetszőleges $n$-edik lépcsőfokra, **AKKOR** onnan biztosan fel tudunk lépni a legközelebbi, $(n+1)$-edik fokra is.
+
+**Miért zseniális ez?**
+Mert ha ez a kettő igaz, akkor a bizonyítás végigfut a végtelenbe! Fel tudunk lépni az 1. fokra (kezdő lépés). Mivel fel tudunk lépni az 1-re, a 2. szabály miatt fel tudunk lépni a 2-re is. Mivel a 2-n vagyunk, a szabály miatt mehetünk a 3-ra... és így tovább a végtelenségig.
+
+
+1.  **Kezdő lépés (Bázis):** Ellenőrizzük és bizonyítjuk, hogy az állítás igaz a legelső, kezdő értékre, azaz $\Phi(n_0)$ igaz.
+2.  **Indukciós lépés:** Feltételezzük, hogy az állítás egy tetszőleges $n$ számra igaz (ezt hívjuk *indukciós feltevésnek*), és ebből levezetjük, hogy akkor a rákövetkező $n+1$ számra is feltétlenül igaz. 
+    Képlettel: $\Phi(n) \Rightarrow \Phi(n+1)$
+
+Ha ez a két lépés teljesül, a "lépcsőmászás" analógiájára az állítás minden $n \ge n_0$ számra bizonyítottnak tekinthető.
+
+**Az "erős" indukció (23. oldal)**
+
+Sok esetben az $(n+1)$-edik állítás bizonyításához nem elég csak a közvetlenül megelőző $\Phi(n)$-t feltételezni. Ilyenkor a feltevésünk az, hogy az *összes* korábbi állítás igaz, és ezekből együtt következik a következő lépés:
+$$(\Phi(n_0) \wedge \Phi(n_0 + 1) \wedge \dots \wedge \Phi(n)) \Rightarrow \Phi(n+1)$$
+Röviden jelölve: $\bigwedge_{n_0 \le i \le n} \Phi(i) \Rightarrow \Phi(n+1)$
+
 
 ```mermaid
 graph TD;
