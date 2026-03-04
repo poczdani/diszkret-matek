@@ -491,6 +491,64 @@ $$(\Phi(n_0) \wedge \Phi(n_0 + 1) \wedge \dots \wedge \Phi(n)) \Rightarrow \Phi(
 Röviden jelölve: $\bigwedge_{n_0 \le i \le n} \Phi(i) \Rightarrow \Phi(n+1)$
 
 
+**2.8. Tétel: A Teljes Indukció Tétele (Hivatalos definíció)**
+
+Ha egy $\Phi(n_0)$ állítás igaz (ez a *kezdőlépés*), és minden $n \in \mathbb{N}, n > n_0$ természetes szám esetén igaz az a szabály, hogy $\Phi(n) \Rightarrow \Phi(n+1)$ (ha az $n$-edik igaz, abból következik az $(n+1)$-edik is), akkor a $\Phi(n)$ állítás minden $n \ge n_0$ számra igaz.
+
+**2.9. Példa: Általánosított háromszög-egyenlőtlenség (Indukciós bizonyítás)**
+
+
+**Konyhanyelvi magyarázat: A 2.9. Példa bizonyítása (A "Nagy Csomag" trükk)**
+
+**Az alapelv ("A legrövidebb út az egyenes"):** Ha $A$-ból $C$-be mész egy $B$ kitérővel, az az út mindig hosszabb (vagy egyenlő), mintha egyenesen mentél volna. Két szakaszra ez a sima háromszög-egyenlőtlenség: $|z_1 + z_2| \le |z_1| + |z_2|$. A feladatunk az, hogy ezt a logikát kiterjesszük *bármennyi* ($n$) szakaszra.
+
+**A bizonyítás lépései (Dominó-elv):**
+
+1. **A kezdőlépés ($n=1$):**
+   Ha csak egyetlen szakaszunk van, annak a hossza nyilván kisebb vagy egyenlő a saját hosszával ($|z_1| \le |z_1|$). Ezen nincs mit bizonyítani, felléptünk az első lépcsőfokra.
+
+2. **A titkos alap ($n=2$):**
+   A trükk működéséhez biztosnak kell lennünk a 2 szakaszos esetben. Ezt (az alap háromszög-egyenlőtlenséget) elfogadjuk ismert alapigazságnak.
+
+3. **Az indukciós lépés (A trükk bedobása):**
+   Tegyük fel, hogy a szabály $n$ darab szakaszig tökéletesen működik. Bizonyítsuk be, hogy ha hozzáadunk egy $(n+1)$-edik szakaszt, a szabály akkor is állni fog!
+   * **Csomagolás:** Fogjuk az első $n$ darab szakaszt, és virtuálisan beletesszük egyetlen "Nagy Csomagba" ($\sum_{i=1}^n z_i$).
+   * **Visszabutítás 2 dologra:** Így a képletben hirtelen már csak 2 dolog szerepel: a "Nagy Csomag" és az új, $(n+1)$-edik szakasz.
+   * **A 2-es szabály bevetése:** Mivel csak 2 dolgot látunk, azonnal bevethetjük rájuk a 2. pontban említett alapigazságot. Így a Nagy Csomagot és az új szakaszt sikeresen különvettük egymástól.
+   * **A dominó fellökése (Kibontás):** Végül ránézünk a Nagy Csomagra. Mivel ebben pont $n$ darab dolog van, és mi az elején feltételeztük, hogy $n$ darabra a szabály működik, ezért a csomag tartalmát is felbonthatjuk különálló szakaszokra.
+
+**Konklúzió:** A "csomagolós" trükkel megmutattuk, hogy ha valami igaz $n$ darabra, akkor az $(n+1)$-edik elem hozzáadásával is igaz marad. A dominósor elindult a végtelenbe!
+
+*Állítás:* Tetszőleges $z_1, \dots, z_n \in \mathbb{C}$ számokra (vektorokra) igaz, hogy:
+$$\left| \sum_{i=1}^n z_i \right| \le \sum_{i=1}^n |z_i|$$
+
+*Bizonyítás teljes indukcióval:*
+1.  **Kezdőlépés ($n=1$):** Triviálisan igaz, hiszen $|z_1| \le |z_1|$.
+2.  **Segédlépés ($n=2$):** Felhasználjuk az ismert alap háromszög-egyenlőtlenséget: $|z_1 + z_2| \le |z_1| + |z_2|$.
+3.  **Indukciós lépés ($\Phi(n) \Rightarrow \Phi(n+1)$):** Tegyük fel, hogy $n$-re igaz az állítás. Vizsgáljuk meg az $(n+1)$ esetet:
+    * Az összegzést megbontjuk egy $n$-tagú csoportra és egy $(n+1)$-edik elemre.
+    * Erre a *két* tagra alkalmazzuk az $n=2$ esetben látott alap háromszög-egyenlőtlenséget.
+    * Végül az $n$-tagú részre alkalmazzuk a $\Phi(n)$ indukciós feltételezést.
+    * *Levezetés:* $\left| \sum_{i=1}^{n+1} z_i \right| = \left| \sum_{i=1}^n z_i + z_{n+1} \right| \le \left| \sum_{i=1}^n z_i \right| + |z_{n+1}| \le \sum_{i=1}^n |z_i| + |z_{n+1}| = \sum_{i=1}^{n+1} |z_i|$.
+    * Ezzel bizonyítottuk az állítást minden $n \in \mathbb{N}$ természetes számra.
+
+**Az általánosított háromszög-egyenlőtlenség lépései (2.9. Példa)**
+
+* **A kiindulópont:** $\left| \sum_{i=1}^{n+1} z_i \right|$
+    * *Konyhanyelven:* Ez a teljes út hossza, ha egyenesen mész az 1-es ponttól az $(n+1)$-edik pontig. Ebből indulunk ki.
+
+* **1. lépés (A "Csomagolás"):** $= \left| \sum_{i=1}^n z_i + z_{n+1} \right|$
+    * *Konyhanyelven:* Nem csináltunk matekot, csak **csoportosítottunk**. Leválasztottuk a legutolsó lépést ($z_{n+1}$), az összes többit előtte (1-től $n$-ig) pedig egybehagytuk egy Nagy Csomagban. Az "$=$" jel azért van ott, mert a tartalom ugyanaz maradt.
+
+* **2. lépés (A 2-es szabály bevetése):** $\le \left| \sum_{i=1}^n z_i \right| + |z_{n+1}|$
+    * *Konyhanyelven:* **Itt a varázslat!** Bevetjük az alap háromszög-egyenlőtlenséget a 2 dologra (Nagy Csomag + Utolsó lépés). A függőleges vonalakat (abszolútérték) szétszedjük rájuk külön-külön. Mivel kitérőt tettünk (szétbontottuk az utat), a távolság megnőhet, ezért jön a **$\le$** jel.
+
+* **3. lépés (A dominó fellökése / Kibontás):** $\le \sum_{i=1}^n |z_i| + |z_{n+1}|$
+    * *Konyhanyelven:* Ránézünk a Nagy Csomagra. Mivel az elején feltételeztük, hogy $n$ darabig a szabály működik ($\Phi(n)$ feltevés), a csomagot teljesen kibonthatjuk kis darabokra külön-külön utakként. A csomag kibontásával további kitérőket tettünk, így a **$\le$** jel ismét indokolt.
+
+* **4. lépés (Visszacsomagolás a végén):** $= \sum_{i=1}^{n+1} |z_i|$
+    * *Konyhanyelven:* Ez már csak takarítás. A sok különálló lépés 1-től $n$-ig, plusz az $(n+1)$-edik elem egyszerűen összeolvasva: "Add össze az összes különálló lépést 1-től $(n+1)$-ig". Az "$=$" jel mutatja, hogy csak a felírást rövidítettük le egyetlen szumma alá.
+
 ```mermaid
 graph TD;
    A-->B-->C
