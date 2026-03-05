@@ -615,6 +615,25 @@ Amikor $n$ darab dologból választunk ki (vagy húzunk ki) $k$ darabot.
 | **SZÁMÍT a sorrend** <br> *(pl. futóverseny helyezettjei, PIN kód)* | **Ismétlés nélküli variáció** <br> $V_n^k = \frac{n!}{(n-k)!}$ <br> $= n \cdot (n-1) \cdot \dots \cdot (n-k+1)$ | **Ismétléses variáció** <br> $V_n^{k(ism)} = n^k$ <br> *(Minden helyre $n$-félét tehetünk)* |
 | **NEM számít a sorrend** <br> *(pl. lottósorsolás, kártyaosztás, fagyikehely)* | **Ismétlés nélküli kombináció** <br> $C_n^k = \binom{n}{k} = \frac{n!}{k!(n-k)!}$ <br> *(A variáció leosztva a felesleges $k!$ cserével)* | **Ismétléses kombináció** <br> $C_n^{k(ism)} = \binom{n+k-1}{n-1} = \binom{n+k-1}{k}$ <br> *(A "Strigulák és Válaszfalak" trükk)* |
 
+
+**A 2x2-es Táblázat Navigátora**
+
+**1. Kérdés a SOROKHOZ: A "Helycsere" teszt (Számít a sorrend?)**
+*Képzeld el, hogy már kihúztad a nyerteseket. Cseréld meg két nyertes helyét! Változott valami a feladat szempontjából?*
+* **IGEN (új eredményt kaptunk):** Akkor ez a táblázat **FELSŐ SORA** (Variáció / Permutáció).
+* **NEM (ugyanaz a csapat maradt):** Akkor ez a táblázat **ALSÓ SORA** (Kombináció).
+
+**2. Kérdés az OSZLOPOKHOZ: Az "Elfogyás" teszt (Van ismétlés?)**
+*Képzeld el a húzás pillanatát. Amit kihúztál, azt rögtön utána kihúzhatod újra?*
+* **IGEN (nem fogy el / visszateszem):** Akkor ez a táblázat **JOBB OSZLOPA** (Ismétléses).
+* **NEM (elfogyott / zsebre raktam):** Akkor ez a táblázat **BAL OSZLOPA** (Ismétlés nélküli).
+
+---
+*Bónusz kérdés a felső sorhoz:* **3. A "Mindenki játszik?" teszt (Variáció vs. Permutáció)**
+*Ha a Felső Sorban (Variáció) vagy, kérdezd meg: Az összes rendelkezésre álló elemet sorba kell raknom, vagy maradnak kimaradók?*
+* **Mindenkit sorba rakok:** Permutáció.
+* **Maradnak kimaradók:** Variáció.
+
 ---
 
 **2. SORBARENDEZÉSEK (Permutációk)**
