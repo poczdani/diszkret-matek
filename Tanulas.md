@@ -674,6 +674,37 @@ $$\left(\frac{n}{e}\right)^n \cdot \sqrt{2\pi n} \cdot e^{\frac{1}{12n+1}} \le n
 **Alkalmazás az informatikában:**
 A formulát elsősorban nagy binomiális együtthatók értékének becslésére, illetve az algoritmusok elméletében a különböző futásidők (pl. $\mathcal{O}(2^n)$ exponenciális és $\mathcal{O}(n!)$ faktoriális algoritmusok) összehasonlítására használjuk.
 
+**3. Fejezet: A Binomiális Tétel (Newton-tétel)**
+
+A tétel arra ad egy gyors, általános képletet, hogy hogyan emeljünk tetszőleges $(a+b)$ kéttagú összeget $n$-edik hatványra, anélkül, hogy a zárójeleket végig kéne szoroznunk.
+
+**3.1. Tétel (Binomiális Tétel):**
+Tetszőleges $a, b \in \mathbb{C}$ számok és $n \in \mathbb{N}$ természetes szám esetén:
+$$(a+b)^n = \sum_{i=0}^n \binom{n}{i} \cdot a^i \cdot b^{n-i}$$
+
+*Konyhanyelven a formula működése:*
+1. A szumma ($\sum$) azt jelenti, hogy $i$-t elindítjuk 0-tól egészen $n$-ig, és a kapott tagokat összeadjuk.
+2. Minden egyes tagnál az $a$ hatványkitevője "nő" (vagy csökken), a $b$ hatványkitevője pedig ellentétesen mozog, de a két kitevő összege mindig pontosan $n$ marad.
+3. A tagok előtt álló szorzószámok (a binomiális együtthatók) pedig megadják, hogy az adott betűkombináció hányféleképpen jöhetett létre a zárójelek összeszorzásakor.
+
+**A Szumma ($\sum$) és az index ($i$) szerepe a Binomiális Tételben**
+
+A képlet: $(a+b)^n = \sum_{i=0}^n \binom{n}{i} \cdot a^i \cdot b^{n-i}$
+
+* **Az $n$ jelentése:** A hatványkitevő, ami egy **fix** szám marad végig (pl. hány darab zárójelünk van összesen).
+* **Az $i$ jelentése:** Egy **iteratív lépésszámláló**. Nem egy fix szám, hanem folyamatosan lépked 0-tól egészen $n$-ig. Azt mutatja meg, hogy az adott lépésben hány darab "a" betűt választottunk ki.
+* **A $\binom{n}{i}$ jelentése:** Teljesen megegyezik a kombinatorikából ismert "n alatt a k" ($\binom{n}{k}$) ismétlés nélküli kombinációval. Csak itt a $k$ helyett a lépésszámláló ($i$) aktuális értékét helyettesítjük be.
+
+**Példa kibontva: $(a+b)^3$ esetén ($n=3$)**
+A szumma jel miatt az $i$ értéke elindul 0-ról, és egyesével fellép 3-ig. Minden lépésben kiszámoljuk a tagot, és a végén összeadjuk őket (+):
+
+* **Amikor $i = 0$:** $\binom{3}{0} \cdot a^0 \cdot b^3$
+* **+ (Amikor $i = 1$):** $\binom{3}{1} \cdot a^1 \cdot b^2$
+* **+ (Amikor $i = 2$):** $\binom{3}{2} \cdot a^2 \cdot b^1$
+* **+ (Amikor $i = 3$):** $\binom{3}{3} \cdot a^3 \cdot b^0$
+
+*Látható a szabály:* Az $n$ (a felső 3-as) végig fix maradt. Az $i$ pörgött 0-tól 3-ig. Az "a" kitevője az $i$-vel együtt nőtt, a "b" kitevője pedig csökkent, de a két kitevő összege mindig pontosan $n$ (azaz 3) maradt.
+
 ```mermaid
 graph TD;
    A-->B-->C
