@@ -588,6 +588,73 @@ A feladatok megoldásánál az a legfontosabb, hogy tisztázzuk: *számít-e a k
 * *Képlet:* $C_n^k = \frac{n \cdot (n-1) \cdot \dots \cdot (n-k+1)}{k!}$ -> Amit $$\binom{n}{k}$$ -nak hívnak
 
 
+**A Binomiális Együttható ("n alatt a k")**
+
+Az ismétlés nélküli kombinációt hivatalosan így jelöljük és számoljuk:
+$$\binom{n}{k} := C_n^k = \frac{n!}{k! \cdot (n-k)!}$$
+
+**4. Ismétléses kombináció ($C_n^{k(ism)}$)**
+
+* *Jellemzők:* Van visszatevés (többször is választhatjuk ugyanazt az elemet), és a sorrend **NEM számít** (pl. egyforma golyók elosztása dobozokba, fagyigombócok kelyhe).
+* *A bizonyítás logikája (Strigulák és Válaszfalak / "Stars and Bars" módszer):*
+  Képzeljük el, hogy az $n$ féle kategóriát $n-1$ darab "válaszfallal" (0-val) választjuk el egymástól. A $k$ darab kiválasztott elemet "strigulákkal" (1-esekkel) jelöljük. Egy kiválasztás így egy pontosan $n+k-1$ hosszúságú (0 és 1 számjegyekből álló) sorozatot alkot. A feladat innentől az, hogy az $n+k-1$ helyből kiválasszuk azt az $n-1$ helyet, ahová a válaszfalak (0-k) kerülnek. Ez egy sima ismétlés nélküli kombinációra vezeti vissza a problémát.
+* *Képlet:*
+  $$C_n^{k(ism)} = \binom{n+k-1}{n-1}$$
+  *(Megjegyzés: A szimmetria miatt ez pontosan egyenlő a $\binom{n+k-1}{k}$ értékkel is.)*
+
+
+összegző táblázat 
+
+**A Kombinatorika Alapesetei ("Puska" a képletekhez)**
+
+**1. KIVÁLASZTÁSOK (Variációk és Kombinációk)**
+Amikor $n$ darab dologból választunk ki (vagy húzunk ki) $k$ darabot.
+
+| | **Ismétlés nélküli (NINCS visszatevés)** <br> *(Minden elem csak egyszer választható)* | **Ismétléses (VAN visszatevés)** <br> *(Egy elem többször is választható)* |
+| :--- | :--- | :--- |
+| **SZÁMÍT a sorrend** <br> *(pl. futóverseny helyezettjei, PIN kód)* | **Ismétlés nélküli variáció** <br> $V_n^k = \frac{n!}{(n-k)!}$ <br> $= n \cdot (n-1) \cdot \dots \cdot (n-k+1)$ | **Ismétléses variáció** <br> $V_n^{k(ism)} = n^k$ <br> *(Minden helyre $n$-félét tehetünk)* |
+| **NEM számít a sorrend** <br> *(pl. lottósorsolás, kártyaosztás, fagyikehely)* | **Ismétlés nélküli kombináció** <br> $C_n^k = \binom{n}{k} = \frac{n!}{k!(n-k)!}$ <br> *(A variáció leosztva a felesleges $k!$ cserével)* | **Ismétléses kombináció** <br> $C_n^{k(ism)} = \binom{n+k-1}{n-1} = \binom{n+k-1}{k}$ <br> *(A "Strigulák és Válaszfalak" trükk)* |
+
+---
+
+**2. SORBARENDEZÉSEK (Permutációk)**
+Amikor mind az $n$ darab elemet felhasználjuk és sorba rakjuk ($k=n$).
+
+* **Ismétlés nélküli permutáció ($P_n$):**
+  * *Jellemző:* Minden elem **különböző** (pl. 5 különböző ember sorbaállítása).
+  * *Képlet:* $P_n = n!$
+* **Ismétléses permutáció ($P_n^{ism}$):**
+  * *Jellemző:* Vannak teljesen **egyforma** elemek (pl. azonos színű biliárdgolyók sorbarendezése).
+  * *Képlet:* $P_n^{ism} = \frac{n!}{k_1! \cdot k_2! \cdot \dots \cdot k_s!}$ *(Az összes elem faktoriálisa leosztva az egyforma csoportok faktoriálisaival).*
+
+
+**2.25. Tétel: Kapcsolat a kombinatorikai alapműveletek között**
+
+A tétel megmutatja, hogy a kiválasztások (variáció, kombináció) bizonyos esetekben visszavezethetők a teljes sorbarendezésekre (permutációkra).
+
+**1. $V_n^n = P_n$**
+* *Logika:* Ha egy $n$ elemű halmazból mind az $n$ elemet kiválasztjuk úgy, hogy számít a sorrend (nincs ismétlés), az logikailag és számszakilag is megegyezik a halmaz összes elemének sorbarendezésével (permutációjával). 
+* *Bizonyítás:* $V_n^n = n \cdot (n-1) \cdot \dots \cdot (n - n + 1) = n \cdot (n-1) \cdot \dots \cdot 1 = n! = P_n$
+
+**2. $C_n^k = P_n^{k, n-k \text{ (ism)}}$** (illetve $\binom{n}{k} = \binom{n}{k, n-k}$)
+* *Logika:* Az ismétlés nélküli kombináció (kiválasztás) modellezhető egy ismétléses permutációval. Képzeljük el, hogy az $n$ elemhez $k$ darab "kiválasztott" (egyforma) és $n-k$ darab "nem kiválasztott" (egyforma) státuszt/pozíciót rendelünk. Ezeknek a státuszoknak az összes lehetséges sorbarendezése pontosan kiadja a kombinációk számát.
+* *Bizonyítás:* Mindkét oldal képlete ugyanazt az algebrai alakot adja: $\frac{n!}{k! \cdot (n-k)!}$.
+
+**2.4. A Stirling-formula (Nagy faktoriálisok becslése)**
+
+*Probléma:* Az $n!$ (faktoriális) értéke hatalmas sebességgel nő, így nagy $n$ értékek esetén a pontos kiszámolása (vagy akár a számológépen való ábrázolása) lehetetlenné válik. Szükségünk van egy eszközre, amivel a nagyságrendjét becsülni tudjuk.
+
+**2.26. Tétel (Stirling-formula):**
+Elég nagy $n \in \mathbb{N}$ természetes számok esetén az $n!$ értéke nagyon jó közelítéssel megadható az alábbi formulával:
+$$n! \approx \left(\frac{n}{e}\right)^n \cdot \sqrt{2\pi n}$$
+
+**A becslés pontossága (Korlátok):**
+Ha matematikai pontossággal akarjuk "közrefogni" (alsó és felső becslést adni) az $n!$ értékét, a következő szigorú egyenlőtlenséget használhatjuk:
+$$\left(\frac{n}{e}\right)^n \cdot \sqrt{2\pi n} \cdot e^{\frac{1}{12n+1}} \le n! \le \left(\frac{n}{e}\right)^n \cdot \sqrt{2\pi n} \cdot e^{\frac{1}{12n}}$$
+
+**Alkalmazás az informatikában:**
+A formulát elsősorban nagy binomiális együtthatók értékének becslésére, illetve az algoritmusok elméletében a különböző futásidők (pl. $\mathcal{O}(2^n)$ exponenciális és $\mathcal{O}(n!)$ faktoriális algoritmusok) összehasonlítására használjuk.
+
 ```mermaid
 graph TD;
    A-->B-->C
