@@ -781,6 +781,16 @@ $|N| = n! \cdot \left( \frac{1}{2!} - \frac{1}{3!} + \frac{1}{4!} - \dots \pm \f
 *Miért $i=2$-től indul a szumma?*
 Mert ha elindítanád 0-tól, az első két tag így nézne ki: $\frac{1}{0!} - \frac{1}{1!} = 1 - 1 = 0$. Mivel ezek nullázzák egymást, a könyv praktikusan egyből a 2-es számmal indítja a számolást.
 
+**4.2. Fejezet Folytatás: Derangement és Szubfaktoriális**
+
+* **Definíció:** Azt a permutációt, amelyiknek egyetlen eleme sincs az eredeti (saját) helyén, **fixpont nélküli permutációnak** vagy **derangementnek** hívjuk.
+* **Jelölése:** $D_n$ (ahol $n$ az elemek száma).
+* **Kiszámítási trükkök a vizsgára:** A nagy szitaformula helyett két gyors módszer is létezik:
+    1.  **Rekurzió (4.10. Állítás):** $D_n = n \cdot D_{n-1} + (-1)^n$. (Ahol $(-1)^n$ páros $n$-nél $+1$, páratlannál $-1$).
+    2.  **Szubfaktoriális közelítés (4.9. Állítás):** $D_n \approx \frac{n!}{e}$. A pontos $D_n$ érték mindig a kapott tört legközelebbi egész száma.
+* **A "Nagy Szabály":** Bármilyen nagy is az $n$, annak a valószínűsége, hogy teljes a káosz, egy idő után állandósul $1/e$ (kb. 36,78%) értéken.
+
+
 ```mermaid
 graph TD;
    A-->B-->C
