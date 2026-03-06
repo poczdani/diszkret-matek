@@ -717,6 +717,18 @@ Ha egy kéttagú összeget nem egész számra (hanem pl. törtre, ami gyökvoná
 $$(a+x)^\alpha = \sum_{i=0}^{\infty} a^{\alpha-i} \cdot \binom{\alpha}{i} \cdot x^i$$
 *(Fontos kikötés: Ez csak akkor ad értelmes, véges eredményt, ha $|x| < |a|$ teljesül. Ezzel az analízis tantárgy foglalkozik részletesebben.)*
 
+
+**3.2. A binomiális együtthatók tulajdonságai (Bevezető)**
+
+**A számolás gyakorlati szabályai:**
+Bár az elméleti levezetéseknél a faktoriális alakot ($\frac{n!}{k!(n-k)!}$) használjuk, a gyakorlati feladatoknál a számológépek kapacitáskorlátai miatt a törtes, "kiejtős" formát kell alkalmazni:
+$$\binom{n}{k} = \frac{n \cdot (n-1) \cdot \dots \cdot (n-k+1)}{k!}$$
+
+*Tipp extrém nagy számokhoz:* Ha nagyon sok tényezőt kellene összeszorozni, a törtet érdemes tényezőnkénti párokra bontani, hogy elkerüljük a túlcsordulást (pl. $\frac{200}{100} \cdot \frac{199}{99} \dots$).
+
+**Az aranyszabály:** Rengeteg algebrai azonosság létezik (több száz). A mechanikus algebrai átalakítások helyett mindig a **kombinatorikai okoskodást** (logikai esetbontást, szituáció elképzelését) érdemes előnyben részesíteni.
+
+
 ```mermaid
 graph TD;
    A-->B-->C
