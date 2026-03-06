@@ -758,6 +758,28 @@ A számolás egy váltakozó előjelű (plusz-mínusz) sorozat:
 
 *Miért működik?* A bizonyítás logikája szerint így érjük el, hogy egy olyan elem, ami pontosan $r$ darab halmazban van benne, a plusz-mínusz kompenzációk végén pontosan **1-szer** legyen beleszámolva a végeredménybe.
 
+**4.2. Fejezet: Az Elcserélt Levelek (Derangement / Hatcheck probléma)**
+
+**A Sztori (A Részeg Postás):** Képzeljük el, hogy van $n$ darab megírt levelünk és $n$ darab megcímzett borítékunk. A postás annyira részeg, hogy teljesen vakon, véletlenszerűen dugdossa be a leveleket a borítékokba. (Ugyanez a klasszikus "Kalapellenőrzési probléma": $n$ úriember leadja a kalapját, majd a végén mindenki kap egy random kalapot).
+*A kérdés:* Hányféleképpen történhet meg a teljes katasztrófa, vagyis hogy **egyetlen egy levél (vagy kalap) sem a saját (eredeti) helyére kerül?** (Ezt jelöli a könyv $|N|$-nel).
+
+**A Megoldás Logikája (A "Kifordított" Szita):**
+Közvetlenül összeszámolni a teljes káoszt szinte lehetetlen. Ehelyett a matematikusok **fordítva gondolkodnak**: 
+1. **Az Alaphalmaz:** Veszik az összes lehetséges elrendezést (ez $n!$, azaz $n$ faktoriális).
+2. **A Szita bedobása:** Ebből az összesből akarják kivonni azokat a "rossz" eseteket, amikor *legalább egyvalaki* a saját levelét kapja.
+3. **A Plusz-Mínusz Tánc:** * Ha rögzítjük, hogy 1 ember jó levelet kap, a maradék $(n-1)!$-féleképpen keveredhet. Ezeket levonjuk.
+   * De ekkor többször vontuk le azokat az eseteket, amikor 2 ember is jót kapott! Így rögzítünk 2 embert, akiknek a maradéka $(n-2)!$-féleképpen keveredhet. Ezeket visszadjuk.
+   * Aztán levonjuk a 3 emberes egyezéseket, hozzáadjuk a 4 embereseket, és így tovább (Logikai szitaformula).
+
+**A Képlet (4.5. egyenlet):**
+Amikor ezt a hatalmas szitaformulát kivonjuk az összes $n!$ esetből, a rengeteg tag csodálatosan leegyszerűsödik erre az elegáns végeredményre:
+$$|N| = n! \cdot \sum_{i=2}^n \frac{(-1)^i}{i!}$$
+
+*Konyhanyelven kifejtve:*
+$|N| = n! \cdot \left( \frac{1}{2!} - \frac{1}{3!} + \frac{1}{4!} - \dots \pm \frac{1}{n!} \right)$
+
+*Miért $i=2$-től indul a szumma?*
+Mert ha elindítanád 0-tól, az első két tag így nézne ki: $\frac{1}{0!} - \frac{1}{1!} = 1 - 1 = 0$. Mivel ezek nullázzák egymást, a könyv praktikusan egyből a 2-es számmal indítja a számolást.
 
 ```mermaid
 graph TD;
