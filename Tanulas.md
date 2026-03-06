@@ -740,6 +740,25 @@ A képletek magolása helyett érdemes a **kombinatorikai jelentésüket** (szto
 3. **Vandermonde-konvolúció (3.11. Állítás):** $\sum_{i=0}^k \binom{n}{i} \binom{\ell}{k-i} = \binom{n+\ell}{k}$
    *Logika:* Két különböző halmazból ($n$ és $\ell$) választunk összesen $k$ elemet úgy, hogy végigpörgetjük az összes lehetséges "felosztást" a két halmaz között.
 
+
+**4. Fejezet: A Logikai Szitaformula (Tartalmazás és kizárás elve)**
+
+Akkor használjuk, ha több halmaz (vagy tulajdonság) uniójának (összesített elemszámának) a kiszámítása a feladat, de a halmazoknak vannak közös elemei (átfedései), amiket nem akarunk többször beleszámolni.
+
+**Alapképlet (2 halmazra):**
+$|A \cup B| = |A| + |B| - |A \cap B|$
+*(Összeadom az egyeseket, kivonom a közös részt).*
+
+**Általános képlet (Több halmazra - 4.2. Tétel):**
+A számolás egy váltakozó előjelű (plusz-mínusz) sorozat:
+1. **(+)** Összeadjuk az egyes halmazok méretét.
+2. **(-)** Kivonjuk az összes lehetséges páros metszet méretét.
+3. **(+)** Hozzáadjuk az összes lehetséges hármas metszet méretét.
+4. **(-)** Kivonjuk a négyes metszeteket... és így tovább, felváltva.
+
+*Miért működik?* A bizonyítás logikája szerint így érjük el, hogy egy olyan elem, ami pontosan $r$ darab halmazban van benne, a plusz-mínusz kompenzációk végén pontosan **1-szer** legyen beleszámolva a végeredménybe.
+
+
 ```mermaid
 graph TD;
    A-->B-->C
