@@ -729,6 +729,17 @@ $$\binom{n}{k} = \frac{n \cdot (n-1) \cdot \dots \cdot (n-k+1)}{k!}$$
 **Az aranyszabály:** Rengeteg algebrai azonosság létezik (több száz). A mechanikus algebrai átalakítások helyett mindig a **kombinatorikai okoskodást** (logikai esetbontást, szituáció elképzelését) érdemes előnyben részesíteni.
 
 
+**3.2. A binomiális együtthatók legfontosabb tulajdonságai**
+
+A képletek magolása helyett érdemes a **kombinatorikai jelentésüket** (sztorijukat) megjegyezni!
+
+1. **Szimmetria (3.9. Állítás, iii):** $\binom{n}{k} = \binom{n}{n-k}$
+   *Logika:* Kiválasztani $k$ elemet ugyanaz, mint kiválasztani az $n-k$ darab "maradékot". (Nagy számoknál számításkönnyítő trükk!).
+2. **Pascal-szabály (3.10. Állítás):** $\binom{n}{k-1} + \binom{n}{k} = \binom{n+1}{k}$
+   *Logika:* Egy elemet kipécézünk. Vagy betesszük a kiválasztottak közé (ekkor a többiekből $k-1$ kell), VAGY kizárjuk (ekkor a többiekből kell mind a $k$). Erre az összeadási szabályra épül a **Pascal-háromszög**.
+3. **Vandermonde-konvolúció (3.11. Állítás):** $\sum_{i=0}^k \binom{n}{i} \binom{\ell}{k-i} = \binom{n+\ell}{k}$
+   *Logika:* Két különböző halmazból ($n$ és $\ell$) választunk összesen $k$ elemet úgy, hogy végigpörgetjük az összes lehetséges "felosztást" a két halmaz között.
+
 ```mermaid
 graph TD;
    A-->B-->C
