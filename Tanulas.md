@@ -840,6 +840,17 @@ $$H(x) = \frac{x}{(1-x)(1-2x)}$$
 **Konklúzió:** Ez az apró, barátságos tört a Hanói tornyok generátorfüggvénye. Ebbe az egyetlen törtbe bele van kódolva a játék összes létező lépésszáma a végtelenségig! 
 *(Megjegyzés: A 6.5. Módszer ugyanezt a folyamatot írja le általánosan, bármilyen hasonló "visszautalós + 1" típusú problémára).*
 
+**6.6. Tétel: A Generátorfüggvények "Rosette-i köve"**
+
+Ez a tétel megteremti a tökéletes, oda-vissza kapcsolatot a rekurzív sorozatok és az algebrai törtek között.
+
+**A Tétel kimondja:**
+Egy $(a_n)$ sorozat generátorfüggvénye **pontosan akkor** írható fel egy racionális törtfüggvény (két polinom hányadosa, $\frac{p(x)}{q(x)}$) alakjában, **ha** az $(a_n)$ sorozat elemei egy állandó együtthatójú homogén lineáris rekurziót (egy fix "visszautalós" szabályt) elégítenek ki. 
+*Kikötés:* A tört nevezője nem lehet 0, ha az $x$ helyére 0-t helyettesítünk (hogy elkerüljük a nullával való osztást a visszafejtésnél).
+
+**Konyhanyelven (A "Végtelen Vonat" logikájával):**
+1. Ha az utasok (a sorozat elemei) egy fix szabály alapján utalnak vissza az előző utasokra (pl. Fibonacci), akkor az egész végtelen vonat betömöríthető egy egyszerű, véges algebrai törtbe.
+2. És fordítva: ha van egy generátorfüggvényed, ami egy polinom per polinom tört, abból biztosan egy "visszautalós" szabály szerint felépülő végtelen számsorozat fog kicsomagolódni.
 
 ```mermaid
 graph TD;
