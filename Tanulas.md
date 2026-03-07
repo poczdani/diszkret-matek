@@ -846,6 +846,32 @@ Mit jelentenek a kifejezések konyhanyelven?
 * **Állandó együtthatójú:** A korábbi elemeket szorzó számok ($d_1, \dots, d_k$) fix konstansok, nem függnek az $n$-től.
 * **Homogén:** Az egyenletben *csak* a múltbeli tagok (és szorzataik) szerepelnek. Az egyenlet végén lévő "független", maradék tag (a $b_n$) pontosan **0**. (Ha $b_n \neq 0$, pl. lóg ott egy $+1$, akkor Inhomogénnek hívjuk).
 
+**5.2.2. A Karakterisztikus Egyenlet (A "Klasszikus Módszer" receptje)**
+
+Ezzel a 4 lépéssel csinálunk a rekurzív "visszautalós" szabályból explicit ($a_n = \dots$) képletet a vizsgán!
+
+**1. Lépés: A Karakterisztikus egyenlet felírása**
+Cseréld ki a sorozat elemeit $q$ megfelelő hatványaira. Egy másodrendű egyenletnél (pl. $a_n = A \cdot a_{n-1} + B \cdot a_{n-2}$):
+* $a_n$ helyére írj **$q^2$**-et.
+* $a_{n-1}$ helyére írj **$q$**-t.
+* $a_{n-2}$ helyére írj **1**-et (a $q$ eltűnik, csak a konstans marad).
+Eredmény: Egy sima másodfokú egyenlet ($q^2 = A \cdot q + B$).
+
+**2. Lépés: A Gyökök kiszámolása**
+Rendezd nullára az egyenletet ($q^2 - Aq - B = 0$), és oldd meg a másodfokú megoldóképlettel! Kapsz két gyököt: $q_1$ és $q_2$.
+
+**3. Lépés: Az általános explicit képlet felírása (Két eset van!)**
+* **A) Ha a két gyök különböző ($q_1 \neq q_2$):** (5.11. Tétel)
+  A képlet: **$a_n = c_1 \cdot q_1^n + c_2 \cdot q_2^n$**
+* **B) Ha a két gyök megegyezik ($D=0$, tehát $q_1 = q_2 = q$):** (5.13. Állítás)
+  A második tagot "fel kell ütni" egy $n$ szorzóval!
+  A képlet: **$a_n = c_1 \cdot q^n + c_2 \cdot n \cdot q^n$**
+
+**4. Lépés: A $c_1$ és $c_2$ konkrét kiszámolása (K.É.P. behelyettesítés)**
+Az előző lépésben kapott egyenlet még "általános" (benne vannak a $c$ betűk). Hogy pontos számokat kapjunk, használjuk a feladatban megadott Kezdeti Értékeket (pl. $a_0 = 1, a_1 = 3$)!
+* Írjuk be az $n$ helyére a 0-t, és egyenltsük ki az $a_0$ értékével (Kapunk egy egyenletet).
+* Írjuk be az $n$ helyére az 1-et, és egyenltsük ki az $a_1$ értékével (Kapunk még egy egyenletet).
+Ebből a kétismeretlenes egyenletrendszerből kiszámoljuk $c_1$-et és $c_2$-t, visszarakjuk a 3. lépés képletébe, és kész a végső Explicit Képlet!
 
 # 6. fejezet
 
