@@ -873,6 +873,75 @@ Az előző lépésben kapott egyenlet még "általános" (benne vannak a $c$ bet
 * Írjuk be az $n$ helyére az 1-et, és egyenltsük ki az $a_1$ értékével (Kapunk még egy egyenletet).
 Ebből a kétismeretlenes egyenletrendszerből kiszámoljuk $c_1$-et és $c_2$-t, visszarakjuk a 3. lépés képletébe, és kész a végső Explicit Képlet!
 
+
+**5.3. A Fibonacci-sorozat levezetése**
+
+**A Feladat:** Keressük meg az $f_n = f_{n-1} + f_{n-2}$ rekurzió explicit képletét, ha a kezdőértékek (K.É.P.) $f_0 = 0$ és $f_1 = 1$.
+*(Nullára rendezve: $f_n - f_{n-1} - f_{n-2} = 0$)*
+
+**A 4 lépéses "Svájci Bicska" módszer a gyakorlatban:**
+
+**1. Lépés: A Karakterisztikus egyenlet**
+Kicseréljük az $f$ betűket a $q$ megfelelő hatványaira:
+* $f_n \rightarrow q^2$
+* $f_{n-1} \rightarrow q^1$ (azaz $q$)
+* $f_{n-2} \rightarrow 1$
+Kapott egyenlet: **$q^2 - q - 1 = 0$**
+
+**2. Lépés: A Gyökök kiszámolása**
+A másodfokú megoldóképletből két különböző, "csúnya" gyököt kapunk:
+$$q_{1,2} = \frac{1 \pm \sqrt{5}}{2}$$
+
+**3. Lépés: Az általános képlet felírása (1. Eset: Különböző gyökök)**
+Mivel a két gyök nem egyenlő, simán csak beírjuk őket a képletbe:
+$$f_n = c_1 \cdot \left(\frac{1+\sqrt{5}}{2}\right)^n + c_2 \cdot \left(\frac{1-\sqrt{5}}{2}\right)^n$$
+
+**4. Lépés: A $c_1$ és $c_2$ kiszámolása (K.É.P. alapján)**
+Behelyettesítjük az $n = 0$ és $n = 1$ értékeket az egyenletbe:
+* $n=0$ esetén: $0 = c_1 + c_2$ (amiből következik, hogy $c_1 = -c_2$).
+* $n=1$ esetén: $1 = c_1 \cdot \frac{1+\sqrt{5}}{2} + c_2 \cdot \frac{1-\sqrt{5}}{2}$.
+
+A kétismeretlenes egyenletrendszer megoldása: $c_1 = \frac{1}{\sqrt{5}}$ és $c_2 = -\frac{1}{\sqrt{5}}$.
+
+**Végeredmény (A Binet-formula):**
+Ezeket a "c" értékeket visszaírva a 3. lépésbe megkapjuk a tökéletes, azonnal számolható explicit képletet!
+$$f_n = \frac{1}{\sqrt{5}} \cdot \left( \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n \right)$$
+
+**5.3. A Fibonacci-sorozat levezetése**
+
+A tankönyvi levezetés sok lépést átugrik, ezért itt van lépésről lépésre, hogy megértsük a matematikáját!
+**A Feladat:** Készítsünk explicit képletet az $f_n = f_{n-1} + f_{n-2}$ szabályból, ahol a kezdőértékek: $f_0 = 0$ és $f_1 = 1$.
+
+**1. Lépés: Hogyan lesz az $f$-ből $q$-s egyenlet?**
+* Először rendezzünk mindent egy oldalra, hogy a jobb oldal 0 legyen: 
+  $f_n - f_{n-1} - f_{n-2} = 0$
+* Alkalmazzuk a "Mágikus Tippet" (a cserét):
+  * Az $f_n$ (legújabb) kapja a legnagyobb hatványt: **$q^2$**
+  * Az $f_{n-1}$ (eggyel régebbi) kapja a **$q^1$**-et (azaz sima $q$)
+  * Az $f_{n-2}$ (legrégebbi) elveszti a $q$-t, csak a szorzószáma marad (ami itt $-1$).
+* Eredmény: **$q^2 - q - 1 = 0$**
+
+**2. Lépés: Honnan jön a $\sqrt{5}$? (A gyökök kiszámolása)**
+* Beütjük az egyenletet a középiskolás másodfokú megoldóképletbe: $q_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+* Nálunk $a=1, b=-1, c=-1$. A gyökjel alatt ez történik: $\sqrt{(-1)^2 - 4 \cdot 1 \cdot (-1)} = \sqrt{1 + 4} = \sqrt{5}$.
+* Eredmény a két gyök: **$q_1 = \frac{1 + \sqrt{5}}{2}$** és **$q_2 = \frac{1 - \sqrt{5}}{2}$**
+
+**3. Lépés: A sablon képlet felírása**
+Mivel a két gyök különböző, a sablonunk így néz ki:
+$$f_n = c_1 \cdot \left(\frac{1+\sqrt{5}}{2}\right)^n + c_2 \cdot \left(\frac{1-\sqrt{5}}{2}\right)^n$$
+
+**4. Lépés: Hogyan számoljuk ki a $c_1$ és $c_2$ értékét?**
+Használjuk a K.É.P.-t ($f_0 = 0, f_1 = 1$), és írjuk be az $n$ helyére a 0-t és az 1-et!
+* **Ha $n=0$ (A 0. hónap):** Bárminek a nulladik hatványa 1. Tehát a sablonból ez marad: $0 = c_1 \cdot 1 + c_2 \cdot 1$. Ebből kiderül, hogy a két szám egymás ellentéte: **$c_1 = -c_2$**.
+* **Ha $n=1$ (Az 1. hónap):** Bárminek az első hatványa önmaga marad. $1 = c_1 \cdot \frac{1+\sqrt{5}}{2} + c_2 \cdot \frac{1-\sqrt{5}}{2}$.
+* Mivel tudjuk, hogy $c_2$ az ellentéte $c_1$-nek, behelyettesítve és átrendezve kijön a két "c" érték:
+  $c_1 = \frac{1}{\sqrt{5}}$ és $c_2 = -\frac{1}{\sqrt{5}}$
+
+**A Végeredmény (Binet-formula):**
+Ha ezeket a tört értékeket visszaírjuk a sablonunk (3. lépés) elejére, megkapjuk a "Szent Grált":
+$$f_n = \frac{1}{\sqrt{5}} \cdot \left( \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n \right)$$
+
+
 # 6. fejezet
 
 **6. Fejezet: Generátorfüggvények**
