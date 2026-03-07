@@ -813,6 +813,34 @@ Mert a végtelen számlistákkal nehéz számolni, de egy "barátságos" $x$-es 
 Például egy fontos trükk (6.1. iii megjegyzés): ha a teljes $F(x)$ vonatot megszorzod $x$-szel, akkor minden utas automatikusan átszáll egy vagonnal feljebb (pl. az $a_1$ az $x^1$-ből átkerül az $x^2$-be). Ezzel a sorozat bonyolult "eltolása" egy pofonegyszerű algebrai szorzássá válik!
 
 
+**6.4. Példa: A Hanói Tornyok és a Generátorfüggvény**
+
+**A Probléma:** A Hanói tornyok lépésszámát egy rekurzív (előző tagra visszautalós) képlet adja meg: $h_{n+1} = 2 \cdot h_n + 1$. Ha a 100. lépést akarjuk tudni, végig kéne számolni az előző 99-et. Ezt a végtelen számolást akarjuk "betömöríteni" egyetlen függvénybe!
+
+**A Megoldás (Konyhanyelven és Matekul):**
+
+**1. Lépés: A "Nulladik utas" meghatározása**
+Mivel a generátorfüggvényünk (a Végtelen Vonat) a 0. vagonnal ($x^0$) indul, szükségünk van egy kezdőértékre. Logikusan gondolkodva: 0 darab korong átrakásához 0 darab lépés szükséges. Tehát: $h_0 := 0$.
+
+**2. Lépés: Felültetés a vonatra (A Nagy Trükk)**
+Vesszük az eredeti rekurzív képletünket, megszorozzuk az $x$ megfelelő hatványával ($x^{n+1}$), és mindkét oldal elé odarakunk egy végtelen szummát ($\sum_{n=0}^{\infty}$). Ezzel a lépéssorozatunk hivatalosan is "felszállt a vonatra".
+A kapott egyenlet: 
+$$\sum_{n=0}^{\infty} h_{n+1} \cdot x^{n+1} = 2x \cdot \sum_{n=0}^{\infty} h_n x^n + x \cdot \sum_{n=0}^{\infty} x^n$$
+
+**3. Lépés: A "Zip fájl" létrehozása ($H(x)$ bevezetése)**
+A sok ijesztő szummát (a teljes vonatot) elnevezzük egyetlen betűnek: **$H(x)$**. 
+* A bal oldal maga a $H(x)$ vonat, amiről hiányzik a nulladik utas: $H(x) - h_0$.
+* A jobb oldalon az első szumma a sima vonat megszorozva $2x$-szel: $2x \cdot H(x)$.
+* A jobb oldal végén lógó "simlis" végtelen $x$-összeget ($\sum x^n$) pedig a mértani sorozat képletével egyszerűsítjük: $\frac{1}{1-x}$.
+
+**4. Lépés: A Végeredmény (A 6.6-os képlet)**
+Ha a fenti "becsomagolt" betűket behelyettesítjük az egyenletbe, és átrendezzük azt $H(x)$-re (tudva, hogy $h_0 = 0$), megkapjuk a tömörített végeredményt:
+$$H(x) = \frac{x}{(1-x)(1-2x)}$$
+
+**Konklúzió:** Ez az apró, barátságos tört a Hanói tornyok generátorfüggvénye. Ebbe az egyetlen törtbe bele van kódolva a játék összes létező lépésszáma a végtelenségig! 
+*(Megjegyzés: A 6.5. Módszer ugyanezt a folyamatot írja le általánosan, bármilyen hasonló "visszautalós + 1" típusú problémára).*
+
+
 ```mermaid
 graph TD;
    A-->B-->C
