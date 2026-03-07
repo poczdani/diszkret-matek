@@ -822,6 +822,31 @@ A matematika (és az órai táblakép) fő célja, hogy ezt a "visszautalós" re
 **8. Fibonacci-sorozat (5.2. Példa):** Klasszikus másodrendű rekurzió ($f_n = f_{n-1} + f_{n-2}$), amihez a *Binet-formula* adja meg a bonyolult, gyökös explicit megoldást.
 
 
+**5.2. Előzetes: A Karakterisztikus Egyenlet logikája (A rekurzió "megölése")**
+
+**A Probléma:** A rekurzív (visszautalós) egyenletekből (pl. $a_n = 3a_{n-1} - 7a_{n-2}$) képtelenség gyorsan kiszámolni a 100. tagot. Olyan "explicit" képletet akarunk ($a_n = \dots$), amiben csak az $n$ szerepel, és azonnal számolható.
+
+**A Megoldás (A "Mágikus Tipp"):**
+A matematikusok észrevették, hogy ezek a sorozatok a végén mindig valamilyen hatványozásra (mértani sorozatra) vezethetők vissza. Ezért bevetik az alábbi trükköt:
+
+1. **A Tipp (Helyettesítés):** Feltételezzük, hogy a keresett explicit képlet valamilyen ismeretlen $q$ számnak az $n$-edik hatványa. Tehát bevezetjük, hogy: **$a_n = q^n$**.
+2. **A Beírás:** Ezt a $q^n$-t kíméletlenül beírjuk a rekurzív egyenletbe minden $a$ betű helyére. (Például az $a_{n-1}$ helyére $q^{n-1}$ kerül, az $a_{n-2}$ helyére $q^{n-2}$).
+3. **Az Átalakulás (A Karakterisztikus Egyenlet):** Ha az így kapott egyenletet leosztjuk a legkisebb $q$ hatvánnyal, a végtelen rekurzió hirtelen eltűnik! Helyette kapunk egy sima, középiskolás (pl. másodfokú) egyenletet (pl. $q^2 = 3q - 7$). 
+
+Ezt a sima egyenletet hívjuk **Karakterisztikus Egyenletnek**. Ha ennek kiszámoljuk a megoldásait (a $q_1$ és $q_2$ gyököket), abból már gyerekjáték összerakni a végső explicit képletet!
+
+**5.2. Alapfogalmak: A Rekurziók "Személyleírása" (5.4. Definíció)**
+
+A vizsgán és az órán leggyakrabban a következő típusú egyenletekkel dolgozunk:
+**"Állandó együtthatójú homogén lineáris k-adrendű rekurzió"**
+
+Mit jelentenek a kifejezések konyhanyelven?
+* **Lineáris:** A korábbi elemeket ($a_{n-1}, a_{n-2}$) csak egyszerű számokkal szorozzuk és összeadjuk (nincs négyzetre emelés, gyökvonás stb.).
+* **k-adrendű:** Pontosan $k$ lépést (elemet) kell visszanéznünk a múltba a kiszámításhoz.
+* **Állandó együtthatójú:** A korábbi elemeket szorzó számok ($d_1, \dots, d_k$) fix konstansok, nem függnek az $n$-től.
+* **Homogén:** Az egyenletben *csak* a múltbeli tagok (és szorzataik) szerepelnek. Az egyenlet végén lévő "független", maradék tag (a $b_n$) pontosan **0**. (Ha $b_n \neq 0$, pl. lóg ott egy $+1$, akkor Inhomogénnek hívjuk).
+
+
 # 6. fejezet
 
 **6. Fejezet: Generátorfüggvények**
