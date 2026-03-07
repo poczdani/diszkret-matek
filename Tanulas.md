@@ -793,7 +793,33 @@ Mert ha elindítanád 0-tól, az első két tag így nézne ki: $\frac{1}{0!} - 
 
 # 5. fejezet
 
-- Késöbb lesz kifejtve
+**5. Fejezet Bevezető: Alapfogalmak**
+
+**5. Fejezet Kiegészítés: A Rekurzió logikája és a "Szent Grál" (Az Explicit Képlet)**
+
+**1. Hogyan működik a rekurzív képlet a gyakorlatban? (A Hanói-példa)**
+A képlet: $h_n = 2 \cdot h_{n-1} + 1$
+*Fontos szabály:* A képletben szereplő $n$ a korongok száma, a $h$ pedig a hozzájuk tartozó lépésszám!
+* Ha 3 korongunk van ($n=3$), a képlet így néz ki: $h_3 = 2 \cdot h_2 + 1$
+* Mivel tudjuk, hogy 2 korong átrakása 3 lépés ($h_2 = 3$), ezt behelyettesítjük: 
+  $h_3 = 2 \cdot 3 + 1 = 7$ lépés.
+
+**2. Mitől "rekurzív" ez a szabály?**
+A rekurzió lényege: **a szabály önmagát hívja meg**. Az egyenlőségjel mindkét oldalán ott van a $h$ betű! Ha meg akarjuk tudni a 4 korongos megoldást ($h_4$), ahhoz előbb meg kell kérdeznünk a saját szabályunkat a 3 korongra ($h_3$), ahhoz pedig a 2 korongra ($h_2$), egészen nulláig.
+
+**3. Mi a baj a rekurzióval? (A "Szívás-faktor")**
+Ha egy vizsgán megkérdezik, mennyi a $h_{100}$ (100 korong lépésszáma), a rekurzív képlettel visszafelé kéne lépkednünk egészen 1-ig, majd onnan egyesével, 99-szer elvégezni a szorzást és összeadást. Ez emberileg kiszámolhatatlan.
+
+**4. A Cél: Az Explicit Képlet (A Táblakép lényege)**
+A matematika (és az órai táblakép) fő célja, hogy ezt a "visszautalós" rekurziót átalakítsa egy **Explicit Képletté** ($a_n = \dots$). 
+* Az explicit képletben a jobb oldalon már *nincs ott* a visszautalós betű, csak maga az $n$ szám!
+* (A Hanói tornyok explicit képlete pl. $h_n = 2^n - 1$). Ebbe elég csak beütni a 100-ast a számológépbe ($2^{100} - 1$), és azonnal megkapjuk a végeredményt, a korábbi 99 lépés kiszámolása nélkül!
+* **Az eszköz:** Hogy hogyan csinálunk a rekurzióból explicit képletet? Erre való a tanár által tanított **Karakterisztikus egyenlet**!
+
+* **Rekurzió (5.0. Def):** Olyan szabály, ahol az $n$-edik elemet ($a_n$) az előző elemek (pl. $a_{n-1}, a_{n-2}$) segítségével számoljuk ki.
+* **Rendszám ($k$):** Azt mutatja meg, hogy hány lépést kell visszanéznünk a kiszámításhoz (k-adrendű).
+* **K.É.P. (Kezdeti érték probléma):** Egy $k$-adrendű sorozat elindításához pontosan $k$ darab fix kezdőértéket kell megadni a legelején (pl. $a_0, a_1$).
+* **Fibonacci-sorozat (5.2. Példa):** Klasszikus másodrendű rekurzió ($f_n = f_{n-1} + f_{n-2}$), amihez a *Binet-formula* adja meg a bonyolult, gyökös explicit megoldást.
 
 
 # 6. fejezet
