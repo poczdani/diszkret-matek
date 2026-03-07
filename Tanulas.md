@@ -817,9 +817,9 @@ A matematika (és az órai táblakép) fő célja, hogy ezt a "visszautalós" re
 * **Az eszköz:** Hogy hogyan csinálunk a rekurzióból explicit képletet? Erre való a tanár által tanított **Karakterisztikus egyenlet**!
 
 **5. Rekurzió (5.0. Def):** Olyan szabály, ahol az $n$-edik elemet ($a_n$) az előző elemek (pl. $a_{n-1}, a_{n-2}$) segítségével számoljuk ki.
-**6.Rendszám ($k$):** Azt mutatja meg, hogy hány lépést kell visszanéznünk a kiszámításhoz (k-adrendű).
-**K.É.P. (Kezdeti érték probléma):** Egy $k$-adrendű sorozat elindításához pontosan $k$ darab fix kezdőértéket kell megadni a legelején (pl. $a_0, a_1$).
-**7. Fibonacci-sorozat (5.2. Példa):** Klasszikus másodrendű rekurzió ($f_n = f_{n-1} + f_{n-2}$), amihez a *Binet-formula* adja meg a bonyolult, gyökös explicit megoldást.
+**6. Rendszám ($k$):** Azt mutatja meg, hogy hány lépést kell visszanéznünk a kiszámításhoz (k-adrendű).
+**7. K.É.P. (Kezdeti érték probléma):** Egy $k$-adrendű sorozat elindításához pontosan $k$ darab fix kezdőértéket kell megadni a legelején (pl. $a_0, a_1$).
+**8. Fibonacci-sorozat (5.2. Példa):** Klasszikus másodrendű rekurzió ($f_n = f_{n-1} + f_{n-2}$), amihez a *Binet-formula* adja meg a bonyolult, gyökös explicit megoldást.
 
 
 # 6. fejezet
