@@ -791,6 +791,28 @@ Mert ha elindítanád 0-tól, az első két tag így nézne ki: $\frac{1}{0!} - 
 * **A "Nagy Szabály":** Bármilyen nagy is az $n$, annak a valószínűsége, hogy teljes a káosz, egy idő után állandósul $1/e$ (kb. 36,78%) értéken.
 
 
+# 5. fejezet
+
+- Késöbb lesz kifejtve
+
+
+# 6. fejezet
+
+**6. Fejezet: Generátorfüggvények**
+
+**A módszer lényege (A "Végtelen Vonat" hasonlat):** Egy nehezen kezelhető $(a_n)$ végtelen számsorozatot felültetünk egy matematikai vonatra. 
+* **A vagonok:** Az $x$ növekvő hatványai ($x^0, x^1, x^2 \dots$). Az $x$-nek nincs konkrét számszerű értéke, csak egy helyjelölő "címke" (pl. az $x^2$ jelenti a 2-es számú vagont).
+* **Az utasok:** A sorozatunk elemei ($a_0, a_1, a_2 \dots$), amiket "beültetünk" az egyre növekvő számú vagonokba, mint szorzószámok (együtthatók).
+
+**6.0. Definíció (Generátorfüggvény):**
+Egy tetszőleges $(a_n)$ számsorozat generátorfüggvénye az a végtelen hosszú "polinom" (hivatalos nevén: hatványsor), ahol a sorozat elemei adják az $x$ hatványainak együtthatóit:
+$$F(x) := \sum_{n=0}^{\infty} a_n x^n = a_0 \cdot x^0 + a_1 \cdot x^1 + a_2 \cdot x^2 + a_3 \cdot x^3 + \dots$$
+
+*Miért zseniális ez?*
+Mert a végtelen számlistákkal nehéz számolni, de egy "barátságos" $x$-es függvénnyel könnyű! 
+Például egy fontos trükk (6.1. iii megjegyzés): ha a teljes $F(x)$ vonatot megszorzod $x$-szel, akkor minden utas automatikusan átszáll egy vagonnal feljebb (pl. az $a_1$ az $x^1$-ből átkerül az $x^2$-be). Ezzel a sorozat bonyolult "eltolása" egy pofonegyszerű algebrai szorzássá válik!
+
+
 ```mermaid
 graph TD;
    A-->B-->C
