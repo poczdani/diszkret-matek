@@ -96,3 +96,45 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 
 * **Komplementer gráf:** A gráf "fordítottja". Ami az eredetiben össze volt kötve, itt nem lesz, és minden olyan kapcsolatot behúzunk, ami eddig hiányzott.
 * **Izomorfia:** Két gráf "szerkezeti ikerpárja". Lehet, hogy máshogy rajzoltuk le őket, de a pontok száma és a kapcsolataik rendszere pontosan ugyanaz. Ilyen például a Petersen- és a Kempe-gráf.matikai tulajdonságaik ugyanazok (például a Petersen-gráf és a Kempe-gráf).
+
+
+# Euler-körök és Euler-utak
+
+## Definíciók
+* **Euler-út:** Olyan bejárás, amely a gráf minden **élén** pontosan egyszer halad át.
+* **Euler-kör:** Olyan Euler-út, amely zárt (a kezdő- és végpont megegyezik).
+
+## Tételek (Euler, 1736)
+
+### 1. Tétel: Euler-kör létezése
+Egy összefüggő gráfban akkor és csak akkor van **Euler-kör**, ha minden csúcs fokszáma **páros**.
+> *Magyarázat:* Minden csúcshoz tartozó belépő élhez kell egy kilépő él is.
+
+### 2. Tétel: Euler-út létezése
+Egy összefüggő gráfban akkor és csak akkor van **Euler-út**, ha a páratlan fokszámú csúcsok száma **0 vagy 2**.
+* Ha 0: a gráfban Euler-kör van.
+* Ha 2: az út az egyik páratlan fokszámú csúcsból indul és a másikban végződik.
+
+---
+
+## Hierholzer-algoritmus (Körök összefűzése)
+Ha a gráf minden fokszáma páros, az Euler-kör módszeresen felépíthető:
+1. Induljunk egy tetszőleges $v_0$ csúcsból.
+2. Haladjunk addig, amíg vissza nem érünk $v_0$-ba (ez egy rész-kör: $C_0$).
+3. Ha maradtak bejáratlan élek, válasszunk egy olyan csúcsot a már bejárt úton, aminek van még "szabad" éle.
+4. Indítsunk onnan egy újabb kört, majd "szúrjuk be" az eredeti útba.
+
+### Példa (H4 kockagráf bejárása)
+A jegyzetben látható színes felbontás:
+- **Kék kör:** `C-D-H-G-F-E-A-B-C-G-O-K-C`
+- **Piros kör:** `B-J-I-M-E-H-P-O-N-F-B`
+- **Zöld kör:** `D-A-I-L-D`
+- **Sárga kör:** `K-J-N-M-P-L-K`
+
+**Összefűzött teljes Euler-kör:**
+`C-D-A-I-L-D-H-G-F-E-A-B-J-I-M-E-H-P-O-N-F-B-C-G-O-K-J-N-M-P-L-K-C`
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+---
