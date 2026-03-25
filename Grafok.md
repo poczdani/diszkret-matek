@@ -138,3 +138,44 @@ A jegyzetben látható színes felbontás:
 
 ![alt text](image-1.png)
 ---
+
+# Hamilton-körök és utak
+
+## Definíciók
+* **Hamilton-út:** Olyan út, amely a gráf **minden csúcsán** pontosan egyszer halad át.
+* **Hamilton-kör:** Olyan Hamilton-út, amely zárt (visszaér a kezdőpontba).
+* **Különbség:** Itt a csúcsok a fontosak, nem az élek! (Nem kell minden élet érinteni).
+
+## Az NP-teljesség
+A Hamilton-kör keresése egy **NP-teljes** probléma. Nincs rá olyan gyors algoritmus, mint az Euler-körre. Nagy csúcsszám esetén a megoldás csak próbálgatással (permutációkkal) kereshető meg, ami lassú.
+
+---
+
+## Negatív feltételek (Kizáró okok)
+
+### 1. Hamilton-körhöz:
+Ha létezik $k$ darab pont, aminek elhagyásával a gráf több mint $k$ komponensre esik szét $\rightarrow$ **Nincs Hamilton-kör**.
+
+### 2. Hamilton-úthoz:
+Ha létezik $k$ darab pont, aminek elhagyásával a gráf több mint $k+1$ komponensre esik szét $\rightarrow$ **Nincs Hamilton-út**.
+
+---
+
+## Pozitív tételek (Elegendő feltételek)
+
+Ha egy egyszerű gráfban ($n \geq 3$ csúcs) teljesül valamelyik alábbi, akkor **biztosan van** benne Hamilton-kör:
+
+1.  **Dirac-tétel (1952):** Minden csúcs fokszáma legalább $n/2$.
+    $$\delta(v) \geq \frac{n}{2}$$
+2.  **Ore-tétel (1960):** Bármely két nem szomszédos csúcs ($u, v$) fokszámösszege legalább $n$.
+    $$d(u) + d(v) \geq n$$
+
+3.  **Pósa Lajos tétele (Hamilton-kör)**
+Nem csak a minimum fokszámot nézi, hanem a "gyenge" pontok arányát.
+* **Feltétel:** Minden $1 \le k < n/2$ esetén a legfeljebb $k$ fokszámú csúcsok száma $< k$.
+* **Üzenet:** Lehetnek kis fokszámú csúcsok, de nem lehet belőlük "túl sok", mert akkor elvágják a kört.
+
+ **Erdős Pál tétele (Hamilton-út)**
+Hasonló a Pósa-tételhez, de gyengébb feltétellel (mivel az utat könnyebb találni, mint a kört).
+* **Feltétel:** Minden $1 \le k \le (n-1)/2$ esetén a legfeljebb $k$ fokszámú csúcsok száma $\le k$.
+* **Üzenet:** Ez a tétel garantálja, hogy létezik egy útvonal, ami minden várost érint, még ha a végén nem is jutunk vissza a startba.
