@@ -155,18 +155,6 @@ A szumma jel miatt az $i$ értéke elindul 0-ról, és egyesével fellép 3-ig. 
 *Látható a szabály:* Az $n$ (a felső 3-as) végig fix maradt. Az $i$ pörgött 0-tól 3-ig. Az "a" kitevője az $i$-vel együtt nőtt, a "b" kitevője pedig csökkent, de a két kitevő összege mindig pontosan $n$ (azaz 3) maradt.
 
 
-**3. Fejezet Kiegészítés: A Tört és Negatív Hatványok Titka**
-
-**3.3. Definíció: Általánosított binomiális együttható**
-Ha a felső szám egy tetszőleges (nem feltétlenül egész) $\alpha$ szám, az $\binom{\alpha}{n}$ értékét a törtes "kiejtős" szabállyal számoljuk ki:
-$$\binom{\alpha}{n} := \frac{\alpha \cdot (\alpha - 1) \cdot \dots \cdot (\alpha - n + 1)}{n!}$$
-
-**3.4. Tétel: Newton binomiális sora**
-Ha egy kéttagú összeget nem egész számra (hanem pl. törtre, ami gyökvonást jelent) emelünk hatványra, a Binomiális Tétel továbbra is működik, de a kifejtés **végtelen sok tagból** fog állni:
-$$(a+x)^\alpha = \sum_{i=0}^{\infty} a^{\alpha-i} \cdot \binom{\alpha}{i} \cdot x^i$$
-*(Fontos kikötés: Ez csak akkor ad értelmes, véges eredményt, ha $|x| < |a|$ teljesül. Ezzel az analízis tantárgy foglalkozik részletesebben.)*
-
-
 **3.2. A binomiális együtthatók tulajdonságai (Bevezető)**
 
 **A számolás gyakorlati szabályai:**
