@@ -179,3 +179,107 @@ Nem csak a minimum fokszámot nézi, hanem a "gyenge" pontok arányát.
 Hasonló a Pósa-tételhez, de gyengébb feltétellel (mivel az utat könnyebb találni, mint a kört).
 * **Feltétel:** Minden $1 \le k \le (n-1)/2$ esetén a legfeljebb $k$ fokszámú csúcsok száma $\le k$.
 * **Üzenet:** Ez a tétel garantálja, hogy létezik egy útvonal, ami minden várost érint, még ha a végén nem is jutunk vissza a startba.
+
+# Gráfok mátrixai
+
+## Adjacencia (Szomszédsági) mátrix - $A$
+Egy $n \times n$-es mátrix, ahol az $i$-edik sor és $j$-edik oszlop metszete ($[A]_{i,j}$) az éleket jelöli.
+
+### Kitöltési szabályok:
+* **Egyszerű gráf:** 1 ha van él, 0 ha nincs.
+* **Hurokél:** $2k$ (kétszeresen számoljuk a főátlón).
+* **Súlyozott gráf:** Az él súlya ($w$).
+* **Irányított:** $+1$ (kimenő), $-1$ (bejövő).
+
+## Alaptulajdonságok:
+1. **Fokszám:** A sorösszeg (vagy oszlopösszeg) = $\delta(v_i)$.
+2. **Élek száma:** Az összes elem összege / 2 = $|E|$.
+3. **Nyom (Spur/Trace):** A főátló elemeinek összege = $2 \times$ hurokélek száma.
+4. **Komplementer gráf:** $A_{\bar{G}} = J - I - A_G$ (ahol $J$ a csupa 1-es mátrix).
+
+---
+
+## Utak száma és a mátrixhatványozás
+A mátrix $k$-adik hatványa ($A^k$) hordozza az úthálózat információit:
+* $[A^k]_{i,j}$ = az $i$ és $j$ csúcsok közötti **pontosan $k$ hosszú utak** száma.
+* $[A^2]_{i,i}$ = az adott csúcs fokszáma (egyszerű gráfban).
+* $Sp(A^3) / 6$ = a gráfban lévő **háromszögek** száma.
+
+## Összefüggőség vizsgálata (Y mátrix)
+A gráf akkor **összefüggő**, ha az alábbi mátrixban nincs egyetlen 0 elem sem:
+$$Y = A + A^2 + ... + A^{n-1}$$
+(Ez azt jelenti, hogy minden pontból minden pontba vezet valamilyen hosszú út).
+
+## Speciális mátrixszerkezetek
+
+### 1. Páros (Bipartit) gráfok
+Ha a mátrix átrendezhető úgy, hogy a főátló mentén blokk-nullák vannak:
+$$A = \begin{pmatrix} 0 & X \\ X^T & 0 \end{pmatrix}$$
+...akkor a gráf **kétpólusú**. Ez azt jelenti, hogy a csúcsok két csoportra oszlanak, és csak csoportok között van kapcsolat.
+
+"Páratlanok a csúcsai" helyett: Azt mondjuk, hogy páratlan hosszú kör van benne. Nem a csúcsok száma a lényeg, hanem az, hogy hány lépésből érsz körbe. A háromszögben 3 lépés, az ötszögben 5 lépés – ezek mind elrontják a bipartit tulajdonságot.
+
+"Bárhány páros csúcsú gráf" helyett: A bipartit gráfban a csúcsok száma lehet páratlan is (például 3 fiú és 2 lány, az összesen 5 csúcs). A lényeg, hogy két csoportra tudd őket osztani.
+
+Tehát a lényeg, ha páratlan hosszú kör vanakkor nem bipartit gráf. Lényeg, hogy ha páratlanok a csúcsok, akkor is lehet, hogy 2 csoportra tudjuk szedni őket, amelyek között páros kapcsolat alakulhat ki. Pl 3 fiú, 2 lány (5 csúcs) ebből 
+
+Miért a "blokk-nullák" a lényeg?A főátlón azért vannak blokk-nullák, mert egy csoporton belül senki nem kapcsolódik senkihez.U csoport: Csak a V csoportba küldhet éleket.V csoport: Csak az U csoportba küldhet éleket.A mátrixban: Ezért lesz két nagy üres négyzet a főátló mentén: az egyik az $U \to U$ kapcsolatok hiánya, a másik a $V \to V$ kapcsolatok hiánya.
+
+```mermaid 
+graph LR
+    subgraph "U csoport"
+    A
+    B
+    C
+    end
+    
+    subgraph "V csoport"
+    1
+    2
+    3
+    end
+    
+    A --- 1
+    A --- 2
+    B --- 2
+    B --- 3
+    C --- 1
+    C --- 3
+```
+Lényeg, csoporton belül nem lehet kapcsolat, és blokk nulla(hurok él) se lehet. U csoportból 1 elem pl: A kapcsolódhat V csoport  bármelyikével, akér az összesel is. 
+
+
+### 2. Nem összefüggő gráfok
+Ha a mátrix blokkokra esik szét a főátló mentén, és a blokkokon kívül minden elem 0:
+$$A = \begin{pmatrix} X_1 & 0 & 0 \\ 0 & X_2 & 0 \\ 0 & 0 & X_k \end{pmatrix}$$
+...akkor a gráf **nem összefüggő**, és $k$ darab különálló komponense van.
+
+### 3. Izomorfia vizsgálata
+Két gráf ($G$ és $H$) izomorf, ha szomszédsági mátrixaik sor- és oszlopcserékkel azonossá tehetők. 
+* **Bonyolultság:** Ez egy nagyon nehéz számítási feladat ($O(n!)$), nincs rá általános "gyors" megoldás.
+
+
+# Gráfelmélet: Utak és Szigetek
+
+## 1. A Mátrixhatványozás: "Hányféleképpen jutok oda?"
+Képzeld el a gráfot egy úthálózatnak, a szomszédsági mátrixot ($A$) pedig egy menetrendnek, ami csak a közvetlen (1 lépéses) járatokat mutatja.
+
+* **Mi történik, ha hatványozunk? ($A^k$)**
+  Ha a mátrixot megszorzod önmagával $k$-szor, a gép kiszámolja az összes létező útvonalat, ami **pontosan $k$ lépésből** áll.
+  
+* **Miért lesznek óriási számok?**
+  - **Párhuzamos utak:** Ha két város között 3 híd van, minden áthaladásnál megháromszorozódik a lehetőségeid száma.
+  - **Hurokélek:** Ha egy városban van egy körforgalom (hurok), ott "pöröghetsz" extra köröket, hogy teljen az idő, amíg el nem éred a pontos lépésszámot.
+  - **Oda-vissza:** Bármelyik utcán megteheted, hogy elmész a végéig, majd rögtön visszafordulsz. Ez +2 lépés, de rengeteg új variációt szül.
+
+* **A "0" jelentése:** Ha a mátrixban 0-t látsz, az azt jelenti: **Lehetetlen** pontosan annyi lépésben odaérni. (Vagy túl messze van, vagy nincs olyan kör útközben, amivel "elcsalhatnád" a maradék időt).
+
+---
+
+## 2. Következmények: A Mátrix mindent tud
+A mátrix számaiból (főleg a hatványokból) kiolvasható a gráf "személyi igazolványa":
+1. **Körök:** Ha a főátlón ($A^k_{i,i}$) szám van, akkor onnan indultál és oda is értél vissza – tehát kerülőt tettél (kört futottál).
+2. **Háromszögek:** Az $A^3$ hatvány megmutatja, hány 3-as pletykakör (háromszög) van a rendszerben.
+3. **Összefüggőség:** Ha összeadod az összes hatványt ($A+A^2+A^3...$), és a végén sehol nem marad 0, akkor a gráf **összefüggő** – azaz mindenki elér mindenkit valahogy.
+
+![alt text](image-2.png)
