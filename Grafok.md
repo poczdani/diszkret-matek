@@ -302,3 +302,36 @@ A dia pontjai alapján a fák az alábbi tulajdonságokkal rendelkeznek:
 4.  **Kényes egyensúly:**
     * **Minimálisan összefüggő:** Ha egyetlen élt is kitörlünk a fából, az azonnal szétesik két darabra (megszűnik az összefüggőség).
     * **Maximálisan körmentes:** Ha bármely két nem szomszédos pont közé behúzunk egy új élt, azonnal létrejön egy kör.
+
+
+# Gráfelmélet: Fokszámok és az élek száma (Összefoglaló)
+
+## 1. Állítások: Mire következtethetünk a szerkezetből?
+
+* **i) Ha mindenki ismer legalább 2 embert:** Ha minden csúcs fokszáma legalább 2 ($\delta(x) \geq 2$), akkor a gráfban **biztosan van kör**. (Gondoljunk bele: ha nem akarunk zsákutcát, előbb-utóbb visszaérünk valahova).
+* **ii) Ha nincs kör (erdő):** Akkor az élek száma sosem érheti el a csúcsok számát: $|E| \leq |V| - 1$.
+* **iii) Ha összefüggő:** Akkor kell legalább annyi él, hogy mindenkit összekössön: $|E| \geq |V| - 1$.
+* **iv) Ha FA:** Akkor a kettő találkozik, és az élek száma **pontosan** eggyel kevesebb, mint a csúcsoké: **$|E| = |V| - 1$**.
+
+De egyik sem fordítható meg. 
+
+---
+
+## 2. A "Bűvös Hármas" Tétel
+
+Ez a dia legfontosabb része. Van 3 tulajdonság, amiből **bármelyik kettő automatikusan bizonyítja a harmadikat** (és ezzel azt, hogy a gráf egy **FA**):
+
+* **a)** A gráf összefüggő.
+* **b)** A gráf körmentes.
+* **c)** Az élek száma eggyel kevesebb, mint a csúcsoké ($|E| = |V| - 1$).
+
+### Példák a párosításra:
+1. **Összefüggő + Körmentes** $\implies$ $|E| = |V| - 1$ (Ez a fa alapdefiníciója).
+2. **Körmentes + $|E| = |V| - 1$** $\implies$ Összefüggő (Tehát fa).
+3. **Összefüggő + $|E| = |V| - 1$** $\implies$ Körmentes (Tehát fa).
+
+
+---
+
+## 3. Fontos figyelmeztetés (v. pont)
+**Egyik állítás sem fordítható meg magában!** *Példa:* Ha egy gráfban $|E| = |V| - 1$, az még **nem biztos**, hogy fa! Lehet, hogy van benne egy kör, és egy tőle teljesen elszigetelt pont ( a háromszög + egy különálló pont esete). Ahhoz, hogy fa legyen, a fenti hármasból legalább **kettőnek** egyszerre kell teljesülnie.
