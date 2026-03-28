@@ -195,7 +195,9 @@ Akkor beszélünk erről ha nincs hurokél, csak csúcsok, és élek vannak köz
 
 **2. Definició G tetszőleges gráf:**
 
-Az első rózssaszin K érték azt mutatja meg hányszoros élekről beszélünk. Ha itt egy pl: 3-as szám van azt jelenti, hohgy a csúcsok között 3 élkapcsolat van. 
+- Az első rózssaszin K érték azt mutatja meg hányszoros élekről beszélünk. Ha itt egy pl: 3-as szám van azt jelenti, hohgy a csúcsok között 3 élkapcsolat van. 
+- Hurok élnél 2x kell írni, mert a fokszámot is 2x-esen növeli a hurokél.  
+- A k lehet 0 is akkor nincs köztük kapcsolat.
 
 ![alt text](image-4.png)
 
