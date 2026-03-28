@@ -272,6 +272,8 @@ A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédt
 
 És ha megnézem honna indul (A sor). Érték van F-be(2) oda belefolyik. Ezután sortváltunk, megyünk az F-re. Abban a sorban vizsgáljuk meg, melyik oszlopba van érték. F sornál van A-ba, és E-be, tehát E-be tud a tinta tovább menni. Ugrunk E sorba, majd vizsgáljuk E sor melyik oszlopába van érték. E sorba B-nél, és F-nél van érték, tehát B-be is tovább folyik a tinta. Ugrunk B sorába, és ott csak E van amit már csekkoltunk, tehát a tinta, már semmere se tud tovább folyni. 
 
+És mivel nem tud tovább folyni, ezért látható, hogy a gráf szétesik, és 2 különálló gráf lesz belőle. 2 diszkjunkt rész halmazra esik szét. Az eredeti gráf nem összefüggő, mert 2 külön részgráfra esik szét 
+
 ---
 
 ## 4. Bipartit (Páros) gráfok - Gyakori tévhitek
