@@ -281,3 +281,24 @@ A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédt
 * **Valóság:** Lehet páratlan is (pl. 3 fiú, 2 lány). A lényeg, hogy **két csoportra** tudd bontani őket.
 * **Szabály:** Csoporton belül (fiú-fiú vagy lány-lány) **tilos a kapcsolat**. Élek csak a két csoport között futhatnak.
 * **Mátrix kép:** Ezért lesznek blokk-nullák a főátlón (nincs belső kapcsolat).
+
+---
+# Fák
+
+* **Erdő (Forest) / Liget:** Olyan gráf, amiben **nincs kör**. (Vagyis nem tudsz úgy elindulni egy pontból, hogy egy útvonalon keresztül, élek ismétlése nélkül visszajuss ugyanoda).
+* **Fa (Tree):** Olyan erdő, ami **összefüggő** is. (Vagyis nincsenek benne elszigetelt szigetek, minden pontból eljuthatsz minden pontba).
+
+Az erdő komponensei ( zöldek) körmentesek és összefüggöek, tehát fák. 
+![alt text](image-7.png)
+
+A dia pontjai alapján a fák az alábbi tulajdonságokkal rendelkeznek:
+
+1.  **Erdő részei:** Az erdő minden egyes különálló darabja (komponense) önmagában egy fa.
+2.  **Egyszerűség:** A fákban és erdőkben **nincs hurokél és nincs többszörös él** (mert azok azonnal kört alkotnának).
+3.  **Utak száma:**
+    * **Összefüggő:** Bármely két pont között van **legalább egy** út.
+    * **Körmentes:** Bármely két pont között van **legfeljebb egy** út.
+    * **FA:** Bármely két pont között **PONTOSAN EGY** út van. (Ez a legfontosabb definíció!)
+4.  **Kényes egyensúly:**
+    * **Minimálisan összefüggő:** Ha egyetlen élt is kitörlünk a fából, az azonnal szétesik két darabra (megszűnik az összefüggőség).
+    * **Maximálisan körmentes:** Ha bármely két nem szomszédos pont közé behúzunk egy új élt, azonnal létrejön egy kör.
