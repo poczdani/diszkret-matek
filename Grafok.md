@@ -335,3 +335,40 @@ Ez a dia legfontosabb része. Van 3 tulajdonság, amiből **bármelyik kettő au
 
 ## 3. Fontos figyelmeztetés (v. pont)
 **Egyik állítás sem fordítható meg magában!** *Példa:* Ha egy gráfban $|E| = |V| - 1$, az még **nem biztos**, hogy fa! Lehet, hogy van benne egy kör, és egy tőle teljesen elszigetelt pont ( a háromszög + egy különálló pont esete). Ahhoz, hogy fa legyen, a fenti hármasból legalább **kettőnek** egyszerre kell teljesülnie.
+
+
+---
+
+# Gráfok izomorfizmusa
+
+![alt text](image-8.png)
+
+- A képen az izomorf azt jelenti, hogy ugyanazt a gráfot látjuk, egy másfajta módon. Ha az első gráfban A-G csúcspontok között nincs él, akkor a 2. gráfban a-g között sincs.
+- Ha van az első gráfban él A-b, akkor a második gráfban is van a-b. 
+
+Fákra van gyors algoritmus. (Kb elég eddig, ennyit tudni).
+
+# Gráfelmélet: Invariáns tulajdonságok (Izomorfia)
+
+## 1. Mi az az Izomorfia? ($G \cong H$)
+Két gráf akkor **izomorf**, ha szerkezetileg teljesen megegyeznek. Képzeld el, hogy az egyik gráfot gumiból készítetted el: ha át tudod mozgatni a csúcsait úgy, hogy pontosan fedje a másikat (anélkül, hogy éleket vágnál el vagy ragasztanál hozzá), akkor a két gráf izomorf.
+
+
+---
+
+## 2. Invariáns tulajdonságok (Amiknek egyezniük KELL)
+Ha két gráf izomorf ($G \cong H$), akkor az alábbi tulajdonságaik **kötelezően megegyeznek**:
+
+* **Alapadatok:** Csúcsok száma, élek száma, többszörös élek (multiplicitás).
+* **Fokszámok:** A fokszámok sorozata (pl. mindkettőben van két 3-as és három 2-es fokszámú pont).
+* **Szerkezet:** * **Párosság:** Ha az egyik bipartit, a másik is az.
+    * **Síkbarajzolhatóság:** Ha az egyik lerajzolható metsző élek nélkül, a másik is.
+* **Méretek:** * **Derékbőség:** A legrövidebb kör hossza.
+    * **Átmérő:** A legtávolabbi két pont közötti legrövidebb út hossza.
+* **Bejárhatóság:** Euler-kör és Hamilton-kör létezése.
+* **Spektrum:** A szomszédsági mátrix sajátértékeinek halmaza.
+
+
+
+Ha ZH-ba tallálunk olyat, amikor a gráfok valamiben eltérnek akkor az nem izomorf.
+---
