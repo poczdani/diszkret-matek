@@ -202,6 +202,16 @@ Akkor beszélünk erről ha nincs hurokél, csak csúcsok, és élek vannak köz
 ![alt text](image-4.png)
 
 
+ **A** szimmetrikus a főátlóra  -> $A^T$ = A ami azt jelenti, hogy a mátrix sor oszlopai felcserélhetőek, úgyanazt kapjuk. A transzponált = A.    
+Ez mindkettőre igaz. 
+
+**Mátrix nyoma:(Spur/Trace)= A főátlóban lévő elemek összeg:** 
+
+
+Az összes elemek száma a mátrixban az élek száma X 2. 
+
+
+
 ### Kitöltési szabályok (Egyszerű és tetszőleges gráf):
 * **Élek:** Ha $v_i$ és $v_j$ között van kapcsolat, akkor $[A]_{i,j} = 1$. Ha nincs, akkor $0$.
 * **Többszörös élek:** Ha $k$ darab párhuzamos él van két pont között, a mátrixba **$k$** kerül.
@@ -223,6 +233,21 @@ A mátrix $k$-adik hatványa megmondja, hányféleképpen juthatunk el $i$-ből 
 
 ---
 
+
+
+Bal oldalt látható a csúcsmátrix. Bizonyítás nem kell azt hagytuk az órán. A gráfról leírható a csúcsmátrix. K=7-et választott a tanár úr, ami azt jelenti, a mátrixot megszorozta önmagával, majd azt újra önmagával stb 7x. Ebből lett a jobb oldali mátrix eredménye. Az indukciós tétel szerint ezt tömérdek információt tartalmaz. 
+
+Mit jelent az elős sor utolsó eleme ami **57** ? 
+ - Mivel a K=7 így azt jelenti, hogy a V1-ből a V8-ba 7 útal 57x tudok elmenni. 
+ -  Tehát a K=7 az útak hosszát jelenti. 
+  
+Ezek tűrhető, tehát gyors algoritmus.
+
+
+
+![alt text](image-2.png)
+
+
 ## 3. Összefüggőség és Szigetek
 
 ### Összefüggő vagy sem?
@@ -237,6 +262,15 @@ Ez a módszer segít megtalálni a különálló komponenseket (szigeteket) rajz
 3. **Terjedés:** Menj az újonnan megjelölt csúcsok soraihoz, és nézd meg az ő szomszédaikat is. 
 4. **Stop:** Ha már nem tudsz új csúcsot megjelölni, az összes megjelölt pont alkot **egy szigetet**.
 5. **Újrakezdés:** Aki fehér maradt (nincs megjelölve), az egy másik szigeten van. Kezdd náluk újra a folyamatot!
+
+![alt text](image-5.png)
+
+
+![alt text](image-6.png)
+
+A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédtáblázatok. Az A-ba azért ír a karika után X-et, mert onnan már kifolyt, ott már száradhat a **"tinta"**. Belefolyt az **F-be** oda mehet a karika. A segéd táblázatba ott kezdpdik ahol karika van oda befolyt. A többi x, és od amegy tovább, ahol van a következő karika, így a segédtáblázat alapján megtaláljuk a gráfokat(Kvázi merre folyik a tinta).
+
+És ha megnézem honna indul (A sor). Érték van F-be(2) oda belefolyik. Ezután sortváltunk, megyünk az F-re. Abban a sorban vizsgáljuk meg, melyik oszlopba van érték. F sornál van A-ba, és E-be, tehát E-be tud a tinta tovább menni. Ugrunk E sorba, majd vizsgáljuk E sor melyik oszlopába van érték. E sorba B-nél, és F-nél van érték, tehát B-be is tovább folyik a tinta. Ugrunk B sorába, és ott csak E van amit már csekkoltunk, tehát a tinta, már semmere se tud tovább folyni. 
 
 ---
 
