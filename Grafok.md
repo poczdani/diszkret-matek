@@ -371,4 +371,40 @@ Ha két gráf izomorf ($G \cong H$), akkor az alábbi tulajdonságaik **kötelez
 
 
 Ha ZH-ba tallálunk olyat, amikor a gráfok valamiben eltérnek akkor az nem izomorf.
+
+
+Fa gráfok izomofirfiájának algoritmusáról csak anynit kell tudni, hogy van és gyors. 
 ---
+
+## 9. Síkba rajzolható (planáris) gráfok
+
+A síkba rajzolhatóság azt jelenti, hogy a gráfot le tudjuk tenni a síkba (papírra) úgy, hogy az élei ne messék egymást.
+
+(Annyit kell tudni algoritmussok terén, hogy van gyors algoritmus)
+
+### Definíció egyszerűen
+Egy gráf **síkba rajzolható**, ha létezik olyan ábrázolása, ahol:
+* A csúcsok pontok a síkban.
+* Az élek olyan folytonos vonalak, amelyek csak a végpontjaikban (a csúcsokban) találkoznak.
+* Sehol máshol **nincs élkereszteződés**.
+
+### Nevezetes nem síkba rajzolható gráfok
+Vannak olyan bonyolult hálózatok, amiket sehogy sem lehet "kibogozni" a síkban. A két legfontosabb:
+1. **$K_5$**: 5 pontból álló teljes gráf. ( Ha egy gráfban megtalálható **$k_5$** a gráfban, akkor biztos hogy nem rajzolható síkban.)
+2. **$K_{3,3}$**: Más néven a "három ház - három kút" gráf (teljes páros gráf, ahol mindkét csoportban 3-3 pont van). ( Ha egy gráfban megtalálható **$k_(3,3)$** a gráfban, akkor biztos hogy nem rajzolható síkban.)
+
+De **Kuratowsky** tétele szerint, ez fordítva is pontosan ugyanígy működik, TEHÁT ha egy gráfban nicns se **$k_5$**, se **$k_{3,3}$**, akkor biztosan **síkba rajzólható**. 
+
+> **Tény:** Ha egy gráfban "elrejtve" (részgráfként) megtalálható a $K_5$ vagy a $K_{3,3}$, akkor az egész gráf biztosan nem rajzolható síkba.
+
+### **Kuratowsky** Tétele gyakorlati megközelítésből, ami a vizsgán kell. 
+
+Tanár úr ezt a gyakorlati példát kéri a vizsgán.
+
+
+
+![alt text](image-9.png)
+
+A **$k_{3,3}$** úgy teljesül, hogy minden piros csúcsból csak kékkel tudom összektöni, és fordítva is. A sárga mutatja, hogy nem csak él lehet mint összekötés, hanem konkrétan egy út is lehet. (Ezt bizonyíja a sárga).
+
+
