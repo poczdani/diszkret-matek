@@ -405,6 +405,8 @@ Tanár úr ezt a gyakorlati példát kéri a vizsgán.
 
 ![alt text](image-9.png)
 
-A **$k_{3,3}$** úgy teljesül, hogy minden piros csúcsból csak kékkel tudom összektöni, és fordítva is. A sárga mutatja, hogy nem csak él lehet mint összekötés, hanem konkrétan egy út is lehet. (Ezt bizonyíja a sárga).
+- **$k_5$**: Válasszunk ki 5 pontot: Teljesen mindegy, mennyi pontja van a gráfunknak összesen, csak keressünk ki belőle ötöt. Páronként össze vannak kötve: Ez azt jelenti, hogy ha ezt az 5 pontot nézzük, akkor az első össze van kötve a másodikkal, harmadikkal, negyedikkel és ötödikkel. 
+  A második is a többivel, és így tovább. Összesen 10 kapcsolatot kell találnunk köztük. Csúcsdiszjunkt utakkal: Itt van a trükk! Nem kötelező, hogy ezek a pontok közvetlenül szomszédosak legyenek (egy darab éllel). Lehet közöttük egy hosszú útvonal is, ami más pontokon megy keresztül. 
+- A **$k_{3,3}$** úgy teljesül, hogy minden piros csúcsból csak kékkel tudom összektöni, és fordítva is. A sárga mutatja, hogy nem csak él lehet mint összekötés, hanem konkrétan egy út is lehet. (Ezt bizonyíja a sárga).
 
 
