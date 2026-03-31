@@ -410,3 +410,74 @@ Tanár úr ezt a gyakorlati példát kéri a vizsgán.
 - A **$k_{3,3}$** úgy teljesül, hogy minden piros csúcsból csak kékkel tudom összektöni, és fordítva is. A sárga mutatja, hogy nem csak él lehet mint összekötés, hanem konkrétan egy út is lehet. (Ezt bizonyíja a sárga).
 
 
+## 10. Euler poliédertétele és következményei
+
+### Alapfogalom: A Lap (l)
+A síkba rajzolt gráf élei által körbezárt tartományokat **lapoknak** (vagy országoknak) nevezzük. 
+**Szabály:** A gráf körüli külső, végtelen tartomány is 1 lapnak számít.
+
+### Euler I. poliédertétele
+Minden összefüggő, síkba rajzolt gráfra teljesül az alábbi összefüggés:
+$$l + c - e = 2$$
+*(Ahol l = lapok, c = csúcsok, e = élek száma)*
+
+
+### Becslések az élek számára (Síkbarajzolhatóság feltételei)
+Ha egy egyszerű gráf síkba rajzolható, akkor az éleinek száma korlátozott:
+
+1. **Általános esetben:**
+   $$e \leq 3c - 6$$ 
+2. **Páros gráf esetén (ahol nincs 3 hosszú kör):**
+   $$e \leq 2c - 4$$ 
+3. **Derékbőség (g) ismeretében** (g = a legrövidebb kör hossza):
+   $$e \leq \frac{g}{g-2} \cdot (c-2)$$ 
+
+> **Megjegyzés:** Ezek a becslések csak egyik irányba működnek. Ha a feltétel nem teljesül, a gráf biztosan **nem** síkba rajzolható. [cite_start]Ha teljesül, attól még nem biztos, hogy az.
+
+### Bizonyítás a tiltott gráfokra
+A képletek alapján matematikailag is látszik, miért nem planárisak:
+* **K5 nem síkgráf:** Mert $10 \not\leq 3 \cdot 5 - 6$ (azaz $10 \not\leq 9$).
+* **K3,3 nem síkgráf:** Mert páros gráfként $9 \not\leq 2 \cdot 6 - 4$ (azaz $9 \not\leq 8$).
+
+
+# Havel-Hakimi algoritmus 
+
+# Havel-Hakimi algoritmus
+
+A Havel-Hakimi algoritmus egy eljárás annak eldöntésére, hogy létezik-e olyan **egyszerű gráf**, amelynek fokszámai pontosan megegyeznek egy adott $\delta_1, \dots, \delta_n$ természetes számokból álló sorozattal[cite: 190, 215, 237].
+
+## 1. Szükséges feltétel (Kézfogási tétel)
+Az algoritmus megkezdése előtt ellenőrizni kell a "Kézfogási tételt"[cite: 240, 252]:
+A fokszámok összegének ($\sum \delta_i$) **párosnak** kell lennie[cite: 254, 256].
+* Ez azt jelenti, hogy a sorozatban a **páratlan fokszámok száma páros**[cite: 257].
+* Ha az összeg páratlan, akkor nem létezik ilyen egyszerű gráf[cite: 190, 215, 237].
+
+## 2. Az algoritmus szabályai
+Az eljárás során a következő lépéseket ismételjük:
+
+1.  **Rendezés:** Állítsuk a fokszámokat monoton csökkenő sorrendbe: $\delta_1 \geq \dots \geq \delta_n \geq 0$[cite: 190, 215, 237].
+2.  **Kiválasztás:** Vegyük a sorozat legnagyobb elemét ($\delta_1$). [cite_start]Ez a "kielégítendő" csúcs fokszám igénye[cite: 190, 215, 237].
+3.  **Kielégítés:** Tegyük félre ezt a csúcsot, és a soron következő $\delta_1$ darab legnagyobb fokszámú elemből **vonjunk le pontosan 1-et**[cite: 190, 215, 237].
+4.  **Ismétlés:** Az így kapott új sorozatot (ha szükséges) rendezzük újra monoton csökkenő sorrendbe, és ismételjük a lépéseket[cite: 190, 215, 237].
+
+
+
+## 3. Az algoritmus kimenete
+* **Létezik a gráf:** Ha az algoritmus végigfut, és a folyamat végén minden fokszám-igény ki lett elégítve (tehát csupa **0** marad a sorozatban)[cite: 190, 215, 237].
+* **Nem létezik a gráf:** Az algoritmus pontosan akkor akad meg, ha nincs olyan egyszerű gráf, amely megfelelne a sorozatnak (például ha negatív számot kapnánk a levonás után, vagy nincs elég elem a levonáshoz)
+
+![alt text](image-10.png)
+
+**Algoritmus működése:**
+
+- Első körben meg kell vizsgálni a kézfogás tételt. Az az a fokszámok összegének párosnak kell lenni. 
+  - Pl.: [2,6,7,9] -> 24 páros tehát rendben van. 
+  - Pl.: [3,4,5,7] -> 19 -> ez kapsából nem ok
+- Ha páros, akkor sorba kell rendeznünk a számsorozatot. Ahogy a definicó fogalmaz a fokszámok monotón csökkenőek. 
+- Bekarikázzuk a legnagyobb fokszámot, majd ennek az értékének megfelelően kötjük össze a többivel. Mindig a nagyobbtól a kisebb felé. 
+- Amit bekarikáztunk, az "eltűnik", majd a többi számból elveszek 1-et.
+- Ezt ismételgetem ameddig tudom. Ha olyan állapotba érkezem, hogy van számom, és vannak nullák, és minuszba menne a számolás akkor nincs megoldás.
+  - Pl. A számolás ezen fázisa [3,0,0,0,1] A 3 a legnagyobb, azt karikázom be, és 3 niylat kell húzni. AZ 1-be tudok csak, a többivel mínuszba mennék, vagy másképp fogalmazva a 3-as csomópontnak csak 1x tudom kielégíteni a kézfogási igényét, ezért itt leáll az algoritmus, és nincs megoldás.
+- De ha egy olyan fázisba érkezem meg, hogy Pl.: [3,1,1,1,0,0] akkor a 3-at karikázom be, és pont 3 kézfogási igényt tudok kielégíteni. Ekkor ez marad [0,0,0,0,0] -> Így van megoldás
+- De Előfordulhat, hogy így érkezem meg 1 fázisba -> [2,1,1,2] Ekkor valamelyik 2-est karikázom, ki tudok elégiteni 2 kézfogást, egy 2-es eltűnik, amit bekarikáztam, majd, ez marad [1,1]  ( Itt egy nulla nem lett leírva talán az átláthatóság miatt de elvileg azt is le kell/lehetne) [1,1] -> itt kiválasztom az egyik 1-est majd húzom a másikba. Tehát annak az 1-esnke ki tudom elégítenia kézfogását. 
+    
