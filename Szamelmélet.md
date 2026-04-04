@@ -130,3 +130,29 @@ Ha egy számról úgy akarjuk eldönteni, hogy prím-e, hogy elosztjuk az össze
 | **3. Prímkeresés** | Egy adott méretű (pl. 500 jegyű) véletlen prím generálása. | **IGEN** (Valószínűségi tesztekkel gyorsan megoldható). |
 
 > **A lényeg a vizsgára:** Nagyon könnyű összeszorozni két 500 jegyű prímet (gyors). De ha csak az eredményt kapjuk meg, iszonyatosan nehéz (exponenciálisan lassú) visszafejteni belőle a két eredeti prímet (faktorizáció).
+
+
+## 8. Algoritmikus problémák összefüggései
+
+A három fő algoritmikus probléma (Prímtesztelés, Prímfelbontás, Prímgenerálás) közül a **Prímfelbontás (ii)** a legnehezebb.
+- Ha a prímfelbontást meg tudnánk oldani gyorsan, azzal megoldanánk a másik kettőt is: `(ii) => (i)` és `(ii) => (iii)`.
+- Mivel a prímfelbontás exponenciálisan lassú (pl. Eratoszthenészi szitával), a számítógépek számára a gyakorlatban használhatatlan nagy (több száz jegyű) számok esetén.
+
+### Nagyon fontos következmény az algoritmusok tervezésénél!
+Mivel a prímfelbontás lassú, **MINDEN** olyan algoritmus, ami erre épül, szintén lassú lesz nagy inputok esetén.
+- **Példa:** Bár matematikailag helyes az LNKO-t (Legnagyobb közös osztót) a prímek metszeteként megkeresni, a programozásban ez tilos, mert túl lassú! (Helyette az Euklideszi algoritmust használják).
+
+---
+
+## 9. A Nagy Prímszámtétel
+
+A prímszámok eloszlását írja le a számegyenesen. Azt mutatja meg, milyen "sűrűn" helyezkednek el a prímek.
+
+**Jelölés:** $\pi(n)$ megadja, hogy hány darab prímszám van $1$-től $n$-ig.
+
+**A tétel kimondja:** Nagyon nagy számok esetén ($n \to \infty$) a prímek száma így közelíthető:
+$$\pi(n) \sim \frac{n}{\log n}$$
+
+**Valószínűségi megközelítés:**
+$$\frac{\pi(n)}{n} \sim \frac{1}{\log n}$$
+Ez azt jelenti, hogy ha véletlenszerűen kiválasztunk egy $n$-nél kisebb egész számot, akkor annak a valószínűsége, hogy ez a szám prím, megközelítőleg $\frac{1}{\log n}$. (Ahogy haladunk a nagy számok felé, a prímek egyre "ritkábban" fordulnak elő).
