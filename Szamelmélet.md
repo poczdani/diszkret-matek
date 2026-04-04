@@ -105,8 +105,15 @@ Egy $n \in \mathbb{P}$ szám prím, ha:
 
 A számítástudományban a számelméleti problémáknál nem csak az eredmény a fontos, hanem az, hogy mennyi idő alatt kapjuk meg.
 
+### A módosított "Eratoszthenész szitája" (Prímtesztelés naivan)
+
+- Mit csinálunk? Elkezdjük osztani a számot 2-vel, 3-mal, 5-tel... egészen $\sqrt{n}$-ig. (Miért csak a gyökéig? Mert ha a szám felbontható $a \cdot b$ alakra, akkor az egyik osztónak biztosan kisebbnek vagy egyenlőnek kell lennie a négyzetgyöknél).
+- Mennyi ideig tart ez? (Futási idő)A lépések száma nagyjából $\sqrt{n}$.De emlékezzünk, az input mérete az $N$ (a számjegyek száma)! Mivel $n \approx 10^N$, ezért $\sqrt{n} \approx \sqrt{10^N} = 10^{N/2}$.
+
+- A nagy probléma: Ez az idő exponenciálisan lassú az $N$ számjegyek számához képest!A döbbenetes példa: Ha veszel egy 50-100 jegyű számot, a számítógépnek ezzel a primitív módszerrel nagyjából 36 milliárd évig tartana kideríteni, hogy prím-e!
+
 ### Input mérete
-A futási időt nem a szám értéke ($n$), hanem a **számjegyeinek száma ($N$)** alapján mérjük.
+A futási időt nem a szám értéke ($n$), hanem a **számjegyeinek száma ($N$)** alapján mérjük. Miért? Mert a gép számjegyeket (biteket) olvas be. Egy 100 jegyű szám beolvasása 100 lépés, nem egy "nagyon nagy" lépés.
 - Összefüggés: $N \approx \log_{10}(n)$ (tehát egy $n = 10^N$ nagyságrendű szám $N$ jegyű).
 
 ### A naiv prímtesztelés problémája (Próbaosztás)
