@@ -221,3 +221,30 @@ Az Euklideszi algoritmussal kapott LNKO (Legnagyobb Közös Osztó) egy "dönté
    - Kiszámoljuk $a$ és $m$ legnagyobb közös osztóját: $d = \text{lnko}(a, m)$.
    - **A szabály:** Az egyenletnek **csak akkor** van megoldása, ha a kapott $d$ (LNKO) maradék nélkül osztja a $c$ számot ($d | c$).
    - **Példa:** $18x \equiv 15 \pmod{48}$. Mivel $\text{lnko}(18, 48) = 6$, és a $6$ nem osztója a $15$-nek, az egyenletnek **nincs megoldása**. (Ha $18x \equiv 12 \pmod{48}$ lenne, akkor lenne megoldás, mert $6|12$).
+
+## 14. Az Euklideszi Algoritmus hatékonysága és tulajdonságai
+
+Az Euklideszi algoritmus nemcsak helyes, de számítástudományi szempontból is tökéletes algoritmus.
+
+### Algoritmus-analízis szempontok:
+1. **Végesség (Megállás):** Az algoritmus garantáltan megáll. A maradékok sorozata szigorúan monoton csökken ($b > r_1 > r_2 > \dots > 0$), és mivel diszkrét egész számokról van szó, véges lépésben el kell érnie a nullát.
+2. **Bonyolultság:** Programozási szempontból triviális, egyetlen egyszerű ciklussal implementálható (O(1) memóriahasználat).
+3. **Futási idő és Lamé tétele:**
+   Lamé tétele megadja az algoritmus maximális lépésszámát.
+   - **Tétel:** $m \le 5 \cdot \log_{10}(|b|)$ (ahol $m$ a lépések száma, $b$ a kisebbik szám).
+   - **Jelentése:** A lépések száma sosem haladja meg a kisebbik szám decimális (10-es alapú) **számjegyei számának ötszörösét**. (Polinomiális futási idő, extrém gyors).
+
+---
+
+## 15. Kiterjesztés több változóra
+
+Az LNKO és az LKKT fogalma és kiszámítása kiterjeszthető 2-nél több számra is, páronkénti (láncolt) kiértékeléssel.
+
+**Több szám LNKO-ja:**
+Kiszámítjuk az első kettő LNKO-ját, majd a kapott eredménynek és a harmadik számnak az LNKO-ját, és így tovább.
+$$\text{lnko}(a, b, c) = \text{lnko}(\text{lnko}(a, b), c)$$
+
+Általánosítva $n$ darab számra:
+$$\text{lnko}(a_1, a_2, \dots, a_n) = \text{lnko}(\dots\text{lnko}(\text{lnko}(a_1, a_2), a_3) \dots, a_n)$$
+
+*(Megjegyzés: Az LKKT-ra is ugyanez a "láncolási" szabály vonatkozik!)*
