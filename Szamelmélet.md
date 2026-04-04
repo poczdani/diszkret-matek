@@ -100,3 +100,26 @@ Egy $n \in \mathbb{P}$ szám prím, ha:
 - $n > 1$ (az 1 nem prím!)
 - Csak önmagával és 1-gyel osztható.
 - Nem bontható fel kisebb egészek szorzatára: $n = x \cdot y \implies (x=1 \lor y=1)$.
+
+## 7. Algoritmikus számelmélet és Bonyolultság
+
+A számítástudományban a számelméleti problémáknál nem csak az eredmény a fontos, hanem az, hogy mennyi idő alatt kapjuk meg.
+
+### Input mérete
+A futási időt nem a szám értéke ($n$), hanem a **számjegyeinek száma ($N$)** alapján mérjük.
+- Összefüggés: $N \approx \log_{10}(n)$ (tehát egy $n = 10^N$ nagyságrendű szám $N$ jegyű).
+
+### A naiv prímtesztelés problémája (Próbaosztás)
+Ha egy számról úgy akarjuk eldönteni, hogy prím-e, hogy elosztjuk az összes számmal $\sqrt{n}$-ig, a lépések száma arányos lesz $\sqrt{n}$-nel.
+- Az $N$ számjegyhez viszonyítva ez $10^{N/2}$ lépést jelent.
+- **Következtetés:** Ez az algoritmus **exponenciálisan lassú**. Egy 100 jegyű szám esetén a futási idő milliárd években mérhető. (kb 36 milliárd)
+
+### A három fő számelméleti probléma (A kriptográfia alapjai)
+
+| Probléma | Feladat | Van-e gyors (polinomiális) algoritmus? |
+| :--- | :--- | :--- |
+| **1. Prímtesztelés** | Eldönteni egy nagy $n$ számról, hogy prím-e. | **IGEN** (pl. AKS algoritmus, 2002). Gyorsan ellenőrizhető. |
+| **2. Faktorizáció** (Felbontás) | Megtalálni egy összetett szám prímtényezőit ($n = x \cdot y$). | **NINCS** (Hagyományos gépeken). Ez adja az RSA titkosítás biztonságát! |
+| **3. Prímkeresés** | Egy adott méretű (pl. 500 jegyű) véletlen prím generálása. | **IGEN** (Valószínűségi tesztekkel gyorsan megoldható). |
+
+> **A lényeg a vizsgára:** Nagyon könnyű összeszorozni két 500 jegyű prímet (gyors). De ha csak az eredményt kapjuk meg, iszonyatosan nehéz (exponenciálisan lassú) visszafejteni belőle a két eredeti prímet (faktorizáció).
