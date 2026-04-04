@@ -156,3 +156,68 @@ $$\pi(n) \sim \frac{n}{\log n}$$
 **Valószínűségi megközelítés:**
 $$\frac{\pi(n)}{n} \sim \frac{1}{\log n}$$
 Ez azt jelenti, hogy ha véletlenszerűen kiválasztunk egy $n$-nél kisebb egész számot, akkor annak a valószínűsége, hogy ez a szám prím, megközelítőleg $\frac{1}{\log n}$. (Ahogy haladunk a nagy számok felé, a prímek egyre "ritkábban" fordulnak elő).
+
+## 10. Maradékos osztás és Euklideszi algoritmus
+
+### Maradékos osztás tétele
+Bármely $a$ és $b$ ($b > 0$) egész számok esetén egyértelműen létezik egy $q$ (hányados) és egy $r$ (maradék) szám, amelyre igaz, hogy:
+$$a = b \cdot q + r \quad \text{ahol} \quad 0 \le r < b$$
+*(Magyarul: A maradék mindig nemnegatív, és kisebb az osztónál).*
+
+### Euklideszi algoritmus
+Ez a leggyorsabb módszer két szám legnagyobb közös osztójának (LNKO) megkeresésére, prímfelbontás nélkül.
+
+**A módszer lépései:**
+1. Felírjuk a maradékos osztást a két számra ($a = b \cdot q + r$).
+2. A következő sorban az előző sor **osztója lesz az új elosztandó** ($a$ helyére kerül), és az előző sor **maradéka lesz az új osztó** ($b$ helyére kerül). "Balra csúsztatunk".
+3. Ezt az eljárást addig folytatjuk, amíg a **maradék 0 nem lesz**.
+4. Az LNKO mindig az **utolsó nem nulla maradék**.
+
+**Példa: lnko(48, 18) = ?**
+1. $48 = \mathbf{18} \cdot 2 + \mathbf{12}$
+2. $18 = \mathbf{12} \cdot 1 + \mathbf{6}$
+3. $12 = 6 \cdot 2 + 0 \rightarrow \text{STOP!}$
+**Eredmény:** Az utolsó nem nulla maradék a 6, tehát $\text{lnko}(48, 18) = \mathbf{6}$.
+
+---
+
+## 11. Kongruenciák alapjai (Maradékaritmetika)
+
+A számelméletben a kongruencia azt vizsgálja, hogy számok milyen maradékot adnak egy adott számmal osztva.
+
+**Definíció és Jelölés:**
+$$a \equiv b \pmod m$$
+*(Olvasva: a kongruens b-vel modulo m)*
+
+**Jelentése (a kettő egyenértékű):**
+1. Az $a$ számot $m$-mel osztva **ugyanannyi a maradék**, mintha $b$-t osztanánk $m$-mel.
+2. Az $a - b$ különbség maradék nélkül **osztható** $m$-mel ($m | (a-b)$).
+
+**Példa (Óramatematika - mod 12):**
+$14 \equiv 2 \pmod{12}$, mert mindkettő 2 maradékot ad 12-vel osztva (vagy: $14 - 2 = 12$, ami osztható 12-vel).
+
+**Kapcsolat a vizsgafeladatokkal:**
+A lineáris kongruenciák (pl. $ax \equiv b \pmod m$) megoldásához gyakran a **Bővített Euklideszi algoritmust** kell használni, amely az alap Euklideszi algoritmus lépéseiből "visszafele" indulva megtalálja a szorzás inverzét a modulos világban.
+
+## 12. Gyakori buktatók és trükkök az osztásnál
+
+### Kisebb szám osztása nagyobbal
+Ha egy $a$ számot osztunk egy nála nagyobb $b$ számmal ($a < b$), akkor a maradékos osztás eredménye mindig a következő:
+- **Hányados:** 0
+- **Maradék:** Maga az $a$ szám.
+- **Példa:** $2 \div 12 \rightarrow$ megvan benne 0-szor, a maradék 2. Képlettel: $2 = 12 \cdot 0 + 2$.
+
+---
+
+## 13. Mire használjuk az LNKO-t a gyakorlatban? (A vizsga szempontjából)
+
+Az Euklideszi algoritmussal kapott LNKO (Legnagyobb Közös Osztó) egy "döntéshozó eszköz" a bonyolultabb feladatokhoz.
+
+1. **Relatív prímek tesztelése:**
+   Ha $\text{lnko}(a, b) = 1$, akkor a két szám relatív prím. A kriptográfiában (pl. RSA) és a kongruencia egyenletek megoldásánál (inverz keresése) ez a legfontosabb feltétel!
+
+2. **Lineáris kongruenciák megoldhatósága:**
+   Adott egy egyenlet: $a \cdot x \equiv c \pmod m$
+   - Kiszámoljuk $a$ és $m$ legnagyobb közös osztóját: $d = \text{lnko}(a, m)$.
+   - **A szabály:** Az egyenletnek **csak akkor** van megoldása, ha a kapott $d$ (LNKO) maradék nélkül osztja a $c$ számot ($d | c$).
+   - **Példa:** $18x \equiv 15 \pmod{48}$. Mivel $\text{lnko}(18, 48) = 6$, és a $6$ nem osztója a $15$-nek, az egyenletnek **nincs megoldása**. (Ha $18x \equiv 12 \pmod{48}$ lenne, akkor lenne megoldás, mert $6|12$).
