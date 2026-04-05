@@ -302,4 +302,41 @@ $\mathbf{253 = 9 \cdot \langle 9867 \rangle - 10 \cdot \langle 8855 \rangle}$
 Az $x$ helyén lévő szorzó az $u_0 = 9$, az $y$ helyén lévő szorzó a $v_0 = -10$.
 
 - **3.:**  A Partikuláris és Általános megoldás
-  - Cél: Nekünk nem a 253-ra (LNKO) kell megoldani az egyenletet, hanem a feladatban szereplő 759-re!Felszorzás: Hányszorosa a 759 a 253-nak? $759 \div 253 = \mathbf{3}$.Szorozzuk be az egész előzőleg kapott egyenletünket 3-mal!$(9 \cdot 3) \cdot \langle 9867 \rangle + (-10 \cdot 3) \cdot \langle 8855 \rangle = 253 \cdot 3$$\mathbf{27 \cdot \langle 9867 \rangle - 30 \cdot \langle 8855 \rangle = 759}$Ebből leolvasható az első, konkrét megoldáspár (partikuláris megoldás):$x_0 = 27$$y_0 = -30$Az összes megoldás (Általános megoldás): Most csak be kell helyettesíteni abba a bizonyos képletbe, amit az előző jegyzetben néztünk:$x = x_0 + k \cdot \frac{b}{\text{LNKO}} \implies x = 27 + k \cdot \frac{8855}{253} \implies \mathbf{x = 27 + k \cdot 35}$$y = y_0 - k \cdot \frac{a}{\text{LNKO}} \implies y = -30 - k \cdot \frac{9867}{253} \implies \mathbf{y = -30 - k \cdot 39}$(Ahol a $k$ tetszőleges egész szám).     
+  - Cél: Nekünk nem a 253-ra (LNKO) kell megoldani az egyenletet, hanem a feladatban szereplő 759-re!Felszorzás: Hányszorosa a 759 a 253-nak? $759 \div 253 = \mathbf{3}$.Szorozzuk be az egész előzőleg kapott egyenletünket 3-mal!$(9 \cdot 3) \cdot \langle 9867 \rangle + (-10 \cdot 3) \cdot \langle 8855 \rangle = 253 \cdot 3$$\mathbf{27 \cdot \langle 9867 \rangle - 30 \cdot \langle 8855 \rangle = 759}$Ebből leolvasható az első, konkrét megoldáspár (partikuláris megoldás):$x_0 = 27$$y_0 = -30$Az összes megoldás (Általános megoldás): Most csak be kell helyettesíteni abba a bizonyos képletbe, amit az előző jegyzetben néztünk:$x = x_0 + k \cdot \frac{b}{\text{LNKO}} \implies x = 27 + k \cdot \frac{8855}{253} \implies \mathbf{x = 27 + k \cdot 35}$$y = y_0 - k \cdot \frac{a}{\text{LNKO}} \implies y = -30 - k \cdot \frac{9867}{253} \implies \mathbf{y = -30 - k \cdot 39}$(Ahol a $k$ tetszőleges egész szám).  
+
+## 20. Kongruenciák (Maradékaritmetika)
+
+A kongruencia egy olyan reláció, amely két számot "egyenlőnek" (kongruensnek) tekint, ha egy adott $m$ számmal (modulus) osztva ugyanazt a maradékot adják.
+
+### Definíció és Jelölés
+Adott egy $m \in \mathbb{Z}, m \neq 0$ (a modulus).
+Jelölés: $a \equiv b \pmod m$ (Olvasva: a kongruens b-vel modulo m).
+
+A következő három állítás **teljesen egyenértékű**:
+1. Az $a$ és $b$ számok $m$-mel osztva **ugyanazt a maradékot** adják.
+2. A különbségük osztható az $m$-mel: $m \mid (a - b)$.
+3. Létezik olyan $k$ egész szám, amire $a = b + k \cdot m$.
+
+**Példa negatív számra:**
+$17 \equiv -2 \pmod{19}$, mert $17 - (-2) = 19$, ami osztható 19-cel. Negatív szám maradékát úgy kapjuk meg a legkönnyebben, ha hozzáadjuk a modulust: $-2 + 19 = 17$.
+
+---
+
+### 21. Műveletek Kongruenciákkal (A Kongruencia Tétel)
+
+A kongruenciák a hagyományos egyenlőségekhez hasonlóan viselkednek az összeadás, kivonás és szorzás esetében. 
+*(Figyelem: az osztás TILOS, arra külön szabályok vannak!)*
+
+Ha $a \equiv b \pmod m$ és $c \equiv d \pmod m$, akkor:
+- **Összeadás:** $a + c \equiv b + d \pmod m$
+- **Kivonás:** $a - c \equiv b - d \pmod m$
+- **Szorzás:** $a \cdot c \equiv b \cdot d \pmod m$
+- **Hatványozás:** $a^k \equiv b^k \pmod m$ (ahol $k > 0$ egész szám)
+
+### A legfontosabb vizsgatrükk ("Zsugorítás")
+Ha egy nagy kifejezésnek (pl. szorzatok vagy hatványok összegének) a maradékát keressük, **nem kell kiszámolni a hatalmas végeredményt**. A számítás bármelyik pontján kicserélhetünk egy számot a vele kongruens (modulussal leosztott, kisebb) maradékára.
+
+**Gyakori kulcsszavak a feladatokban:**
+- *"Mi az utolsó számjegye?"* $\implies$ Keressük az eredményt **modulo 10**.
+- *"Mi az utolsó két számjegye?"* $\implies$ Keressük az eredményt **modulo 100**.
+- *"Milyen napra esik 1000 nap múlva?"* $\implies$ Keressük az eredményt **modulo 7**.   
