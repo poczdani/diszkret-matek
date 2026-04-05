@@ -274,8 +274,7 @@ Számítsuk ki: $d = \text{lnko}(a, b)$.
 
 **3. Lépés: Az összes megoldás felírása**
 Minden megoldás előállítható egy $k \in \mathbb{Z}$ (tetszőleges egész szám) paraméter segítségével. A képlet:
-$$x = x_0 + k \cdot \frac{b}{\text{lnko}(a, b)}$$
-$$y = y_0 - k \cdot \frac{a}{\text{lnko}(a, b)}$$
+$$x = x_0 + k \cdot \frac{b}{\text{lnko}(a, b)}, \quad y = y_0 - k \cdot \frac{a}{\text{lnko}(a, b)}.$$ 
 
 *(Figyelem: A képletekben az egyik helyen plusz, a másikon mínusz jel van az egyensúly megtartása miatt!)*
 
