@@ -248,3 +248,59 @@ $$\text{lnko}(a, b, c) = \text{lnko}(\text{lnko}(a, b), c)$$
 $$\text{lnko}(a_1, a_2, \dots, a_n) = \text{lnko}(\dots\text{lnko}(\text{lnko}(a_1, a_2), a_3) \dots, a_n)$$
 
 *(Megjegyzés: Az LKKT-ra is ugyanez a "láncolási" szabály vonatkozik!)*
+
+
+## 16. Lineáris Diophantoszi Egyenletek
+
+Olyan egyenletek, ahol **csak egész számos** ($x, y \in \mathbb{Z}$) megoldásokat keresünk.
+
+### A Megoldhatóság Alaptétele (Bármennyi ismeretlenre)
+Az $a_1x_1 + a_2x_2 + \dots + a_nx_n = c$ egyenlet akkor és csak akkor oldható meg az egész számok halmazán, ha a bal oldali együtthatók Legnagyobb Közös Osztója maradék nélkül osztja a jobb oldalt:
+**Feltétel:** $\text{lnko}(a_1, a_2, \dots, a_n) | c$
+
+---
+
+### Kétismeretlenes Egyenlet Megoldási Algoritmusa (ax + by = c)
+
+**1. Lépés: Létezik-e megoldás?**
+Számítsuk ki: $d = \text{lnko}(a, b)$.
+- Ha $d \nmid c$ (nem osztja), az egyenletnek **nincs megoldása**.
+- Ha $d \mid c$, az egyenletnek **végtelen sok megoldása** van, lépjünk a 2. lépésre.
+
+**2. Lépés: Egy partikuláris (konkrét) megoldás keresése**
+- Oldjuk meg a Bővített Euklideszi algoritmussal az $a \cdot u_0 + b \cdot v_0 = d$ egyenletet.
+- Szorozzuk be az eredményeket $\frac{c}{d}$-vel, hogy megkapjuk az eredeti egyenlet egy konkrét megoldását:
+  $$x_0 = u_0 \cdot \frac{c}{d} \quad \text{és} \quad y_0 = v_0 \cdot \frac{c}{d}$$
+
+**3. Lépés: Az összes megoldás felírása**
+Minden megoldás előállítható egy $k \in \mathbb{Z}$ (tetszőleges egész szám) paraméter segítségével. A képlet:
+$$x = x_0 + k \cdot \frac{b}{\text{lnko}(a, b)}$$
+$$y = y_0 - k \cdot \frac{a}{\text{lnko}(a, b)}$$
+
+*(Figyelem: A képletekben az egyik helyen plusz, a másikon mínusz jel van az egyensúly megtartása miatt!)*
+
+#### Példa feladat
+
+![alt text](image-11.png)
+
+- **1.:** lépésben az lnko(a,b) -t ki kell számolni ( Ebben az esetben lnko(9867,8855))
+- **2.:** lépésben az lnk(a,b)-t alulról felfelé kell visszafejteni egy engyenletrendszerré. 
+  - ![alt text](image-13.png)
+  - **A:** Fejezzük ki a 253-at. (Átvisszük a többit a másik oldalra).
+$\mathbf{253} = 1 \cdot \langle 1012 \rangle - 1 \cdot \langle 759 \rangle$
+  - **B:**  a <759>-es "dobozban" lévőt helyettesítjük be a zárójel  A 2. sorból fejezzük ki a $\langle 759 \rangle$-et: $\langle 759 \rangle = \langle 8855 \rangle - 8 \cdot \langle 1012 \rangle$. Ezt a zárójeles kifejezést írjuk be az előző egyenletbe a $\langle 759 \rangle$ helyére!
+$253 = 1 \cdot \langle 1012 \rangle - 1 \cdot \mathbf{(\langle 8855 \rangle - 8 \cdot \langle 1012 \rangle)}$
+Fejezzük ki a 253-at. (Átvisszük a többit a másik oldalra).
+$\mathbf{253} = 1 \cdot \langle 1012 \rangle - 1 \cdot \langle 759 \rangle$
+Vonjuk össze az azonos dobozokat (van 1 db 1012-es és 8 db 1012-es dobozunk, az összesen 9 db):
+$253 = \mathbf{9 \cdot \langle 1012 \rangle} - 1 \cdot \langle 8855 \rangle$   
+   - **C:** Az 1. sorból fejezzük ki az $\langle 1012 \rangle$-t: $\langle 1012 \rangle = \langle 9867 \rangle - 1 \cdot \langle 8855 \rangle$. Ezt helyettesítsük be a $\langle 1012 \rangle$ doboz helyére!
+$253 = 9 \cdot \mathbf{(\langle 9867 \rangle - 1 \cdot \langle 8855 \rangle)} - 1 \cdot \langle 8855 \rangle$
+Bontsunk zárójelet:
+$253 = 9 \cdot \langle 9867 \rangle - 9 \cdot \langle 8855 \rangle - 1 \cdot \langle 8855 \rangle$
+Vonjuk össze az azonos dobozokat (van -9 db 8855-ösünk és még -1 db, az összesen -10 db):
+$\mathbf{253 = 9 \cdot \langle 9867 \rangle - 10 \cdot \langle 8855 \rangle}$
+Az $x$ helyén lévő szorzó az $u_0 = 9$, az $y$ helyén lévő szorzó a $v_0 = -10$.
+
+- **3.:**  A Partikuláris és Általános megoldás
+  - Cél: Nekünk nem a 253-ra (LNKO) kell megoldani az egyenletet, hanem a feladatban szereplő 759-re!Felszorzás: Hányszorosa a 759 a 253-nak? $759 \div 253 = \mathbf{3}$.Szorozzuk be az egész előzőleg kapott egyenletünket 3-mal!$(9 \cdot 3) \cdot \langle 9867 \rangle + (-10 \cdot 3) \cdot \langle 8855 \rangle = 253 \cdot 3$$\mathbf{27 \cdot \langle 9867 \rangle - 30 \cdot \langle 8855 \rangle = 759}$Ebből leolvasható az első, konkrét megoldáspár (partikuláris megoldás):$x_0 = 27$$y_0 = -30$Az összes megoldás (Általános megoldás): Most csak be kell helyettesíteni abba a bizonyos képletbe, amit az előző jegyzetben néztünk:$x = x_0 + k \cdot \frac{b}{\text{LNKO}} \implies x = 27 + k \cdot \frac{8855}{253} \implies \mathbf{x = 27 + k \cdot 35}$$y = y_0 - k \cdot \frac{a}{\text{LNKO}} \implies y = -30 - k \cdot \frac{9867}{253} \implies \mathbf{y = -30 - k \cdot 39}$(Ahol a $k$ tetszőleges egész szám).     
