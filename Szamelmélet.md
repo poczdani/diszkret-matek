@@ -418,3 +418,97 @@ A megoldásunk hibátlan!
 - Moodleba van 3 példa feladat amire a tanár úr hivatkozott. Azokat kell tudni nagyon, és a alján lévő euler féle phi függvény-t meg kell tanulni, mert az nagyon fontos mind a számelméletben, mind a kombinatorikában. 
 
 ![alt text](image-12.png)
+
+
+## 27. Redukált maradékosztályok és az Euler-féle $\varphi$ függvény
+
+A $\mathbb{Z}_m$ (maradékok halmaza) problémás, mert tartalmazhat nullosztókat, amiknek nincs inverze. Ha ezeket kidobjuk, megkapjuk a **redukált maradékosztályok halmazát ($\mathbb{Z}_m^*$)**.
+- $\mathbb{Z}_m^*$ csak azokat az $x$ számokat tartalmazza ($1 \le x < m$), melyekre $\text{lnko}(x, m) = 1$ (relatív prímek $m$-hez).
+- Ebben a "VIP klubban" már **minden elemnek van multiplikatív inverze**!
+
+### Az Euler-féle $\varphi(m)$ (Totient) függvény
+Megadja, hogy $1$ és $m$ között hány darab $m$-hez relatív prím szám van (azaz a $\mathbb{Z}_m^*$ halmaz elemszámát).
+
+**Kiszámítási szabályok (ZH-n kötelező):**
+1. **Prímszám esetén:** Ha $p$ prím $\implies \varphi(p) = p - 1$
+2. **Két prím szorzata:** Ha $p, q$ különböző prímek $\implies \varphi(p \cdot q) = (p - 1) \cdot (q - 1)$
+3. **Prímhatvány:** $\varphi(p^k) = p^k - p^{k-1}$
+4. **Multiplikativitás:** Ha $\text{lnko}(a, b) = 1 \implies \varphi(a \cdot b) = \varphi(a) \cdot \varphi(b)$
+
+---
+
+## 28. Euler és Fermat tételei (A "Kitevő-zsugorítók")
+
+Ezek a tételek teszik lehetővé a hatalmas kitevőjű hatványok egyszerűsítését a modulo aritmetikában. A kulcs: **A kitevőket nem modulo $m$, hanem modulo $\varphi(m)$ szerint kell zsugorítani!**
+
+### Euler tétele
+Ha az $a$ alap és az $m$ modulus **relatív prímek** ($\text{lnko}(a, m) = 1$), akkor:
+$$a^{\varphi(m)} \equiv 1 \pmod m$$
+
+**Alkalmazás nagy hatványoknál:** $a^K \pmod m$ kiszámításakor a $K$ kitevőt elosztjuk maradékosan $\varphi(m)$-mel. Ha a maradék $r$, akkor $a^K \equiv a^r \pmod m$.
+
+### Fermat-féle kis tétel
+Euler tételének speciális esete, amikor a modulus egy $p$ prímszám. Mivel a prímeknél $\varphi(p) = p - 1$, a tétel így alakul:
+Ha $p$ prímszám és $p \nmid a$ (azaz $a$ nem többszöröse $p$-nek), akkor:
+$$a^{p-1} \equiv 1 \pmod p$$
+
+
+
+
+
+## 29. Kidolgozott Példa: Euler-tétel és Kitevő-zsugorítás
+
+**A Feladat:** Számoljuk ki a $3^{242} \pmod{35}$ értékét! (Vagyis mi a $3^{242}$ maradéka 35-tel osztva?)
+
+Mivel a számológépek nem tudnak ekkora hatványokat kiszámolni, Euler tételét kell alkalmaznunk a kitevő "lezsugorítására".
+
+### 1. Lépés: A $\varphi(m)$ kiszámítása (A "blokkméret" meghatározása)
+A modulusunk $m = 35$. Először ki kell számolnunk az Euler-féle $\varphi(35)$ értékét.
+
+- **Prímfelbontás:** A 35 két prímszám szorzata: $35 = 5 \cdot 7$.
+- **A szabály alkalmazása:** Két prím szorzata esetén $\varphi(p \cdot q) = (p - 1) \cdot (q - 1)$.
+- **Behelyettesítés:** $$\varphi(35) = (5 - 1) \cdot (7 - 1) = 4 \cdot 6 = \mathbf{24}$$
+
+*Mit jelent ez?* Euler tétele szerint az alapunk (3) a 24. hatványon 1-et fog adni: $3^{24} \equiv 1 \pmod{35}$. Tehát 24-es "blokkokat" keresünk a nagy kitevőben.
+
+### 2. Lépés: A nagy kitevő felosztása
+Nézzük meg, hányszor fér bele a 24-es blokk a 242-es kitevőbe!
+- Osszuk el maradékosan: $242 \div 24 = 10$, a maradék pedig $2$.
+- Írjuk fel a kitevőt bontva: **$242 = 24 \cdot 10 + 2$**
+
+### 3. Lépés: A hatványozás szétszedése
+A hatványozás azonosságait ($x^{a+b} = x^a \cdot x^b$ és $x^{a \cdot b} = (x^a)^b$) használva írjuk át a feladatot:
+
+$$3^{242} = 3^{24 \cdot 10 + 2}$$
+$$3^{242} = (3^{24})^{10} \cdot 3^2$$
+
+### 4. Lépés: Euler tételének behelyettesítése
+Mivel tudjuk, hogy $3^{24} \equiv 1 \pmod{35}$, a nagy zárójelet egyszerűen kicseréljük egy 1-esre!
+
+$$ \equiv (\mathbf{1})^{10} \cdot 3^2 \pmod{35}$$
+$$ \equiv 1 \cdot 9 \pmod{35}$$
+$$ \equiv \mathbf{9} \pmod{35}$$
+
+**VÉGEREDMÉNY:** A $3^{242}$ maradéka 35-tel osztva **9**. 
+*(Hatalmas számok helyett végig egyjegyű/kétjegyű számokkal tudtunk dolgozni!)*
+
+
+## 30. Fermat (kis) tétele
+
+Fermat kis tétele az Euler-tétel speciális, prímszámokra vonatkozó esete. Hatalmas hatványok maradékának kiszámítására használjuk, ha az osztó (modulus) prímszám.
+
+**A Tétel:**
+Ha $p$ egy prímszám, és $a$ egy olyan egész szám, amely nem osztható $p$-vel (azaz relatív prímek), akkor:
+$$a^{p-1} \equiv 1 \pmod p$$
+
+**Példa a tételre:**
+Legyen $p = 7$ és $a = 2$.
+A tétel szerint: $2^{7-1} \equiv 1 \pmod 7 \implies 2^6 \equiv 1 \pmod 7$.
+*(Ellenőrzés: $2^6 = 64$. $64 \div 7 = 9$, a maradék $64 - 63 = 1$. Helyes!)*
+
+**Feladatmegoldó Stratégia (Kitevő zsugorítása):**
+Cél: $a^K \pmod p$ kiszámítása.
+1. Ellenőrizzük, hogy $p$ prím-e. Ha igen, Fermat kis tétele alkalmazható.
+2. Osszuk el a $K$ kitevőt $(p-1)$-gyel maradékosan: $K = (p-1) \cdot q + r$.
+3. A feladat az $a^r \pmod p$ kiszámítására egyszerűsödik, mivel az $a^{p-1}$ részek mind 1-gyé válnak:
+   $a^K = (a^{p-1})^q \cdot a^r \equiv 1^q \cdot a^r \equiv a^r \pmod p$.
