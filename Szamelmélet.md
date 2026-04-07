@@ -412,3 +412,9 @@ Ha jól számoltunk, akkor a $33 \cdot 17$ szorzat maradéka 70-nel osztva ponto
 - Szorzat: $33 \cdot 17 = 561$
 - Osztás 70-nel: $561 / 70 = 8$ egész, és a maradék ($561 - 560$) pontosan **1**.
 A megoldásunk hibátlan!
+
+# Euler Féle phi függvény:
+
+- Moodleba van 3 példa feladat amire a tanár úr hivatkozott. Azokat kell tudni nagyon, és a alján lévő euler féle phi függvény-t meg kell tanulni, mert az nagyon fontos mind a számelméletben, mind a kombinatorikában. 
+
+![alt text](image-12.png)
