@@ -512,3 +512,61 @@ Cél: $a^K \pmod p$ kiszámítása.
 2. Osszuk el a $K$ kitevőt $(p-1)$-gyel maradékosan: $K = (p-1) \cdot q + r$.
 3. A feladat az $a^r \pmod p$ kiszámítására egyszerűsödik, mivel az $a^{p-1}$ részek mind 1-gyé válnak:
    $a^K = (a^{p-1})^q \cdot a^r \equiv 1^q \cdot a^r \equiv a^r \pmod p$.
+
+   ## 31. Kínai Maradéktétel (CRT)
+
+Szimultán kongruencia-egyenletrendszerek megoldására szolgál.
+**Feltétel:** A modulusoknak ($m_1, m_2, \dots, m_r$) páronként relatív prímeknek kell lenniük. Ekkor pontosan egy megoldás van modulo $M$ (ahol $M$ a modulusok szorzata).
+
+**Megoldási Algoritmus:**
+Adott rendszer: $x \equiv a_i \pmod{m_i}$
+1. Kiszámoljuk a nagy modulust: $M = m_1 \cdot m_2 \dots m_r$.
+2. Minden egyenlethez kiszámoljuk az $M_i = \frac{M}{m_i}$ értéket (a többi modulus szorzata).
+3. Megkeressük az $y_i$ inverzeket minden sorra: $y_i \cdot M_i \equiv 1 \pmod{m_i}$.
+4. A végeredményt összegzéssel kapjuk meg: 
+   $$x = \sum_{i=1}^{r} a_i \cdot y_i \cdot M_i \pmod M$$
+
+**Példa a jegyzetből:**
+$x \equiv 5 \pmod 7$, $\quad x \equiv 2 \pmod{12}$, $\quad x \equiv 3 \pmod{25}$, $\quad x \equiv 0 \pmod{11}$.
+- $M = 7 \cdot 12 \cdot 25 \cdot 11 = 23100$.
+- Invezerk megkeresése után az összegzés:
+  $x = 5 \cdot (-2) \cdot 3300 + 2 \cdot 5 \cdot 1925 + 3 \cdot 24 \cdot 924 + 0 \equiv 6578 \pmod{23100}$.
+
+---
+
+## 32. Nagy Kitevőjű Hatványozás (Gyorshatványozás / Ismételt négyzetre emelés)
+
+Ha hatalmas hatványokat kell számolni (pl. $u^k \pmod m$), és Euler tétele nem alkalmazható, a "Gyorshatványozás" algoritmust használjuk. Ez az RSA titkosítás gyakorlati alapja, lineáris idő alatt (gyorsan) lefut.
+
+**A Módszer Lépései:**
+1. **Bináris átalakítás:** A $k$ kitevőt felírjuk kettes számrendszerben. 
+   *(Minden 1-es bit jelzi, hogy mely 2-es hatványok kellenek a szorzathoz).*
+2. **Vízesésszerű négyzetre emelés:** Létrehozunk egy $u[i]$ sorozatot. A kiindulás $u[0] = u \pmod m$. Minden további sorban az **előző sor eredményét** emeljük négyzetre, és vesszük a maradékot modulo $m$:
+   $u[i] \equiv (u[i-1])^2 \pmod m$.
+3. **Végső szorzás:** Kiválasztjuk azokat az $u[i]$ értékeket, ahol a kitevő bináris alakjában **1-es** szerepelt az adott helyiértéken. Ezeket az értékeket összeszorozzuk modulo $m$.
+
+**Példa a jegyzetből:** $6456^{4652} \pmod{9786}$
+1. $4652$ binárisan: `1001000101100` (Azaz kell a $2^2, 2^3, 2^5, 2^9, 2^{12}$ hatvány).
+2. Folyamatos négyzetre emelések:
+   - $u[0] = 6456$
+   - $u[1] = 6456^2 \equiv 1362 \pmod{9786}$
+   - $u[2] = 1362^2 \equiv \mathbf{5490}$ *(Ez kell nekünk, mert a binárisban itt 1-es van!)*
+   - $u[3] = 5490^2 \equiv \mathbf{9006}$ *(Ez is kell!)*
+   - $\dots$ folytatjuk $\approx \log_2(k)$ lépésig.
+3. A zölddel / vastaggal jelölt kiválasztott maradékokat összeszorozzuk:
+   $5490 \cdot 9006 \cdot 3000 \cdot 6150 \cdot 2634 \equiv \mathbf{6864} \pmod{9786}$.
+
+   Példa 
+   ![alt text](image-14.png)
+
+   Hogyan működik?
+
+   - Van u[] vectorom amelyeket elkezdek 0-tól felfelé indexelni, amelyek kvázi kettő hatványait jelölik.
+   -  $U2^0$ az maga a szám
+   -  $U2^1$ -> négyzetre emelem a 6456-ot majd maradékosan leosztom a 9786-al
+   -  $U2^2$ -> Az előző maradékot emelem négyzetre és ugyanúgy leosztom a 9786-al
+   -  $U2^3$ -> Ugyanúgy az előző maradékot emelem négyzetre és 9786-al osztom
+   -  ez így megy tovább addig ameddig a 2 hatványa nem nagyobb mint a 4652 az az az a szám amelyre emeltük a számunkat. ( $6456^{4652}$)
+   -  $2^{12}$ az 4096, és abba még belefér de a következőbe már nem, mert az 8192.
+   -  4652-4096 = **556** -> megnézzük melyik kettes hatványába fér bele, egészen addíg amíg 0 nem lesz. amelyeket felhasználtunk azt bekarikázzuk, majd összeszorozzuk.  
+
