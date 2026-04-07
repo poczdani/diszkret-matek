@@ -339,4 +339,76 @@ Ha egy nagy kifejezésnek (pl. szorzatok vagy hatványok összegének) a maradé
 **Gyakori kulcsszavak a feladatokban:**
 - *"Mi az utolsó számjegye?"* $\implies$ Keressük az eredményt **modulo 10**.
 - *"Mi az utolsó két számjegye?"* $\implies$ Keressük az eredményt **modulo 100**.
-- *"Milyen napra esik 1000 nap múlva?"* $\implies$ Keressük az eredményt **modulo 7**.   
+- *"Milyen napra esik 1000 nap múlva?"* $\implies$ Keressük az eredményt **modulo 7**.  
+
+## 24. Maradékosztályok ($\mathbb{Z}_m$) és Algebrai Struktúrák
+
+A $\mathbb{Z}_m = \{0, 1, \dots, m-1\}$ halmaz a rajta értelmezett modulo $m$ összeadással ($\oplus$) és szorzással ($\odot$) egy algebrai struktúrát alkot. Ennek tulajdonságai az $m$ (modulus) milyenségétől függnek.
+
+**Alapvető fogalmak:**
+- **Inverz:** Egy $a \in \mathbb{Z}_m$ elemnek az $x \in \mathbb{Z}_m$ az inverze ($a^{-1}$), ha $a \cdot x \equiv 1 \pmod m$. (Az inverz keresése a kongruencia egyenletek és a titkosítás alapja).
+- **Nullosztó:** Olyan $a \neq 0$ és $b \neq 0$ elemek, melyek szorzata kongruens nullával: $a \cdot b \equiv 0 \pmod m$. *(Példa: Modulo 6 esetén a 2 és a 3 nullosztók, mert $2 \cdot 3 = 6 \equiv 0$).*
+- **FONTOS SZABÁLY:** Nullosztónak soha nem létezik inverze!
+
+### Gyűrű vs. Test (Vizsgakérdés!)
+
+1. **A $\mathbb{Z}_m$ mindig egy kommutatív gyűrű:**
+   - Minden tetszőleges $m \neq 0$ modulus esetén működik az összeadás, kivonás és szorzás, azaz gyűrűt alkot.
+
+2. **A $\mathbb{Z}_m$ mikor alkot TESTET?**
+   - **Tétel:** $(\mathbb{Z}_m, \oplus, \odot)$ akkor és csak akkor **Test**, ha az $m$ modulus **PRÍMSZÁM** ($m \in \mathbb{P}$).
+   - **Mit jelent ez a gyakorlatban?** Ha $m$ prím, akkor nincsenek nullosztók, így a 0-n kívül **minden elemnek létezik inverze** (tehát biztonságosan "oszthatunk" bármivel).
+   - **Mi van, ha összetett?** Ha $m$ összetett szám (pl. 10, 110), akkor garantáltan lesznek benne nullosztók. Mivel a nullosztóknak nincs inverze, az ilyen $\mathbb{Z}_m$ **NEM test** (csak gyűrű).
+
+# Lehet ilyen ZH példa 
+
+## 26. Kidolgozott Vizsgafeladat: Multiplikatív inverz keresése
+
+**A probléma (Szöveges leírás):** A maradékosztályok ($\mathbb{Z}_m$) világában az "osztás" azt jelenti, hogy megkeressük egy szám multiplikatív inverzét. Az $a$ szám multiplikatív inverze modulo $m$ az a szám ($x$), amellyel az $a$-t megszorozva az eredmény $1$ maradékot ad $m$-mel osztva. Ez csak akkor lehetséges, ha az $a$ és az $m$ relatív prímek, vagyis Legnagyobb Közös Osztójuk (LNKO) pontosan 1.
+
+**A Feladat:** Mennyi a 33 multiplikatív inverze modulo 70?
+*(Képlettel felírva: Keressük azt az $x$-et, amelyre $33 \cdot x \equiv 1 \pmod{70}$)*
+
+---
+
+### A Megoldás Lépésről Lépésre
+
+**1. Lépés: Euklideszi algoritmus (Létezik-e megoldás?)**
+Mindig a nagyobb számot (a modulust) osztjuk a kisebbel, amíg a maradék 0 nem lesz, hogy megkapjuk az LNKO-t. Ebből fejezzük ki a maradékokat a későbbi visszafejtéshez:
+
+1) $70 = 2 \cdot 33 + 4 \quad \implies \quad \langle 4 \rangle = \langle 70 \rangle - 2 \cdot \langle 33 \rangle$
+2) $33 = 8 \cdot 4 + \mathbf{1} \quad \implies \quad \mathbf{\langle 1 \rangle} = \langle 33 \rangle - 8 \cdot \langle 4 \rangle$
+3) $4 = 4 \cdot 1 + 0 \quad \implies \quad \text{STOP.}$
+
+*Következtetés:* Az utolsó nem nulla maradék az **1**. Mivel az $\text{lnko}(33, 70) = 1$, az inverz **létezik**.
+
+**2. Lépés: Bővített Euklideszi algoritmus (Visszafejtés)**
+Az 1-es maradékot adó sorból indulunk, és felfelé haladva folyamatosan behelyettesítjük a korábbi maradékokat. *(Fontos: a kacsacsőrben lévő számokat dobozként kezeljük, nem szorozzuk össze őket!)*
+
+* Indulás a 2. sorból (kifejezzük az 1-et):
+  $$1 = 1 \cdot \langle 33 \rangle - 8 \cdot \langle 4 \rangle$$
+* Helyettesítsük be a 4-es maradékot az 1. sor alapján $(\langle 70 \rangle - 2 \cdot \langle 33 \rangle)$:
+  $$1 = 1 \cdot \langle 33 \rangle - 8 \cdot (\langle 70 \rangle - 2 \cdot \langle 33 \rangle)$$
+* Bontsuk fel a zárójelet (a külső 8-assal szorzunk):
+  $$1 = 1 \cdot \langle 33 \rangle - 8 \cdot \langle 70 \rangle + 16 \cdot \langle 33 \rangle$$
+* Vonjuk össze az azonos "dobozokat" (van $1$ db 33-asunk és még $16$ db 33-asunk):
+  $$1 = \mathbf{17} \cdot \langle 33 \rangle - 8 \cdot \langle 70 \rangle$$
+
+**3. Lépés: Az eredmény leolvasása és értelmezése**
+A kapott lineáris kombinációban az a szám a megoldás (az inverz), amelyik a mi eredeti számunk (a 33) mellett áll szorzóként.
+
+* A 33 együtthatója a **17**.
+* A 70 együtthatója a $-8$ (ez a modulo világban "kiesik", nem foglalkozunk vele).
+
+**Szabály (Vizsgatipp):** Ha a kapott szorzó (a 17) negatív lett volna, kötelező lenne hozzáadni a modulust (70-et), hogy egy pozitív maradékot kapjunk! Mivel a 17 már pozitív, ezzel nincs dolgunk.
+
+**VÉGEREDMÉNY:** A 33 multiplikatív inverze modulo 70 egyenlő **17**-tel. 
+*(Jelölve: $33^{-1} \equiv 17 \pmod{70}$)*
+
+---
+
+### 4. Lépés: Ellenőrzés (A biztonság kedvéért)
+Ha jól számoltunk, akkor a $33 \cdot 17$ szorzat maradéka 70-nel osztva pontosan 1 kell, hogy legyen.
+- Szorzat: $33 \cdot 17 = 561$
+- Osztás 70-nel: $561 / 70 = 8$ egész, és a maradék ($561 - 560$) pontosan **1**.
+A megoldásunk hibátlan!
