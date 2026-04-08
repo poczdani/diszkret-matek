@@ -287,7 +287,7 @@ $$x = x_0 + k \cdot \frac{b}{\text{lnko}(a, b)}, \quad y = y_0 - k \cdot \frac{a
   - ![alt text](image-13.png)
   - **A:** Fejezzük ki a 253-at. (Átvisszük a többit a másik oldalra).
 $\mathbf{253} = 1 \cdot \langle 1012 \rangle - 1 \cdot \langle 759 \rangle$
-  - **B:**  a <759>-es "dobozban" lévőt helyettesítjük be a zárójel  A 2. sorból fejezzük ki a $\langle 759 \rangle$-et: $\langle 759 \rangle = \langle 8855 \rangle - 8 \cdot \langle 1012 \rangle$. Ezt a zárójeles kifejezést írjuk be az előző egyenletbe a $\langle 759 \rangle$ helyére!
+  - **B:**  a <759>-es "dobozban" lévőt helyettesítjük be a zárójel  A 2. sorból fejezzük ki a $\langle 759 \rangle$-et:
 $253 = 1 \cdot \langle 1012 \rangle - 1 \cdot \mathbf{(\langle 8855 \rangle - 8 \cdot \langle 1012 \rangle)}$
 Fejezzük ki a 253-at. (Átvisszük a többit a másik oldalra).
 $\mathbf{253} = 1 \cdot \langle 1012 \rangle - 1 \cdot \langle 759 \rangle$
@@ -568,5 +568,5 @@ Ha hatalmas hatványokat kell számolni (pl. $u^k \pmod m$), és Euler tétele n
    -  $U2^3$ -> Ugyanúgy az előző maradékot emelem négyzetre és 9786-al osztom
    -  ez így megy tovább addig ameddig a 2 hatványa nem nagyobb mint a 4652 az az az a szám amelyre emeltük a számunkat. ( $6456^{4652}$)
    -  $2^{12}$ az 4096, és abba még belefér de a következőbe már nem, mert az 8192.
-   -  4652-4096 = **556** -> megnézzük melyik kettes hatványába fér bele, egészen addíg amíg 0 nem lesz. amelyeket felhasználtunk azt bekarikázzuk, majd összeszorozzuk.  
+   -  4652-4096 = **556** -> megnézzük melyik kettes hatványába fér bele, egészen addíg amíg 0 nem lesz. Amelyeket felhasználtunk azt bekarikázzuk, majd modulo m (esetünkben 9786) maradékosan összeszorozzuk.
 
