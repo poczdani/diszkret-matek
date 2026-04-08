@@ -41,24 +41,19 @@ A csúcsokat két csoportra ($A$ és $B$) tudjuk osztani úgy, hogy:
 
 ## Részgráfok (Gráf a gráfban)
 
-Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot** kapunk[cite: 100]. Legyen az eredeti gráf $G = (V, E)$, a részgráf pedig $H = (W, F)$[cite: 101].
+Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot** kapunk[cite: 100]. Legyen az eredeti gráf $G = (V, E)$, a részgráf pedig $H = (W, F)$.
 
 ### Típusok:
 
 * **Sima részgráf ($H \le G$):** * Akkor beszélünk róla, ha a részgráf csúcsai az eredeti csúcsok halmazának részhalmaza ($W \subseteq V$) és az élei is az eredeti élek részhalmaza ($F \subseteq E$).
-    * **Lényege:** Csak bizonyos csúcsokat és bizonyos éleket tartunk meg[cite: 136].
+    * **Lényege:** Csak bizonyos csúcsokat és bizonyos éleket tartunk meg.
 
 * **Feszítő részgráf (Spanning subgraph):** * Olyan részgráf, ahol a csúcshalmaz megegyezik az eredeti gráféval ($W = V$).
     * **Lényege:** Az **összes eredeti csúcsot** megtartjuk, de csak néhány élt választunk ki melléjük.
 
-* **Feszített részgráf (Spanned / Induced subgraph) ($H \prec G$):** * Akkor feszített, ha $W \subseteq V$ és az élek halmaza pontosan a kiválasztott csúcsok között az eredeti gráfban futó összes élet tartalmazza ($F = [W]^2 \cap E$)[cite: 112, 117].
+* **Feszített részgráf (Spanned / Induced subgraph) ($H \prec G$):** * Akkor feszített, ha $W \subseteq V$ és az élek halmaza pontosan a kiválasztott csúcsok között az eredeti gráfban futó összes élet tartalmazza ($F = [W]^2 \cap E$).
     * **Lényege:** Kiválasztunk néhány csúcsot, és **minden olyan élet** meg kell tartanunk, ami az eredeti gráfban ezen csúcsok között futott.
 
-## 4. Fokszám és Összefüggőség
-
-* **Fokszám:** Egy $v$ csúcs fokszáma, $d(v)$, az a csúcsba befutó élek száma. Irányított gráf esetén bemenő és kimenő fokszámról beszélünk, $d_{in}(v)$ és $d_{out}(v)$, ami a csúcsba befutó és a csúcsból kiinduló élek száma.
-* **Izolált Csúcs:** Egy olyan csúcs, aminek a fokszáma 0.
-* **Összefüggő Gráf:** Olyan gráf, aminek minden csúcspárja között van út.
 
 ## 4. Fokszám és Összefüggőség
 
@@ -241,7 +236,7 @@ Mit jelent az elős sor utolsó eleme ami **57** ?
  - Mivel a K=7 így azt jelenti, hogy a V1-ből a V8-ba 7 útal 57x tudok elmenni. 
  -  Tehát a K=7 az útak hosszát jelenti. 
   
-Ezek tűrhető, tehát gyors algoritmus.
+Gyors algoritmus.
 
 
 
@@ -351,7 +346,7 @@ Fákra van gyors algoritmus. (Kb elég eddig, ennyit tudni).
 # Gráfelmélet: Invariáns tulajdonságok (Izomorfia)
 
 ## 1. Mi az az Izomorfia? ($G \cong H$)
-Két gráf akkor **izomorf**, ha szerkezetileg teljesen megegyeznek. Képzeld el, hogy az egyik gráfot gumiból készítetted el: ha át tudod mozgatni a csúcsait úgy, hogy pontosan fedje a másikat (anélkül, hogy éleket vágnál el vagy ragasztanál hozzá), akkor a két gráf izomorf.
+Két gráf akkor **izomorf**, ha szerkezetileg teljesen megegyeznek. 
 
 
 ---
@@ -378,7 +373,7 @@ Fa gráfok izomofirfiájának algoritmusáról csak anynit kell tudni, hogy van 
 
 ## 9. Síkba rajzolható (planáris) gráfok
 
-A síkba rajzolhatóság azt jelenti, hogy a gráfot le tudjuk tenni a síkba (papírra) úgy, hogy az élei ne messék egymást.
+A síkba rajzolhatóság azt jelenti, hogy a gráfot le tudjuk tenni a síkba (papírra) úgy, hogy az élei ne metszék egymást.
 
 (Annyit kell tudni algoritmussok terén, hogy van gyors algoritmus)
 
@@ -440,30 +435,28 @@ A képletek alapján matematikailag is látszik, miért nem planárisak:
 * **K3,3 nem síkgráf:** Mert páros gráfként $9 \not\leq 2 \cdot 6 - 4$ (azaz $9 \not\leq 8$).
 
 
-# Havel-Hakimi algoritmus 
-
 # Havel-Hakimi algoritmus
 
-A Havel-Hakimi algoritmus egy eljárás annak eldöntésére, hogy létezik-e olyan **egyszerű gráf**, amelynek fokszámai pontosan megegyeznek egy adott $\delta_1, \dots, \delta_n$ természetes számokból álló sorozattal[cite: 190, 215, 237].
+A Havel-Hakimi algoritmus egy eljárás annak eldöntésére, hogy létezik-e olyan **egyszerű gráf**, amelynek fokszámai pontosan megegyeznek egy adott $\delta_1, \dots, \delta_n$ természetes számokból álló sorozattal.
 
 ## 1. Szükséges feltétel (Kézfogási tétel)
-Az algoritmus megkezdése előtt ellenőrizni kell a "Kézfogási tételt"[cite: 240, 252]:
-A fokszámok összegének ($\sum \delta_i$) **párosnak** kell lennie[cite: 254, 256].
-* Ez azt jelenti, hogy a sorozatban a **páratlan fokszámok száma páros**[cite: 257].
-* Ha az összeg páratlan, akkor nem létezik ilyen egyszerű gráf[cite: 190, 215, 237].
+Az algoritmus megkezdése előtt ellenőrizni kell a "Kézfogási tételt":
+A fokszámok összegének ($\sum \delta_i$) **párosnak** kell lennie.
+* Ez azt jelenti, hogy a sorozatban a **páratlan fokszámok száma páros**.
+* Ha az összeg páratlan, akkor nem létezik ilyen egyszerű gráf.
 
 ## 2. Az algoritmus szabályai
 Az eljárás során a következő lépéseket ismételjük:
 
-1.  **Rendezés:** Állítsuk a fokszámokat monoton csökkenő sorrendbe: $\delta_1 \geq \dots \geq \delta_n \geq 0$[cite: 190, 215, 237].
-2.  **Kiválasztás:** Vegyük a sorozat legnagyobb elemét ($\delta_1$). [cite_start]Ez a "kielégítendő" csúcs fokszám igénye[cite: 190, 215, 237].
-3.  **Kielégítés:** Tegyük félre ezt a csúcsot, és a soron következő $\delta_1$ darab legnagyobb fokszámú elemből **vonjunk le pontosan 1-et**[cite: 190, 215, 237].
-4.  **Ismétlés:** Az így kapott új sorozatot (ha szükséges) rendezzük újra monoton csökkenő sorrendbe, és ismételjük a lépéseket[cite: 190, 215, 237].
+1.  **Rendezés:** Állítsuk a fokszámokat monoton csökkenő sorrendbe: $\delta_1 \geq \dots \geq \delta_n \geq 0$.
+2.  **Kiválasztás:** Vegyük a sorozat legnagyobb elemét ($\delta_1$). Ez a "kielégítendő" csúcs fokszám igénye.
+3.  **Kielégítés:** Tegyük félre ezt a csúcsot, és a soron következő $\delta_1$ darab legnagyobb fokszámú elemből **vonjunk le pontosan 1-et**.
+4.  **Ismétlés:** Az így kapott új sorozatot (ha szükséges) rendezzük újra monoton csökkenő sorrendbe, és ismételjük a lépéseket.
 
 
 
 ## 3. Az algoritmus kimenete
-* **Létezik a gráf:** Ha az algoritmus végigfut, és a folyamat végén minden fokszám-igény ki lett elégítve (tehát csupa **0** marad a sorozatban)[cite: 190, 215, 237].
+* **Létezik a gráf:** Ha az algoritmus végigfut, és a folyamat végén minden fokszám-igény ki lett elégítve (tehát csupa **0** marad a sorozatban).
 * **Nem létezik a gráf:** Az algoritmus pontosan akkor akad meg, ha nincs olyan egyszerű gráf, amely megfelelne a sorozatnak (például ha negatív számot kapnánk a levonás után, vagy nincs elég elem a levonáshoz)
 
 ![alt text](image-10.png)
