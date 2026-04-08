@@ -350,7 +350,7 @@ A $\mathbb{Z}_m = \{0, 1, \dots, m-1\}$ halmaz a rajta értelmezett modulo $m$ �
 - **Nullosztó:** Olyan $a \neq 0$ és $b \neq 0$ elemek, melyek szorzata kongruens nullával: $a \cdot b \equiv 0 \pmod m$. *(Példa: Modulo 6 esetén a 2 és a 3 nullosztók, mert $2 \cdot 3 = 6 \equiv 0$).*
 - **FONTOS SZABÁLY:** Nullosztónak soha nem létezik inverze!
 
-### Gyűrű vs. Test (Vizsgakérdés!)
+### Gyűrű vs. Test 
 
 1. **A $\mathbb{Z}_m$ mindig egy kommutatív gyűrű:**
    - Minden tetszőleges $m \neq 0$ modulus esetén működik az összeadás, kivonás és szorzás, azaz gyűrűt alkot.
@@ -407,7 +407,7 @@ A kapott lineáris kombinációban az a szám a megoldás (az inverz), amelyik a
 
 ---
 
-### 4. Lépés: Ellenőrzés (A biztonság kedvéért)
+### 4. Lépés: Ellenőrzés
 Ha jól számoltunk, akkor a $33 \cdot 17$ szorzat maradéka 70-nel osztva pontosan 1 kell, hogy legyen.
 - Szorzat: $33 \cdot 17 = 561$
 - Osztás 70-nel: $561 / 70 = 8$ egész, és a maradék ($561 - 560$) pontosan **1**.
