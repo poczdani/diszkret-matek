@@ -53,7 +53,7 @@ Legyen $a = 12$ és $c = 18$.
 - $18_{\{\}} = \{2, 3, 3\}$
 
 1. **Metszet (LNKO):** $\{2, 2, 3\} \cap \{2, 3, 3\} = \{2, 3\} \rightarrow \mathbf{6}$
-2. **Unió (LKKT):** $\{2, 2, 3\} \cup \{2, 3, 3\} = \{2, 2, 3, 3\} \rightarrow \mathbf{36}$
+2. **Unió (LKKT):** $\{2, 2, 3\} \cup \{2, 3, 3\} = \{2, 2, 3, 3\} \rightarrow \mathbf{36}$ (Összevetjük a halmazokat, és minden prímből a legnagyobb darabszámot emeljük át. Mivel a 2-esből és a 3-asból is maximum 2 darab szerepelt egy-egy halmazon belül, így az unióba is 2-2 darab kerül)
 3. **Oszthatóság:** Mivel $\{2, 3\} \subseteq \{2, 2, 3\}$, ezért $6 | 12$ teljesül.
 
 ## 5. Boole-algebrai párhuzam és Disztributivitás
