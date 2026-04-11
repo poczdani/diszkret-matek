@@ -112,7 +112,7 @@ Egy összefüggő gráfban akkor és csak akkor van **Euler-út**, ha a páratla
 
 ---
 
-## Hierholzer-algoritmus (Körök összefűzése)
+## Körök összefűzése
 Ha a gráf minden fokszáma páros, az Euler-kör módszeresen felépíthető:
 1. Induljunk egy tetszőleges $v_0$ csúcsból.
 2. Haladjunk addig, amíg vissza nem érünk $v_0$-ba (ez egy rész-kör: $C_0$).
