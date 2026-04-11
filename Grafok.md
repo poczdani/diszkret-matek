@@ -141,8 +141,21 @@ A jegyzetben látható színes felbontás:
 * **Hamilton-kör:** Olyan Hamilton-út, amely zárt (visszaér a kezdőpontba).
 * **Különbség:** Itt a csúcsok a fontosak, nem az élek! (Nem kell minden élet érinteni).
 
-## Az NP-teljesség
-A Hamilton-kör keresése egy **NP-teljes** probléma. Nincs rá olyan gyors algoritmus, mint az Euler-körre. Nagy csúcsszám esetén a megoldás csak próbálgatással (permutációkkal) kereshető meg, ami lassú.
+
+## Az NP-teljesség (Nondeterminisztikus Polinomiális)
+
+Egy eldöntési probléma pontosan akkor **NP-teljes**, ha az alábbi két feltétel egyszerre teljesül rá:
+
+1. **Benne van az NP osztályban (Gyorsan ellenőrizhető):** Ha kapunk egy lehetséges megoldást (egy "tanút"), annak a helyességét determinisztikus algoritmussal, **polinomiális időben** le tudjuk ellenőrizni.
+2. **NP-nehéz (NP-hard):** Az NP osztályba tartozó *összes többi* probléma polinomiális időben **visszavezethető** (redukálható) erre a problémára. *(Konyhanyelven: ez a probléma legalább olyan nehéz, mint bármelyik másik probléma az NP osztályban).*
+
+---
+
+### **Példa: A Hamilton-kör keresése**
+
+A Hamilton-kör keresése egy klasszikus **NP-teljes** probléma, a fentiek értelmében:
+* **Gyorsan ellenőrizhető (NP-beli):** Ha valaki ad nekünk egy csúcssorozatot, nagyon gyorsan (polinomiális időben) le tudjuk ellenőrizni, hogy az valóban egy Hamilton-kör-e (minden csúcsot pontosan egyszer érint-e, és léteznek-e az élek).
+* **De nehéz megoldani (NP-nehéz):** Jelenleg nem ismerünk rá olyan gyors (polinomiális idejű) algoritmust, mint az Euler-körre. Nagy csúcsszám esetén a tényleges megoldás megkeresése (az összes lehetséges útvonal/permutáció végigpróbálgatása) exponenciálisan lassúvá válik.
 
 ---
 
@@ -345,8 +358,22 @@ Fákra van gyors algoritmus. (Kb elég eddig, ennyit tudni).
 
 # Gráfelmélet: Invariáns tulajdonságok (Izomorfia)
 
-## 1. Mi az az Izomorfia? ($G \cong H$)
-Két gráf akkor **izomorf**, ha szerkezetileg teljesen megegyeznek. 
+## 1. Mi az az Izomorfia? ($G_1 \cong G_2$)
+
+Két gráf ($G_1$ és $G_2$) pontosan akkor **izomorf**, ha létezik a csúcshalmazaik között egy **éltartó bijekció**. 
+
+A definíció kibontva (mit jelent ez pontosan?):
+* **Bijekció (Kölcsönösen egyértelmű leképezés):** $G_1$ minden egyes csúcsának pontosan egyetlen párja van $G_2$-ben, és fordítva. Nem marad ki csúcs egyik gráfban sem, és nincs "több az egyhez" párosítás. *(Ebből automatikusan következik, hogy a két gráf csúcsszáma megegyezik).*
+* **Éltartó tulajdonság:** A leképezés tökéletesen megőrzi a szomszédsági viszonyokat. Ha $G_1$-ben két csúcs ($u$ és $v$) között fut él, akkor a nekik megfeleltetett csúcsok között $G_2$-ben is **kell** futnia élnek. Ha $G_1$-ben nem volt él köztük, a párosított csúcsok között sem lehet $G_2$-ben.
+
+**Az izomorfia ellenőrzése számítógéppel (Algoritmikus megközelítés):**
+Tegyük fel, hogy rögzítettünk egy konkrét bijekciót (egy csúcspárosítást), és mindkét gráfot egy-egy **Szomszédsági mátrixszal** ábrázoljuk. Hogy éltartó-e a leképezés, azt egy **dupla `for` ciklussal** ellenőrizhetjük:
+1. A külső ciklus végigmegy $G_1$ csúcsain (az $u$ sorokon).
+2. A belső ciklus végigmegy $G_1$ csúcsain (a $v$ oszlopokon).
+3. Minden $(u, v)$ párnál egy `if` feltétellel leellenőrizzük: megegyezik-e a $G_1$ mátrixában lévő érték (0 vagy 1) a $G_2$ mátrixának azon a pozícióján lévő értékkel, ahová az $u$-t és a $v$-t a bijekció szerint leképeztük.
+Ha a dupla ciklus során akár csak **egyetlen eltérést** is találunk, az adott leképezés nem éltartó (tehát nem ez a megfelelő izomorfia).
+
+*(Megjegyzés: Mivel a lehetséges bijekciók, azaz a csúcsok permutációinak száma $n!$, ezért az izomorfia problémája nagy gráfoknál algoritmikusan rendkívül nehéz, NP-beli probléma).*
 
 
 ---
