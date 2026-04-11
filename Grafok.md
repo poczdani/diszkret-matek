@@ -60,7 +60,7 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 * **Fokszám:** Egy gráf adott csúcsára illeszkedő élek száma. Ha a gráfban megengedett a hurokél, akkor egy hurokél 2-vel járul hozzá a csúcs fokszámához, mivel mindkét "vége" ugyanabba a csúcsba fut be. Jelölése egy $v$ csúcs esetén: $d(v)$.
 * **Irányított gráf esetén:** Megkülönböztetünk "befutó" (mennyi jön be) és "kiinduló" (mennyi megy ki) éleket.
 * **Izolált csúcs:** Olyan csúcs a gráfban, amelynek a fokszáma pontosan 0 (azaz egyetlen él sem illeszkedik rá, nincsenek szomszédjai).
-* **Összefüggő gráf:** Olyan hálózat, ahol nincsenek elszigetelt szigetek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
+* **Összefüggő gráf:** Olyan gráf, ahol nincsenek elszigetelt szigetek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
 
 
 
@@ -384,7 +384,7 @@ Egy gráf **síkba rajzolható**, ha létezik olyan ábrázolása, ahol:
 * Sehol máshol **nincs élkereszteződés**.
 
 ### Nevezetes nem síkba rajzolható gráfok
-Vannak olyan bonyolult hálózatok, amiket sehogy sem lehet "kibogozni" a síkban. A két legfontosabb:
+Vannak olyan bonyolult gráfok, amiket sehogy sem lehet "kibogozni" a síkban. A két legfontosabb:
 1. **$K_5$**: 5 pontból álló teljes gráf. ( Ha egy gráfban megtalálható **$k_5$** a gráfban, akkor biztos hogy nem rajzolható síkban.)
 2. **$K_{3,3}$**: Más néven a "három ház - három kút" gráf (teljes páros gráf, ahol mindkét csoportban 3-3 pont van). ( Ha egy gráfban megtalálható **$k_(3,3)$** a gráfban, akkor biztos hogy nem rajzolható síkban.)
 
