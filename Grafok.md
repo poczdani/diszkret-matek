@@ -60,7 +60,7 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 * **Fokszám:** Egy gráf adott csúcsára illeszkedő élek száma. Ha a gráfban megengedett a hurokél, akkor egy hurokél 2-vel járul hozzá a csúcs fokszámához, mivel mindkét "vége" ugyanabba a csúcsba fut be. Jelölése egy $v$ csúcs esetén: $d(v)$.
 * **Irányított gráf esetén:** Megkülönböztetünk "befutó" (mennyi jön be) és "kiinduló" (mennyi megy ki) éleket.
 * **Izolált csúcs:** Olyan csúcs a gráfban, amelynek a fokszáma pontosan 0 (azaz egyetlen él sem illeszkedik rá, nincsenek szomszédjai).
-* **Összefüggő gráf:** Olyan gráf, ahol nincsenek elszigetelt szigetek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
+* **Összefüggő gráf:** Olyan gráf, ahol nincsenek elszigetelt komponensek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
 
 
 
@@ -74,8 +74,8 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 
 ## 6. Összefüggőség és Komponensek
 
-* **Komponens:** A gráf különálló "szigetei". Egy szigeten belül mindenki elér mindenkit, de a szigetek között nincs átjárás.
-* **Összefüggő gráf:** Akkor mondjuk, ha a gráf egyetlen hatalmas szigetből áll, nincsenek különálló részei.
+* **Komponens:** A gráf különálló komponensei. Egy komponensen belül mindenki elér mindenkit, de a komponensek között nincs átjárás.
+* **Összefüggő gráf:** Akkor mondjuk, ha a gráf egyetlen hatalmas komponensből áll, nincsenek különálló részei.
 
 
 
@@ -247,7 +247,7 @@ Gyors algoritmus.
 
 ### Összefüggő vagy sem?
 * **Összefüggő:** Ha az $Y = A + A^2 + \dots + A^{n-1}$ mátrixban **nincs nulla**, akkor bárhonnan bárhová el lehet jutni.
-* **Nem összefüggő:** Ha a mátrix különálló blokkokra (szigetekre) esik szét, és a blokkok között csak nullák vannak.
+* **Nem összefüggő:** Ha a mátrix különálló blokkokra (komponensekre) esik szét, és a blokkok között csak nullák vannak.
 
 ### Tintacsöppentő módszer (Algoritmus)
 Ez a módszer segít megtalálni a különálló komponenseket (szigeteket) rajzolás nélkül:
@@ -255,8 +255,8 @@ Ez a módszer segít megtalálni a különálló komponenseket (szigeteket) rajz
 1. **Cseppentés:** Válassz egy tetszőleges csúcsot (sort), pl. **"A"**. Jelöld meg!
 2. **Szétfolyás:** Nézd meg az **A** sorában, mely oszlopokban van szám (kik a szomszédai). Jelöld meg azokat is!
 3. **Terjedés:** Menj az újonnan megjelölt csúcsok soraihoz, és nézd meg az ő szomszédaikat is. 
-4. **Stop:** Ha már nem tudsz új csúcsot megjelölni, az összes megjelölt pont alkot **egy szigetet**.
-5. **Újrakezdés:** Aki fehér maradt (nincs megjelölve), az egy másik szigeten van. Kezdd náluk újra a folyamatot!
+4. **Stop:** Ha már nem tudsz új csúcsot megjelölni, az összes megjelölt pont alkot **egy komponenst**.
+5. **Újrakezdés:** Aki fehér maradt (nincs megjelölve), az egy másik komponensen van. Kezdd náluk újra a folyamatot!
 
 ![alt text](image-5.png)
 
@@ -281,7 +281,7 @@ A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédt
 # Fák
 
 * **Erdő (Forest) / Liget:** Olyan gráf, amiben **nincs kör**. (Vagyis nem tudsz úgy elindulni egy pontból, hogy egy útvonalon keresztül, élek ismétlése nélkül visszajuss ugyanoda).
-* **Fa (Tree):** Olyan erdő, ami **összefüggő** is. (Vagyis nincsenek benne elszigetelt szigetek, minden pontból eljuthatsz minden pontba).
+* **Fa (Tree):** Olyan erdő, ami **összefüggő** is. (Vagyis nincsenek benne elszigetelt komponensek, minden pontból eljuthatsz minden pontba).
 
 Az erdő komponensei ( zöldek) körmentesek és összefüggöek, tehát fák. 
 ![alt text](image-7.png)
