@@ -224,7 +224,7 @@ A mátrix $k$-adik hatványa megmondja, hányféleképpen juthatunk el $i$-ből 
 
 * **Miért nőnek meg a számok?** A párhuzamos élek ($3^x$), a hurokélek és az oda-vissza lépkedés miatt a lehetőségek száma hatványozottan emelkedik.
 * **Háromszögek száma:** Kiszámolható a harmadik hatványból: $Sp(A^3) / 6$.
-* **Párosság (Bipartit):** Ha a gráfban nincs páratlan hosszú kör (3, 5, 7 lépéses visszatérés), akkor a gráf páros. Ilyenkor a mátrix átrendezhető úgy, hogy a főátló mentén csak nullák (blokk-nullák) legyenek.
+* **Párosság (Bipartite):** Ha a gráfban nincs páratlan hosszú kör (3, 5, 7 lépéses visszatérés), akkor a gráf páros. Ilyenkor a mátrix átrendezhető úgy, hogy a főátló mentén csak nullák (blokk-nullák) legyenek.
 
 ---
 
@@ -271,7 +271,7 @@ A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédt
 
 ---
 
-## 4. Bipartit (Páros) gráfok - Gyakori tévhitek
+## 4. Bipartite (Páros) gráfok - Gyakori tévhitek
 * **Tévhit:** Csak páros számú csúcs lehet benne. 
 * **Valóság:** Lehet páratlan is (pl. 3 fiú, 2 lány). A lényeg, hogy **két csoportra** tudd bontani őket.
 * **Szabály:** Csoporton belül (fiú-fiú vagy lány-lány) **tilos a kapcsolat**. Élek csak a két csoport között futhatnak.
@@ -356,7 +356,7 @@ Ha két gráf izomorf ($G \cong H$), akkor az alábbi tulajdonságaik **kötelez
 
 * **Alapadatok:** Csúcsok száma, élek száma, többszörös élek (multiplicitás).
 * **Fokszámok:** A fokszámok sorozata (pl. mindkettőben van két 3-as és három 2-es fokszámú pont).
-* **Szerkezet:** * **Párosság:** Ha az egyik bipartit, a másik is az.
+* **Szerkezet:** * **Párosság:** Ha az egyik bipartite, a másik is az.
     * **Síkbarajzolhatóság:** Ha az egyik lerajzolható metsző élek nélkül, a másik is.
 * **Méretek:** * **Derékbőség:** A legrövidebb kör hossza.
     * **Átmérő:** A legtávolabbi két pont közötti legrövidebb út hossza.
