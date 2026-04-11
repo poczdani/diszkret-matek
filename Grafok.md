@@ -57,10 +57,10 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 
 ## 4. Fokszám és Összefüggőség
 
-* **Fokszám:** Azt mutatja meg, hogy egy adott csúcsba hány él fut be.
+* **Fokszám:** Egy gráf adott csúcsára illeszkedő élek száma. Ha a gráfban megengedett a hurokél, akkor egy hurokél 2-vel járul hozzá a csúcs fokszámához, mivel mindkét "vége" ugyanabba a csúcsba fut be. Jelölése egy $v$ csúcs esetén: $d(v)$.
 * **Irányított gráf esetén:** Megkülönböztetünk "befutó" (mennyi jön be) és "kiinduló" (mennyi megy ki) éleket.
-* **Izolált csúcs:** Olyan magányos pont, aminek egyetlen szomszédja sincs, tehát a fokszáma 0.
-* **Összefüggő gráf:** Olyan hálózat, ahol nincsenek elszigetelt szigetek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
+* **Izolált csúcs:** Olyan csúcs a gráfban, amelynek a fokszáma pontosan 0 (azaz egyetlen él sem illeszkedik rá, nincsenek szomszédjai).
+* **Összefüggő gráf:** Olyan gráf, ahol nincsenek elszigetelt komponensek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
 
 
 
@@ -74,8 +74,8 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 
 ## 6. Összefüggőség és Komponensek
 
-* **Komponens:** A gráf különálló "szigetei". Egy szigeten belül mindenki elér mindenkit, de a szigetek között nincs átjárás.
-* **Összefüggő gráf:** Akkor mondjuk, ha a gráf egyetlen hatalmas szigetből áll, nincsenek különálló részei.
+* **Komponens:** A gráf különálló komponensei. Egy komponensen belül mindenki elér mindenkit, de a komponensek között nincs átjárás.
+* **Összefüggő gráf:** Akkor mondjuk, ha a gráf egyetlen hatalmas komponensből áll, nincsenek különálló részei.
 
 
 
@@ -112,7 +112,7 @@ Egy összefüggő gráfban akkor és csak akkor van **Euler-út**, ha a páratla
 
 ---
 
-## Hierholzer-algoritmus (Körök összefűzése)
+## Körök összefűzése
 Ha a gráf minden fokszáma páros, az Euler-kör módszeresen felépíthető:
 1. Induljunk egy tetszőleges $v_0$ csúcsból.
 2. Haladjunk addig, amíg vissza nem érünk $v_0$-ba (ez egy rész-kör: $C_0$).
@@ -141,8 +141,21 @@ A jegyzetben látható színes felbontás:
 * **Hamilton-kör:** Olyan Hamilton-út, amely zárt (visszaér a kezdőpontba).
 * **Különbség:** Itt a csúcsok a fontosak, nem az élek! (Nem kell minden élet érinteni).
 
-## Az NP-teljesség
-A Hamilton-kör keresése egy **NP-teljes** probléma. Nincs rá olyan gyors algoritmus, mint az Euler-körre. Nagy csúcsszám esetén a megoldás csak próbálgatással (permutációkkal) kereshető meg, ami lassú.
+
+## Az NP-teljesség (Nondeterminisztikus Polinomiális)
+
+Egy eldöntési probléma pontosan akkor **NP-teljes**, ha az alábbi két feltétel egyszerre teljesül rá:
+
+1. **Benne van az NP osztályban (Gyorsan ellenőrizhető):** Ha kapunk egy lehetséges megoldást (egy "tanút"), annak a helyességét determinisztikus algoritmussal, **polinomiális időben** le tudjuk ellenőrizni.
+2. **NP-nehéz (NP-hard):** Az NP osztályba tartozó *összes többi* probléma polinomiális időben **visszavezethető** (redukálható) erre a problémára. *(Konyhanyelven: ez a probléma legalább olyan nehéz, mint bármelyik másik probléma az NP osztályban).*
+
+---
+
+### **Példa: A Hamilton-kör keresése**
+
+A Hamilton-kör keresése egy klasszikus **NP-teljes** probléma, a fentiek értelmében:
+* **Gyorsan ellenőrizhető (NP-beli):** Ha valaki ad nekünk egy csúcssorozatot, nagyon gyorsan (polinomiális időben) le tudjuk ellenőrizni, hogy az valóban egy Hamilton-kör-e (minden csúcsot pontosan egyszer érint-e, és léteznek-e az élek).
+* **De nehéz megoldani (NP-nehéz):** Jelenleg nem ismerünk rá olyan gyors (polinomiális idejű) algoritmust, mint az Euler-körre. Nagy csúcsszám esetén a tényleges megoldás megkeresése (az összes lehetséges útvonal/permutáció végigpróbálgatása) exponenciálisan lassúvá válik.
 
 ---
 
@@ -224,7 +237,7 @@ A mátrix $k$-adik hatványa megmondja, hányféleképpen juthatunk el $i$-ből 
 
 * **Miért nőnek meg a számok?** A párhuzamos élek ($3^x$), a hurokélek és az oda-vissza lépkedés miatt a lehetőségek száma hatványozottan emelkedik.
 * **Háromszögek száma:** Kiszámolható a harmadik hatványból: $Sp(A^3) / 6$.
-* **Párosság (Bipartit):** Ha a gráfban nincs páratlan hosszú kör (3, 5, 7 lépéses visszatérés), akkor a gráf páros. Ilyenkor a mátrix átrendezhető úgy, hogy a főátló mentén csak nullák (blokk-nullák) legyenek.
+* **Párosság (Bipartite):** Ha a gráfban nincs páratlan hosszú kör (3, 5, 7 lépéses visszatérés), akkor a gráf páros. Ilyenkor a mátrix átrendezhető úgy, hogy a főátló mentén csak nullák (blokk-nullák) legyenek.
 
 ---
 
@@ -247,7 +260,7 @@ Gyors algoritmus.
 
 ### Összefüggő vagy sem?
 * **Összefüggő:** Ha az $Y = A + A^2 + \dots + A^{n-1}$ mátrixban **nincs nulla**, akkor bárhonnan bárhová el lehet jutni.
-* **Nem összefüggő:** Ha a mátrix különálló blokkokra (szigetekre) esik szét, és a blokkok között csak nullák vannak.
+* **Nem összefüggő:** Ha a mátrix különálló blokkokra (komponensekre) esik szét, és a blokkok között csak nullák vannak.
 
 ### Tintacsöppentő módszer (Algoritmus)
 Ez a módszer segít megtalálni a különálló komponenseket (szigeteket) rajzolás nélkül:
@@ -255,8 +268,8 @@ Ez a módszer segít megtalálni a különálló komponenseket (szigeteket) rajz
 1. **Cseppentés:** Válassz egy tetszőleges csúcsot (sort), pl. **"A"**. Jelöld meg!
 2. **Szétfolyás:** Nézd meg az **A** sorában, mely oszlopokban van szám (kik a szomszédai). Jelöld meg azokat is!
 3. **Terjedés:** Menj az újonnan megjelölt csúcsok soraihoz, és nézd meg az ő szomszédaikat is. 
-4. **Stop:** Ha már nem tudsz új csúcsot megjelölni, az összes megjelölt pont alkot **egy szigetet**.
-5. **Újrakezdés:** Aki fehér maradt (nincs megjelölve), az egy másik szigeten van. Kezdd náluk újra a folyamatot!
+4. **Stop:** Ha már nem tudsz új csúcsot megjelölni, az összes megjelölt pont alkot **egy komponenst**.
+5. **Újrakezdés:** Aki fehér maradt (nincs megjelölve), az egy másik komponensen van. Kezdd náluk újra a folyamatot!
 
 ![alt text](image-5.png)
 
@@ -271,7 +284,7 @@ A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédt
 
 ---
 
-## 4. Bipartit (Páros) gráfok - Gyakori tévhitek
+## 4. Bipartite (Páros) gráfok - Gyakori tévhitek
 * **Tévhit:** Csak páros számú csúcs lehet benne. 
 * **Valóság:** Lehet páratlan is (pl. 3 fiú, 2 lány). A lényeg, hogy **két csoportra** tudd bontani őket.
 * **Szabály:** Csoporton belül (fiú-fiú vagy lány-lány) **tilos a kapcsolat**. Élek csak a két csoport között futhatnak.
@@ -281,7 +294,7 @@ A-ba belecsöppenti a tintát, belefolyik F-be. A kék, és a piros azok segédt
 # Fák
 
 * **Erdő (Forest) / Liget:** Olyan gráf, amiben **nincs kör**. (Vagyis nem tudsz úgy elindulni egy pontból, hogy egy útvonalon keresztül, élek ismétlése nélkül visszajuss ugyanoda).
-* **Fa (Tree):** Olyan erdő, ami **összefüggő** is. (Vagyis nincsenek benne elszigetelt szigetek, minden pontból eljuthatsz minden pontba).
+* **Fa (Tree):** Olyan erdő, ami **összefüggő** is. (Vagyis nincsenek benne elszigetelt komponensek, minden pontból eljuthatsz minden pontba).
 
 Az erdő komponensei ( zöldek) körmentesek és összefüggöek, tehát fák. 
 ![alt text](image-7.png)
@@ -345,8 +358,22 @@ Fákra van gyors algoritmus. (Kb elég eddig, ennyit tudni).
 
 # Gráfelmélet: Invariáns tulajdonságok (Izomorfia)
 
-## 1. Mi az az Izomorfia? ($G \cong H$)
-Két gráf akkor **izomorf**, ha szerkezetileg teljesen megegyeznek. 
+## 1. Mi az az Izomorfia? ($G_1 \cong G_2$)
+
+Két gráf ($G_1$ és $G_2$) pontosan akkor **izomorf**, ha létezik a csúcshalmazaik között egy **éltartó bijekció**. 
+
+A definíció kibontva (mit jelent ez pontosan?):
+* **Bijekció (Kölcsönösen egyértelmű leképezés):** $G_1$ minden egyes csúcsának pontosan egyetlen párja van $G_2$-ben, és fordítva. Nem marad ki csúcs egyik gráfban sem, és nincs "több az egyhez" párosítás. *(Ebből automatikusan következik, hogy a két gráf csúcsszáma megegyezik).*
+* **Éltartó tulajdonság:** A leképezés tökéletesen megőrzi a szomszédsági viszonyokat. Ha $G_1$-ben két csúcs ($u$ és $v$) között fut él, akkor a nekik megfeleltetett csúcsok között $G_2$-ben is **kell** futnia élnek. Ha $G_1$-ben nem volt él köztük, a párosított csúcsok között sem lehet $G_2$-ben.
+
+**Az izomorfia ellenőrzése számítógéppel (Algoritmikus megközelítés):**
+Tegyük fel, hogy rögzítettünk egy konkrét bijekciót (egy csúcspárosítást), és mindkét gráfot egy-egy **Szomszédsági mátrixszal** ábrázoljuk. Hogy éltartó-e a leképezés, azt egy **dupla `for` ciklussal** ellenőrizhetjük:
+1. A külső ciklus végigmegy $G_1$ csúcsain (az $u$ sorokon).
+2. A belső ciklus végigmegy $G_1$ csúcsain (a $v$ oszlopokon).
+3. Minden $(u, v)$ párnál egy `if` feltétellel leellenőrizzük: megegyezik-e a $G_1$ mátrixában lévő érték (0 vagy 1) a $G_2$ mátrixának azon a pozícióján lévő értékkel, ahová az $u$-t és a $v$-t a bijekció szerint leképeztük.
+Ha a dupla ciklus során akár csak **egyetlen eltérést** is találunk, az adott leképezés nem éltartó (tehát nem ez a megfelelő izomorfia).
+
+*(Megjegyzés: Mivel a lehetséges bijekciók, azaz a csúcsok permutációinak száma $n!$, ezért az izomorfia problémája nagy gráfoknál algoritmikusan rendkívül nehéz, NP-beli probléma).*
 
 
 ---
@@ -356,7 +383,7 @@ Ha két gráf izomorf ($G \cong H$), akkor az alábbi tulajdonságaik **kötelez
 
 * **Alapadatok:** Csúcsok száma, élek száma, többszörös élek (multiplicitás).
 * **Fokszámok:** A fokszámok sorozata (pl. mindkettőben van két 3-as és három 2-es fokszámú pont).
-* **Szerkezet:** * **Párosság:** Ha az egyik bipartit, a másik is az.
+* **Szerkezet:** * **Párosság:** Ha az egyik bipartite, a másik is az.
     * **Síkbarajzolhatóság:** Ha az egyik lerajzolható metsző élek nélkül, a másik is.
 * **Méretek:** * **Derékbőség:** A legrövidebb kör hossza.
     * **Átmérő:** A legtávolabbi két pont közötti legrövidebb út hossza.
@@ -384,7 +411,7 @@ Egy gráf **síkba rajzolható**, ha létezik olyan ábrázolása, ahol:
 * Sehol máshol **nincs élkereszteződés**.
 
 ### Nevezetes nem síkba rajzolható gráfok
-Vannak olyan bonyolult hálózatok, amiket sehogy sem lehet "kibogozni" a síkban. A két legfontosabb:
+Vannak olyan bonyolult gráfok, amiket sehogy sem lehet "kibogozni" a síkban. A két legfontosabb:
 1. **$K_5$**: 5 pontból álló teljes gráf. ( Ha egy gráfban megtalálható **$k_5$** a gráfban, akkor biztos hogy nem rajzolható síkban.)
 2. **$K_{3,3}$**: Más néven a "három ház - három kút" gráf (teljes páros gráf, ahol mindkét csoportban 3-3 pont van). ( Ha egy gráfban megtalálható **$k_(3,3)$** a gráfban, akkor biztos hogy nem rajzolható síkban.)
 
