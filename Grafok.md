@@ -57,9 +57,9 @@ Ha egy gráfból kiválasztunk bizonyos csúcsokat és éleket, **részgráfot**
 
 ## 4. Fokszám és Összefüggőség
 
-* **Fokszám:** Azt mutatja meg, hogy egy adott csúcsba hány él fut be.
+* **Fokszám:** Egy gráf adott csúcsára illeszkedő élek száma. Ha a gráfban megengedett a hurokél, akkor egy hurokél 2-vel járul hozzá a csúcs fokszámához, mivel mindkét "vége" ugyanabba a csúcsba fut be. Jelölése egy $v$ csúcs esetén: $d(v)$.
 * **Irányított gráf esetén:** Megkülönböztetünk "befutó" (mennyi jön be) és "kiinduló" (mennyi megy ki) éleket.
-* **Izolált csúcs:** Olyan magányos pont, aminek egyetlen szomszédja sincs, tehát a fokszáma 0.
+* **Izolált csúcs:** Olyan csúcs a gráfban, amelynek a fokszáma pontosan 0 (azaz egyetlen él sem illeszkedik rá, nincsenek szomszédjai).
 * **Összefüggő gráf:** Olyan hálózat, ahol nincsenek elszigetelt szigetek; bármelyik pontból el lehet jutni bármelyik másikba az éleken lépkedve.
 
 
